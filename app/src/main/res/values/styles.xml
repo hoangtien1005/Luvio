@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="backButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/ic_back_btn</item>
+        <item name="android:background">@color/white</item>
+
+    </style>
+    <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
+    </style>
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:headerBackground">@color/primary_1</item>
+        <item name="android:yearListSelectorColor">@color/primary_3</item>
+        <item name="android:dayOfWeekBackground">@color/primary_3</item>
+    </style>
+
+</resources>

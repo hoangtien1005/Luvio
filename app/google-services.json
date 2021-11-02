@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "137398360632",
+    "project_id": "luvio-ba72a",
+    "storage_bucket": "luvio-ba72a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137398360632:android:284b7bb9aa9a348b8a24cd",
+        "android_client_info": {
+          "package_name": "com.android.Luvio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137398360632-d9nvvogq8rg5vn6u3v146ubqc2d0fkuk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxhS4Q-mx2WqKkCu6vki82MaryB7L1Abc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137398360632-d9nvvogq8rg5vn6u3v146ubqc2d0fkuk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

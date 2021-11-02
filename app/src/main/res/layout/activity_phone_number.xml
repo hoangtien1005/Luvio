@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/_20sdp"
+    android:paddingHorizontal="@dimen/_24sdp"
+    android:orientation="vertical"
+    tools:context=".activities.PhoneNumberActivity">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        style="@style/backButton"
+        />
+
+    <TextView
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_25sdp"
+        android:text="Số điện thoại"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/black"/>
+    <TextView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sdp"
+        android:text="Vui lòng nhập số điện thoại của bạn. Chúng tôi sẽ gửi bạn mã xác thực 4 số để xác minh."
+        android:fontFamily="@font/montserrat_light"
+        android:textColor="@color/black"/>
+    <LinearLayout
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="fill_vertical"
+        android:weightSum="10">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/white"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/countryCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingTop="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_16sdp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:inputType="none"
+                android:text="+84"
+
+            />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/edtPhoneNumber"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="@dimen/_54sdp"
+            android:fontFamily="@font/montserrat_medium"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/nextButtonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/background_sign_in_btn"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Tiếp theo" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+</LinearLayout>

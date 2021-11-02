@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_back_btn.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_btn.xml" value="0.18796296296296297" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_gradient.xml" value="0.24351851851851852" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_input.xml" value="0.18796296296296297" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_sign_in_btn.xml" value="0.23796296296296296" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_sign_in_form.xml" value="0.24351851851851852" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/divider.xml" value="0.24814814814814815" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_back_btn.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_camera.xml" value="0.2189873417721519" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_caret_left.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_caretleft.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_default_user_image.xml" value="0.2189873417721519" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_sign_in_logo.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/logo.xml" value="0.23796296296296296" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/outline_edit_calendar_20.xml" value="0.2189873417721519" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/outline_edit_calendar_24.xml" value="0.2189873417721519" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_hobby.xml" value="0.16576086956521738" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_interest.xml" value="0.10400000000000001" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_personal_information.xml" value="0.176" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_personal_information1.xml" value="0.16799999999999998" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_personal_information2.xml" value="0.152" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_phone_number.xml" value="0.176" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_sign_in.xml" value="0.12" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_user_image.xml" value="0.16" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_verification_code.xml" value="0.16666666666666666" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_verify_phone_number.xml" value="0.176" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/country_code_row_layout.xml" value="0.10683760683760683" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.23796296296296296" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.23796296296296296" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
