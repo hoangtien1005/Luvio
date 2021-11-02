@@ -29,6 +29,10 @@ public class SignInActivity extends AppCompatActivity {
                  startActivity(new Intent(getApplicationContext(),PhoneNumberActivity.class));
             }
         });
+        binding.btnForgotPassword.setOnClickListener(view -> {
+            Intent intent=new Intent(SignInActivity.this,ForgotPasswordActivity1.class);
+            startActivity(intent);
+        });
     }
     private void showToast(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();

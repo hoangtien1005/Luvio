@@ -10,33 +10,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Luvio">
         <activity
+            android:name=".activities.ForgotPasswordActivity3"
+            android:exported="true" />
+        <activity
+            android:name=".activities.ForgotPasswordActivity2"
+            android:exported="true" />
+        <activity
+            android:name=".activities.ForgotPasswordActivity1"
+            android:exported="true" />
+        <activity
             android:name=".activities.PersonalInformationActivity2"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".activities.PersonalInformationActivity1"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity android:name=".activities.VerifyPhoneNumberActivity" />
         <activity
             android:name=".activities.PhoneNumberActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.SignInActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.InterestActivity"
+        <activity
+            android:name=".activities.InterestActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
