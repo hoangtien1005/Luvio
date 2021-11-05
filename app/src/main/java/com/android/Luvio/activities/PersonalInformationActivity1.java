@@ -14,27 +14,30 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivityPersonalInformation1Binding;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 
 public class PersonalInformationActivity1 extends AppCompatActivity {
     private ActivityPersonalInformation1Binding binding;
+
     DatePickerDialog.OnDateSetListener setDateListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityPersonalInformation1Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Calendar calendar=Calendar.getInstance();
-        final int year=calendar.get(Calendar.YEAR);
-        final int month=calendar.get(Calendar.MONTH);
-        final int day=calendar.get(Calendar.DAY_OF_MONTH);
-        setListener(year,month,day);
+
+        setListener();
 
     }
     private String encodeImage(Bitmap bitmap){
@@ -66,34 +69,39 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
     );
 
 
-    private void setListener(int year,int month,int day){
+    private void setListener(){
         binding.btnCamera.setOnClickListener(view -> {
             Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             pickImage.launch(intent);
         });
-        pickBirthday(year,month,day);
+        MaterialDatePicker datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Chọn ngày sinh")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .setTheme(R.style.ThemeOverlay_App_DatePicker)
+                .build();
+
+        binding.layoutBirthday.setEndIconOnClickListener(view -> {
+            datePicker.show(getSupportFragmentManager(),"Material_Date_Picker");
+            datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+                @Override
+                public void onPositiveButtonClick(Long selection) {
+                    Calendar calendar=Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                    calendar.setTimeInMillis(selection);
+                    SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+                    String birthday=format1.format(calendar.getTime());
+                    binding.edtBirthday.setText(birthday);
+                }
+            });
+        });
         binding.skipButton.setOnClickListener(view -> {
             Intent intent=new Intent(getApplicationContext(),PersonalInformationActivity2.class);
             startActivity(intent);
         });
     }
-    private void pickBirthday(int year,int month,int day){
-        binding.layoutBirthday.setEndIconOnClickListener(view -> {
-            DatePickerDialog datePickerDialog=new DatePickerDialog(
-                    PersonalInformationActivity1.this,setDateListener,year,month,day
-                    );
+    private void pickBirthday(){
 
-            datePickerDialog.show();
-        });
-        setDateListener=new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int dayofmonth) {
-                month=month+1;
-                String birthday=dayofmonth+"/"+month+"/"+year;
-                binding.edtBirthday.setText(birthday);
-            }
-        };
+
     }
 
 }
