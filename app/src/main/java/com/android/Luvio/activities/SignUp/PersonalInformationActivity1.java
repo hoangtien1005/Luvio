@@ -1,4 +1,4 @@
-package com.android.Luvio.activities;
+package com.android.Luvio.activities.SignUp;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.widget.DatePicker;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;

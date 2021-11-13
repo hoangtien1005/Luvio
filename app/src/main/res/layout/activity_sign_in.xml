@@ -9,7 +9,7 @@
     android:overScrollMode="never"
     android:scrollbars="none"
     android:background="@drawable/background_gradient"
-    tools:context=".activities.SignInActivity">
+    tools:context=".activities.SignUp.SignInActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

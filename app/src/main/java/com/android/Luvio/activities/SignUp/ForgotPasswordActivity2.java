@@ -1,18 +1,19 @@
-package com.android.Luvio.activities;
+package com.android.Luvio.activities.SignUp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
 import com.android.Luvio.R;
-import com.android.Luvio.databinding.ActivityForgotPassword1Binding;
+import com.android.Luvio.databinding.ActivityForgotPassword2Binding;
+import com.android.Luvio.databinding.ActivityPersonalInformation2Binding;
 
-public class ForgotPasswordActivity1 extends AppCompatActivity {
-    private ActivityForgotPassword1Binding binding;
+public class ForgotPasswordActivity2 extends AppCompatActivity {
+    private ActivityForgotPassword2Binding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityForgotPassword1Binding.inflate(getLayoutInflater());
+        binding= ActivityForgotPassword2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListenner();
 
@@ -22,4 +23,5 @@ public class ForgotPasswordActivity1 extends AppCompatActivity {
             onBackPressed();
         });
     }
+
 }

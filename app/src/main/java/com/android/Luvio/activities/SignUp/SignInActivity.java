@@ -1,4 +1,4 @@
-package com.android.Luvio.activities;
+package com.android.Luvio.activities.SignUp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio.databinding.ActivitySignInBinding;
-
-import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;

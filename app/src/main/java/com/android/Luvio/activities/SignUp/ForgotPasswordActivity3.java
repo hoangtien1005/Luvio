@@ -1,4 +1,4 @@
-package com.android.Luvio.activities;
+package com.android.Luvio.activities.SignUp;
 
 import android.os.Bundle;
 

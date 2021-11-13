@@ -13,41 +13,43 @@
             android:name=".activities.ChannelActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.InterestActivity"
+            android:name=".activities.SignUp.InterestActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.ForgotPasswordActivity3"
+            android:name=".activities.SignUp.ForgotPasswordActivity3"
             android:exported="true" />
         <activity
-            android:name=".activities.ForgotPasswordActivity2"
+            android:name=".activities.SignUp.ForgotPasswordActivity2"
             android:exported="true" />
         <activity
-            android:name=".activities.ForgotPasswordActivity1"
+            android:name=".activities.SignUp.ForgotPasswordActivity1"
             android:exported="true" />
         <activity
-            android:name=".activities.PersonalInformationActivity2"
+            android:name=".activities.SignUp.PersonalInformationActivity2"
             android:exported="true" />
         <activity
-            android:name=".activities.PersonalInformationActivity1"
+            android:name=".activities.SignUp.PersonalInformationActivity1"
             android:exported="true" />
-        <activity android:name=".activities.VerifyPhoneNumberActivity" />
+        <activity android:name=".activities.SignUp.VerifyPhoneNumberActivity" />
         <activity
-            android:name=".activities.PhoneNumberActivity"
+            android:name=".activities.SignUp.PhoneNumberActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activities.SignInActivity"
+            android:name=".activities.SignUp.SignInActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".activities.MainActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+
         </activity>
     </application>
 
