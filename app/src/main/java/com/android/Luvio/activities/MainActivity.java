@@ -1,10 +1,18 @@
 package com.android.Luvio.activities;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.android.Luvio.CustomDialog;
 import com.android.Luvio.databinding.ActivityMainBinding;
 
 import org.jetbrains.annotations.Nullable;
@@ -22,13 +30,30 @@ import io.getstream.chat.android.ui.channel.list.viewmodel.factory.ChannelListVi
 import static java.util.Collections.singletonList;
 
 public final class MainActivity extends AppCompatActivity {
-
+    ;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Step 0 - inflate binding
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        View view = binding.getRoot();
+        setContentView(view);
+        Context context = view.getContext();
+
+        binding.edtChannelSearch.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if(i == EditorInfo.IME_ACTION_GO) {
+                    FragmentManager fm = getSupportFragmentManager();
+                    CustomDialog dialog =  new CustomDialog(binding.edtChannelSearch.getEditText().getText().toString());
+
+                    dialog.show(fm, "");
+
+                }
+                return true;
+            }
+        });
+
 
         // Step 1 - Set up the client for API calls and the domain for offline storage
         ChatClient client = new ChatClient.Builder("b67pax5b2wdq", getApplicationContext())
