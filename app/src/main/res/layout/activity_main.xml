@@ -31,8 +31,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
 
+        android:id="@+id/edtChannelSearch"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         android:hint="Tìm kiếm theo tên"
@@ -44,6 +46,8 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionGo"
+            android:singleLine="true"
             android:background="@drawable/background_message_list_search_input"
             android:inputType="text"
             />

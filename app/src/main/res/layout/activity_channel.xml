@@ -37,6 +37,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:streamUiMessageInputFont="@font/montserrat_light"
+        app:streamUiMessageInputHintText="Type your message..."
+        app:streamUiMessageInputHintTextColor="#99676767"
+        app:streamUiMessageInputTextColor="@color/black"
+        app:streamUiMessageInputTextSize="14.00dp"
+        app:streamUiSendButtonDisabledIcon="@drawable/ic_chat_send_btn_disabled"
+        app:streamUiSendButtonEnabledIcon="@drawable/ic_chat_send_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
