@@ -21,5 +21,15 @@
         <item>Others</item>
     </string-array>
 
+    <string-array name="ageScope">
+        <item>20</item>
+        <item>35</item>
+    </string-array>
+
+    <string-array name="starScope">
+        <item>2.0</item>
+        <item>3.5</item>
+    </string-array>
+
 
 </resources>

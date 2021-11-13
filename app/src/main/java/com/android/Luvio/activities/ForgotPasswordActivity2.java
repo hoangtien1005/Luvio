@@ -15,10 +15,10 @@ public class ForgotPasswordActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding= ActivityForgotPassword2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setListenner();
+        setListener();
 
     }
-    private void setListenner(){
+    private void setListener(){
         binding.btnBack.setOnClickListener(view -> {
             onBackPressed();
         });

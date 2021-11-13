@@ -9,15 +9,16 @@ import com.android.Luvio.databinding.ActivityForgotPassword1Binding;
 
 public class ForgotPasswordActivity1 extends AppCompatActivity {
     private ActivityForgotPassword1Binding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityForgotPassword1Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setListenner();
+        setListener();
 
     }
-    private void setListenner(){
+    private void setListener(){
         binding.btnBack.setOnClickListener(view -> {
             onBackPressed();
         });

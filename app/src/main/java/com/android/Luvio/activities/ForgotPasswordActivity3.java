@@ -14,9 +14,9 @@ public class ForgotPasswordActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityForgotPassword3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setListenner();
+        setListener();
     }
-    private void setListenner(){
+    private void setListener(){
         binding.btnBack.setOnClickListener(view -> {
             onBackPressed();
         });

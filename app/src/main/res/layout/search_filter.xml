@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_input"
+    android:backgroundTint="@color/white"
+    android:orientation="vertical"
+    android:padding="30dp"
+    tools:context=".activities.SearchFilterActivity"
+    android:id="@+id/search_filter_sheet"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    app:behavior_hideable="true">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="9"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Sao"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/chosen_star_scope"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="right"
+            android:text="2 - 3.5"
+            android:textSize="16dp" />
+
+
+    </LinearLayout>
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/star_scope"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stepSize="0.5"
+        android:valueFrom="0.0"
+        android:valueTo="5.0"
+        app:haloColor="@color/ic_home_tint"
+        app:thumbColor="@color/ic_home_tint"
+        app:tickVisible="false"
+        app:trackColorActive="@color/ic_home_tint"
+        app:values="@array/starScope" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Tuổi"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/chosen_age_scope"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="right"
+            android:text="20 - 35"
+            android:textSize="16dp" />
+
+
+    </LinearLayout>
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/age_scope"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stepSize="1"
+        android:valueFrom="12"
+        android:valueTo="80"
+        app:values="@array/ageScope"
+        app:thumbColor="@color/ic_home_tint"
+        app:tickVisible="false"
+        app:trackColorActive="@color/ic_home_tint"
+        app:haloColor="@color/ic_home_tint"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Giới tính"
+        android:layout_marginTop="10dp"
+        android:textSize="24dp"
+        android:fontFamily="@font/montserrat_medium"/>
+
+    <RadioGroup
+        android:id="@+id/gender_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/male_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nam"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:checked="false"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_button_male_selector"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/female_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nữ"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:checked="true"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_button_female_selector"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/others_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Khác"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:checked="false"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_button_others_selector"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="20dp"/>
+
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/finish_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Hoàn thành"
+        android:backgroundTint="@color/ic_home_tint"
+        android:textSize="20dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textStyle="bold"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
+    //Buttons
     <style name="backButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:src">@drawable/ic_back_btn</item>
         <item name="android:background">@color/white</item>
-
     </style>
+
+    <style name="settingButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/ic_setting_btn</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="profileButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/ic_my_profile_btn</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+
+
+    //DatePicker
     <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
         <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
     </style>
@@ -24,7 +41,7 @@
 
     </style>
 
-    
+    //Chip
     <style name="ChipText" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textSize">@dimen/_14ssp</item>
         <item name="android:fontFamily">@font/montserrat_semibold</item>
