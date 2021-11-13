@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_primary_user_image.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_sign_in_logo.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_user_is_blocked.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_warning.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/star_active.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/star_disabled.xml" value="0.14635416666666667" />
         <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_channel.xml" value="0.17572463768115942" />
         <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_forgot_password1.xml" value="0.14221014492753623" />
         <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />

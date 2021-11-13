@@ -1,4 +1,4 @@
-package com.android.Luvio.activities;
+package com.android.Luvio.activities.Chat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
