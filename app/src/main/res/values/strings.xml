@@ -1,5 +1,7 @@
 <resources>
+<!--App Name-->
     <string name="app_name">Luvio</string>
+<!--Country Code-->
     <string-array name="country_code">
         <item>+84</item>
         <item>+58</item>
@@ -8,13 +10,13 @@
         <item>+678</item>
         <item>+379</item>
     </string-array>
-
+<!--Gender-->
     <string-array name="gender">
         <item>Nam</item>
         <item>Nữ</item>
         <item>Others</item>
     </string-array>
-
+<!--Interested Gender-->
     <string-array name="interested_gender">
         <item>Nam</item>
         <item>Nữ</item>

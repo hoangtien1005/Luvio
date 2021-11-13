@@ -214,7 +214,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_16sdp">
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/nextButton"
+                android:id="@+id/confirmButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:background="@drawable/background_sign_in_btn"
@@ -224,7 +224,7 @@
                 android:textAllCaps="false"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="Tiếp theo" />
+                android:text="Xác nhận" />
         </FrameLayout>
     </LinearLayout>
 

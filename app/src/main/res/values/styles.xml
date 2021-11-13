@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
+<!--Back Button Style-->
     <style name="backButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:src">@drawable/ic_back_btn</item>
         <item name="android:background">@color/white</item>
+    </style>
+<!--Date Picker Style-->
 
-    </style>
-    <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
-        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
-    </style>
-    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
-        <item name="android:headerBackground">@color/primary_1</item>
-        <item name="android:yearListSelectorColor">@color/primary_3</item>
-        <item name="android:dayOfWeekBackground">@color/primary_3</item>
-    </style>
-
-    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+    <style name="DatePickerStyle" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
         <item name="colorPrimary">@color/primary_1</item>
-        <item name="colorOnPrimary">@color/primary_2</item>
-
+        <item name="colorOnPrimary">@color/white</item>
     </style>
 
-    
+<!--Interests Chip-->
     <style name="ChipText" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textSize">@dimen/_14ssp</item>
         <item name="android:fontFamily">@font/montserrat_semibold</item>
     </style>
 
     <style name="ChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipStrokeColor">@color/edt_text_background</item>
+        <item name="chipStrokeWidth">@dimen/_1sdp</item>
         <item name="chipBackgroundColor">@color/chip_color_background</item>
         <item name="android:textColor">@color/chip_text_color</item>
         <item name="android:textAppearance">@style/ChipText</item>
-
     </style>
+
+
 </resources>
