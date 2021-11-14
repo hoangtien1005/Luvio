@@ -1,4 +1,4 @@
-package com.android.Luvio.activities.SignUp;
+package com.android.Luvio.activities.SignUpSignIn;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,11 +24,11 @@ public class SignInActivity extends AppCompatActivity {
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 startActivity(new Intent(getApplicationContext(),PhoneNumberActivity.class));
+                 startActivity(new Intent(getApplicationContext(), PhoneNumberActivity.class));
             }
         });
         binding.btnForgotPassword.setOnClickListener(view -> {
-            Intent intent=new Intent(SignInActivity.this,ForgotPasswordActivity1.class);
+            Intent intent=new Intent(SignInActivity.this, ForgotPasswordActivity1.class);
             startActivity(intent);
         });
     }

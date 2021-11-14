@@ -1,12 +1,10 @@
-package com.android.Luvio.activities.SignUp;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.android.Luvio.activities.SignUpSignIn;
 
 import android.os.Bundle;
 
-import com.android.Luvio.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.Luvio.databinding.ActivityForgotPassword2Binding;
-import com.android.Luvio.databinding.ActivityPersonalInformation2Binding;
 
 public class ForgotPasswordActivity2 extends AppCompatActivity {
     private ActivityForgotPassword2Binding binding;

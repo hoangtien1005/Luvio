@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/_20sdp"
     android:paddingHorizontal="@dimen/_24sdp"
-    tools:context=".activities.SignUp.VerifyPhoneNumberActivity">
+    tools:context=".activities.SignUpSignIn.VerifyPhoneNumberActivity">
     <ImageButton
         android:id="@+id/btnBack"
         style="@style/backButton"

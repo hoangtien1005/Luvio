@@ -10,7 +10,7 @@
     android:fillViewport="true"
     android:overScrollMode="never"
     android:scrollbars="none"
-    tools:context=".activities.SignUp.PersonalInformationActivity2">
+    tools:context=".activities.SignUpSignIn.PersonalInformationActivity2">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -182,7 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/signInButton"
+                android:id="@+id/nextButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="bottom"

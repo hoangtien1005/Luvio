@@ -1,6 +1,4 @@
-package com.android.Luvio.activities.SignUp;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.android.Luvio.activities.SignUpSignIn;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +6,8 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivityPhoneNumberBinding;
@@ -17,7 +17,7 @@ public class PhoneNumberActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityPhoneNumberBinding.inflate(getLayoutInflater());
+        binding= ActivityPhoneNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListener();
     }
@@ -32,7 +32,7 @@ public class PhoneNumberActivity extends AppCompatActivity  {
         binding.nextButtonLayout.setOnClickListener(view -> {
             if(isValidPhoneNumber()){
                 Bundle bundle=new Bundle();
-                Intent intent=new Intent(getApplicationContext(),VerifyPhoneNumberActivity.class);
+                Intent intent=new Intent(getApplicationContext(), VerifyPhoneNumberActivity.class);
                 bundle.putString("phoneNumber",binding.edtPhoneNumber.toString().trim());
             }
         });
