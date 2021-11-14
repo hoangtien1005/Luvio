@@ -5,11 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.MenuItem;
+import android.widget.PopupMenu;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.android.Luvio.CustomDialog;
+import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivityChannelBinding;
 import com.getstream.sdk.chat.viewmodel.MessageInputViewModel;
 import com.getstream.sdk.chat.viewmodel.messages.MessageListViewModel;
@@ -39,6 +45,8 @@ public class ChannelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Context context = getApplicationContext();
 
         // Step 0 - inflate binding
         ActivityChannelBinding binding = ActivityChannelBinding.inflate(getLayoutInflater());
@@ -90,6 +98,28 @@ public class ChannelActivity extends AppCompatActivity {
         MessageListHeaderView.OnClickListener backHandler = () -> {
             messageListViewModel.onEvent(MessageListViewModel.Event.BackButtonPressed.INSTANCE);
         };
+
+
+
+        binding.messageListHeaderView.setAvatarClickListener(() -> {
+            PopupMenu menu = new PopupMenu(context, binding.messageListHeaderView);
+            menu.getMenuInflater().inflate(R.menu.chat_top_menu, menu.getMenu());
+            menu.setGravity(Gravity.END);
+            menu.show();
+            menu.setOnMenuItemClickListener(menuItem -> {
+                if(menuItem.getItemId() == R.id.profile) {
+
+                }
+                else if(menuItem.getItemId() == R.id.block) {
+                    FragmentManager fm = getSupportFragmentManager();
+                    CustomDialog dialog =  new CustomDialog("block");
+
+                    dialog.show(fm, "");
+                }
+                return true;
+            });
+        });
+
         binding.messageListHeaderView.setBackButtonClickListener(backHandler);
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
