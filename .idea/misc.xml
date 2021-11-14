@@ -59,6 +59,38 @@
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/country_code_row_layout.xml" value="0.10683760683760683" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.23796296296296296" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.23796296296296296" />
+        <entry key="app/src/main/res/drawable/background_dialog.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/background_input.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/background_message_list_search_input.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/background_sign_in_btn.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_back_btn.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_channel_list_search.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_chat_send_btn.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/ic_chat_send_btn_disabled.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/ic_default_user_image.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_edit_calendar.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_primary_user_image.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_search_icon.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_sign_in_logo.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_user_is_blocked.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_warning.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/star_active.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/star_disabled.xml" value="0.2875" />
+        <entry key="app/src/main/res/layout/activity_channel.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_chat_app_bar.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_forgot_password1.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_forgot_password2.xml" value="0.2713541666666667" />
+        <entry key="app/src/main/res/layout/activity_forgot_password3.xml" value="0.2713541666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_personal_information1.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_personal_information2.xml" value="0.2713541666666667" />
+        <entry key="app/src/main/res/layout/dialog_block.xml" value="0.2713541666666667" />
+        <entry key="app/src/main/res/layout/dialog_is_blocked.xml" value="0.2713541666666667" />
+        <entry key="app/src/main/res/layout/dialog_rating.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/chat_top_menu.xml" value="0.1390625" />
+        <entry key="app/src/main/res/menu/top_app_bar.xml" value="0.2713541666666667" />
       </map>
     </option>
   </component>
