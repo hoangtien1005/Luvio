@@ -35,186 +35,202 @@
             android:text="Chọn 3 sở thích của bản thân"
             android:fontFamily="@font/montserrat_light"
             android:textColor="@color/black"/>
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:chipSpacingHorizontal="@dimen/_10sdp"
-
             android:layout_marginTop="@dimen/_10sdp"
-            >
+
+            app:chipSpacingHorizontal="@dimen/_10sdp">
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_1"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
                 android:background="@drawable/background_input"
-
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Bóng đá"/>
+                android:text="Bóng đá"
+
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_2"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Mua sắm"/>
+                android:text="Mua sắm"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_3"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
-
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Yoga"/>
+                android:text="Yoga"
+                android:textAlignment="center"
+
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_4"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Bơi lội"/>
+                android:text="Bơi lội"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_5"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Bóng rổ"/>
+                android:text="Bóng rổ"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_6"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Karaoke"/>
+                android:text="Karaoke"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_7"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Quần vợt"/>
+                android:text="Quần vợt"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_8"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Nấu ăn"/>
+                android:text="Nấu ăn"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_9"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Đọc sách"/>
+                android:text="Đọc sách"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_10"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Âm nhạc"/>
+                android:text="Âm nhạc"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_11"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Xem phim"/>
+                android:text="Xem phim"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_12"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Nghệ thuật"/>
+                android:text="Nghệ thuật"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_13"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Động vật"/>
+                android:text="Động vật"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_14"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Chính trị "/>
+                android:text="Chính trị "
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_15"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Du lịch"/>
+                android:text="Du lịch"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_16"
                 style="@style/ChipStyle"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:textSize="@dimen/_16sdp"
-                android:textAlignment="center"
-                app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Game"/>
+                android:text="Game"
+                android:textAlignment="center"
+                android:textSize="@dimen/_16sdp"
+                app:chipCornerRadius="@dimen/_10sdp" />
 
         </com.google.android.material.chip.ChipGroup>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_16sdp">
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/confirmButton"
+                android:id="@+id/nextButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:background="@drawable/background_sign_in_btn"
@@ -224,7 +240,7 @@
                 android:textAllCaps="false"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="Xác nhận" />
+                android:text="Tiếp theo" />
         </FrameLayout>
     </LinearLayout>
 

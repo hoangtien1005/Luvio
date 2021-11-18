@@ -71,7 +71,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/edtConfirmPassword"
+                android:labelFor="@id/edtRetypePassword"
                 android:text="Nhập lại mật khẩu"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/black"
@@ -79,14 +79,14 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutConfirmPassword"
+                android:id="@+id/layoutRetypePassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:endIconMode="password_toggle"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtConfirmPassword"
+                    android:id="@+id/edtRetypePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -182,7 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/nextButton"
+                android:id="@+id/signInButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="bottom"
