@@ -44,6 +44,7 @@
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/background_input.xml" value="0.2712820512820513" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/background_sign_in_btn.xml" value="0.2361111111111111" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/background_sign_in_form.xml" value="0.2712820512820513" />
+        <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/bottom_nav.xml" value="0.264" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_back_btn.xml" value="0.2361111111111111" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_bottom_navi.xml" value="0.14947916666666666" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_camera.xml" value="0.2361111111111111" />
@@ -52,6 +53,8 @@
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_home_tint.xml" value="0.2755208333333333" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2755208333333333" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_like_btn.xml" value="0.2712820512820513" />
+        <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_liked.xml" value="0.15" />
+        <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_message.xml" value="0.15" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_message_btn.xml" value="0.2712820512820513" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_message_tint_2.xml" value="0.15" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/drawable/ic_setting_btn.xml" value="0.2755208333333333" />
@@ -69,7 +72,7 @@
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_forgot_password1.xml" value="0.259375" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_forgot_password2.xml" value="0.259375" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_forgot_password3.xml" value="0.259375" />
-        <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_home_page.xml" value="0.264" />
+        <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_home_page.xml" value="0.2" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_interest.xml" value="0.259375" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_liked_user.xml" value="0.259375" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_personal_information1.xml" value="0.259375" />
@@ -78,7 +81,7 @@
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_sign_in.xml" value="0.264" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/activity_verify_phone_number.xml" value="0.259375" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/country_code_row_layout.xml" value="0.259375" />
-        <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/custom_list.xml" value="0.2" />
+        <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/custom_list.xml" value="0.264" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/layout/search_filter.xml" value="0.264" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.4" />
         <entry key="..\:/pp/mobile/Luvio-main/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2755208333333333" />

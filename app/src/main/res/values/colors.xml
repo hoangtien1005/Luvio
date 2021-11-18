@@ -18,4 +18,5 @@
     <color name="ic_liked_tint">#FF6666</color>
     <color name="ic_message_tint">#4CD5FF</color>
     <color name="ic_home_tint">#7F00FF</color>
+    <color name="avatarTint">#ECECEC</color>
 </resources>

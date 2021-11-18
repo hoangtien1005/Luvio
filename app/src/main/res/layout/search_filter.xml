@@ -11,7 +11,8 @@
     tools:context=".activities.SearchFilterActivity"
     android:id="@+id/search_filter_sheet"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    app:behavior_hideable="true">
+    app:behavior_hideable="true"
+    >
 
 
 

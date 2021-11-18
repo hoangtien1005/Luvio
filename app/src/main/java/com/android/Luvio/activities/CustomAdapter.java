@@ -27,7 +27,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
 
     public CustomAdapter(@NonNull Context context, int resource, @NonNull String[] names,
                          String[] ages, String[] stars, String[] bios, Integer[] avatars) {
-        super(context, resource);
+        super(context, resource, names);
         this.context = context;
         this.names = names;
         this.ages = ages;
@@ -46,6 +46,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
 
         TextView nameAge = (TextView) view.findViewById(R.id.name_age);
         TextView star = (TextView) view.findViewById(R.id.star);
+        TextView bio = (TextView) view.findViewById(R.id.bio);
         ImageView avatar = (ImageView) view.findViewById(R.id.user_avatar);
 
         ImageButton likeBtn = (ImageButton) view.findViewById(R.id.like_btn);
@@ -60,15 +61,18 @@ public class CustomAdapter extends ArrayAdapter<String> {
             switch (likeCheck.getVisibility()) {
                 case View.VISIBLE:
                     likeCheck.setVisibility(View.INVISIBLE);
+                    break;
                 case View.INVISIBLE:
                     likeCheck.setVisibility(View.VISIBLE);
+                    break;
             }
 
         });
 
         nameAge.setText(names[position] + ", " + ages[position]);
         star.setText(stars[position]);
-        avatar.setBackgroundResource(avatars[position]);
+        bio.setText(bios[position]);
+        avatar.setImageResource(avatars[position]);
         return view;
     }
 
