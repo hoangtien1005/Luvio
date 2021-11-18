@@ -48,7 +48,6 @@ public class CustomDialog extends DialogFragment {
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getActivity(), "Ok", Toast.LENGTH_SHORT).show();
                     dismiss();
                 }
             });
