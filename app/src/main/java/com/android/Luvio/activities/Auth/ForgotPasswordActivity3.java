@@ -1,4 +1,4 @@
-package com.android.Luvio.activities;
+package com.android.Luvio.activities.Auth;
 
 import android.os.Bundle;
 
