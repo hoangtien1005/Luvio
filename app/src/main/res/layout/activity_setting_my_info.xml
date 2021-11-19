@@ -28,7 +28,7 @@
                 android:layout_marginLeft="20dp"
                 android:src="@drawable/ic_back_btn"
                 android:layout_marginTop="10dp"
-                android:background="none"/>
+                android:background="@color/white"/>
             <TextView
                 android:id="@+id/setting"
                 android:layout_width="wrap_content"
