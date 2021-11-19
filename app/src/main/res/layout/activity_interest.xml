@@ -223,7 +223,7 @@
                 app:chipCornerRadius="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Game"/>
-
+        ["Bóng đá","Mua sắm","Yoga","Bơi lội","Bóng rổ","Karaoke","Quần vợt","Nấu ăn","Đọc sách","Âm nhạc","Xem phim","Nghệ thuật","Động vật","Chính trị","Du lịch","Game"]
         </com.google.android.material.chip.ChipGroup>
         <FrameLayout
             android:layout_width="match_parent"
@@ -241,6 +241,13 @@
                 android:layout_gravity="bottom"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:text="Xác nhận" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:theme="@style/ProgressBarColor"
+                />
         </FrameLayout>
     </LinearLayout>
 

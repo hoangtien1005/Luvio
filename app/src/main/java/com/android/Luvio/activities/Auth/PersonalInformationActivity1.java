@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -98,18 +100,15 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
                 }
             });
         });
-        binding.skipButton.setOnClickListener(view -> {
-            clearData();
-            Intent intent=new Intent(getApplicationContext(),PersonalInformationActivity2.class);
-            startActivity(intent);
-        });
+
         binding.nextButton.setOnClickListener(view->{
             if(isValidData()){
                 Intent intent=new Intent(getApplicationContext(),PersonalInformationActivity2.class);
                 Bundle bundleData=new Bundle();
                 bundleData.putString(Constants.KEY_IMAGE,encodeImage);
                 bundleData.putString(Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString().trim());
-                bundleData.putString(Constants.KEY_LAST_NAME,binding.edtLastName.getText().toString().trim());
+                bundleData.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());
+                bundleData.putString(Constants.KEY_BIRTHDAY,binding.edtBirthday.getText().toString().trim());
                 intent.putExtras(bundleData);
                 startActivity(intent);
             }
@@ -122,7 +121,11 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
     }
 
     private boolean isValidData(){
-        if(binding.edtFirstName.getText().toString().trim().isEmpty()){
+        if(encodeImage==null){
+            showToast("Chưa chọn hình ảnh");
+            return false;
+        }
+        else if(binding.edtFirstName.getText().toString().trim().isEmpty()){
             showToast("Chưa nhập họ");
             return false;
 
@@ -139,15 +142,17 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
         return true;
     }
 
-    private void clearData() {
-        Calendar calendar=Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        calendar.setTimeInMillis(MaterialDatePicker.todayInUtcMilliseconds());
-        SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
-        String today=format1.format(calendar.getTime());
-        binding.edtBirthday.setText(today);
-        binding.edtFirstName.getText().clear();
-        binding.edtLastName.getText().clear();
-    }
+//    private void clearData() {
+//        Calendar calendar=Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+//        calendar.setTimeInMillis(MaterialDatePicker.todayInUtcMilliseconds());
+//        SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+//        String today=format1.format(calendar.getTime());
+//
+//
+//        binding.edtBirthday.setText(today);
+//        binding.edtFirstName.getText().clear();
+//        binding.edtLastName.getText().clear();
+//    }
 
     public Bitmap cropImage(Bitmap imageProfile){
         int height=imageProfile.getHeight();
@@ -168,4 +173,9 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
         return previewImage;
     }
 
+    private Bitmap drawableToBitmap(Drawable picture){
+
+        Bitmap bitmap = ((BitmapDrawable)picture).getBitmap();
+        return bitmap;
+    }
 }

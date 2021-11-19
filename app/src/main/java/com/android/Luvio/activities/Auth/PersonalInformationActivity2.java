@@ -35,13 +35,16 @@ public class PersonalInformationActivity2 extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.interested_gender));
         binding.edtInterestedGender.setAdapter(interestedGenderAdapter);
+
+
         binding.nextButton.setOnClickListener(view -> {
             if(isValidData()){
                 Intent intent1=getIntent();
                 Bundle bundleData=intent1.getExtras();
                 bundleData.putString(Constants.KEY_PASSWORD,binding.edtPassword.getText().toString().trim());
                 bundleData.putString(Constants.KEY_GENDER, binding.edtGender.getText().toString().trim());
-                bundleData.putString(Constants.KEY_INTERESTED_GENDER,binding.edtInterestedGender.getText().toString().trim());
+                bundleData.putString(Constants.KEY_INTERESTED_GENDER, binding.edtInterestedGender.getText().toString().trim());
+
                 Intent intent2=new Intent(getApplicationContext(),InterestActivity.class);
                 intent2.putExtras(bundleData);
                 startActivity(intent2);
