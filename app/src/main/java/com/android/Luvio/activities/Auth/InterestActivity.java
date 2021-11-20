@@ -2,14 +2,13 @@ package com.android.Luvio.activities.Auth;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.Luvio.activities.Main.MainActivity;
+import com.android.Luvio.activities.Main.mainActivity;
 import com.android.Luvio.databinding.ActivityInterestBinding;
 import com.android.Luvio.utilities.Constants;
 import com.google.android.material.chip.Chip;
@@ -17,9 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 public class InterestActivity extends AppCompatActivity {
@@ -53,7 +50,7 @@ public class InterestActivity extends AppCompatActivity {
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
-                    Intent intentMain=new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intentMain=new Intent(getApplicationContext(), mainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intentMain);
                 })
