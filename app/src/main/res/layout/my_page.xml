@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@null"
         android:elevation="0dp">
         <RelativeLayout
             android:id="@+id/layout_top"
@@ -32,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_back_btn"
-                    android:background="@color/white"/>
+                    android:background="@null" />
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -40,7 +41,7 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@null"
                     android:src="@drawable/ic_setting"/>
             </LinearLayout>
 

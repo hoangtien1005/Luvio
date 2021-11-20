@@ -6,8 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.myapplication.MainActivity">
+    android:orientation="vertical">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,14 +31,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
                     android:layout_marginStart="0dp" />
+
                 <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/circle_indicator3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/circle_indicator3"
-                    android:gravity="right"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="40dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginRight="20dp"
+                    android:gravity="right" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:src="@drawable/ic_active_status"
-                        app:tint="#00ff00" />
+                        />
 
                     <View
                         android:layout_width="0dp"
@@ -105,6 +105,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
+                    android:textSize="20dp"
                     android:text="Hey guys, This is Malena. I’m here to find someone for hookup. I’m not interested in something serious. I would love to hear your adventurous story." />
 
                 <LinearLayout
