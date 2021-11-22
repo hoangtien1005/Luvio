@@ -84,8 +84,8 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
             }
         });
         binding.resendVerficationCode.setOnClickListener(view -> {
-            Intent intent=getIntent();
-            Bundle bundleData=intent.getExtras();
+
+            Bundle bundleData=getIntent().getExtras();
             PhoneAuthOptions options=
                     PhoneAuthOptions.newBuilder()
                             .setPhoneNumber(String.format(bundleData.getString(Constants.KEY_COUNTRY_CODE),bundleData.getString(Constants.KEY_PHONE_NUMBER)))

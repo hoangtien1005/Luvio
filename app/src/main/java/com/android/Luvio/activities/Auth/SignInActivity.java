@@ -23,6 +23,12 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceManager = new PreferenceManager(getApplicationContext());
+        if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
+            Intent intent =new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
@@ -69,22 +75,27 @@ public class SignInActivity extends AppCompatActivity {
             Intent intent=new Intent(SignInActivity.this,ForgotPasswordActivity1.class);
             startActivity(intent);
         });
+        binding.signInButton.setOnClickListener(view -> {
+            if(isValidSignIn()){
+                signIn();
+            }
+        });
     }
     private void showToast(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
 
     }
     private boolean isValidSignIn(){
-        if(binding.edtPhoneNumber.toString().isEmpty()){
+        if(binding.edtPhoneNumber.getText().toString().isEmpty()){
             showToast("Nhập số điện thoại");
             return false;
 
         }
-        else if(!Patterns.PHONE.matcher(binding.edtPhoneNumber.toString()).matches()){
+        else if(!Patterns.PHONE.matcher(binding.edtPhoneNumber.getText().toString()).matches()){
             showToast("Số điện thoại không hợp lệ");
             return false;
         }
-        else if (binding.edtPassword.toString().isEmpty()){
+        else if (binding.edtPassword.getText().toString().isEmpty()){
             showToast("Nhập mật khẩu");
             return false;
         }

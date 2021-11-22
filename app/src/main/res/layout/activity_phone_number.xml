@@ -62,7 +62,7 @@
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_width="0dp"
             android:layout_weight="6"
-            android:layout_height="@dimen/_54sdp"
+            android:layout_height="@dimen/_60sdp"
             android:fontFamily="@font/montserrat_medium"
             android:inputType="number"
             android:imeOptions="actionDone"

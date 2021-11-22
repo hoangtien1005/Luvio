@@ -38,7 +38,7 @@ public class PhoneNumberActivity extends AppCompatActivity  {
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.country_code));
         binding.countryCode.setAdapter(myAdapter);
-        binding.nextButtonLayout.setOnClickListener(view -> {
+        binding.nextButton.setOnClickListener(view -> {
             if(isValidPhoneNumber()){
                 loading(true);
                 PhoneAuthOptions options=
@@ -84,12 +84,12 @@ public class PhoneNumberActivity extends AppCompatActivity  {
 
     }
     private boolean isValidPhoneNumber(){
-        if(binding.edtPhoneNumber.toString().isEmpty()){
+        if(binding.edtPhoneNumber.getText().toString().isEmpty()){
             showToast("Nhập số điện thoại");
             return false;
 
         }
-        else if(!Patterns.PHONE.matcher(binding.edtPhoneNumber.toString()).matches()){
+        else if(!Patterns.PHONE.matcher(binding.edtPhoneNumber.getText().toString()).matches()){
             showToast("Số điện thoại không hợp lệ");
             return false;
         }
