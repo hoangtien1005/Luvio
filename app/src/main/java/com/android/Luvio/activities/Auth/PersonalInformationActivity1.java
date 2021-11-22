@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -19,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivityPersonalInformation1Binding;
-import com.android.Luvio.utilities.Constants;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
@@ -103,8 +101,9 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
 
         binding.nextButton.setOnClickListener(view->{
             if(isValidData()){
+                Intent intentPrev=getIntent();
+                Bundle bundleData=intentPrev.getExtras();
                 Intent intent=new Intent(getApplicationContext(),PersonalInformationActivity2.class);
-                Bundle bundleData=new Bundle();
                 bundleData.putString(Constants.KEY_IMAGE,encodeImage);
                 bundleData.putString(Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString().trim());
                 bundleData.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());

@@ -5,6 +5,8 @@ public class Constants {
     public static final String KEY_FIRST_NAME="firstName";
     public static final String KEY_LAST_NAME="lastName";
     public static final String KEY_BIRTHDAY="birthday";
+    public static final String KEY_COUNTRY_CODE="countryCode";
+    public static final String KEY_PHONE_NUMBER="phoneNumber";
     public static final String KEY_PASSWORD="password";
     public static final String KEY_SIGN_IN_PREFERENCE="signInPreference";
     public static final String KEY_CHAT_PREFERENCE="chatPreference";

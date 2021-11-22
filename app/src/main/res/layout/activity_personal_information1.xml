@@ -44,10 +44,12 @@
 
             <ImageButton
                 android:id="@+id/btnCamera"
-                android:layout_width="@dimen/_27sdp"
-                android:layout_height="@dimen/_27sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_alignRight="@id/imageProfile"
                 android:layout_alignBottom="@id/imageProfile"
+                android:layout_marginRight="-1dp"
+                android:layout_marginBottom="0dp"
                 android:src="@drawable/ic_camera" />
 
 
@@ -85,6 +87,7 @@
                         android:id="@+id/edtFirstName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
                         android:background="@drawable/background_input"
                         />
 
@@ -117,6 +120,7 @@
                         android:id="@+id/edtLastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
                         android:background="@drawable/background_input"
                         />
 

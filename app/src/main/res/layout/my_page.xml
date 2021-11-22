@@ -10,7 +10,7 @@
     android:scrollbars="vertical"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    android:fontFamily = "#9Slide03 Montserrat Medium"
+
     android:orientation="vertical"
     android:background="@drawable/ic_heart_fab">
     <LinearLayout
@@ -27,8 +27,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_20sdp"
+                android:paddingHorizontal="@dimen/_24sdp"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+               >
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -50,33 +52,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="220dp" />
         </RelativeLayout>
-        <ImageView
-            android:id="@+id/my_user_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="-40dp"
-            android:layout_marginLeft="20dp"
-            android:foregroundGravity="bottom"
-            android:elevation="2dp"
-            android:src="@drawable/ic_default_user_image" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_edittext"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingHorizontal="@dimen/_24sdp"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="110dp">
+                >
                 <EditText
-                    android:layout_marginLeft="5dp"
+
                     android:id="@+id/txt_my_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
                     android:background="@null"
                     android:layout_gravity="bottom"
                     android:text="Le Duc Tam"
-                    android:textSize="30dp" />
+                    android:textSize="@dimen/_23sdp" />
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -85,10 +82,10 @@
                     android:id="@+id/btn_my_change_information"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
+
+
                     android:background="@null"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:backgroundTint="@color/black"
                     android:src="@drawable/ic_change_information_btn"
                     app:tint="@color/black" />
@@ -96,7 +93,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
                 <TextView
@@ -104,19 +100,63 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Sở thích"
-                    android:textColor="#000000"
-                    android:textSize="25dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_16ssp"
                     android:textStyle="bold" />
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/my_chipGroup_psp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:chipSpacingHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        >
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_1"
+                            style="@style/ChipStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_16sdp"
+                            android:textAlignment="center"
+                            android:background="@drawable/background_input"
+
+                            app:chipCornerRadius="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Bóng đá"/>
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_2"
+                            style="@style/ChipStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_16sdp"
+                            android:textAlignment="center"
+                            app:chipCornerRadius="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Mua sắm"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_3"
+                            style="@style/ChipStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_16sdp"
+                            android:textAlignment="center"
+                            app:chipCornerRadius="@dimen/_10sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Yoga"/>
+                    </com.google.android.material.chip.ChipGroup>
+                </LinearLayout>
+
             </LinearLayout>
             <!-- Giới Tính-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
                 <TextView
@@ -124,21 +164,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Giới Tính"
-                    android:textColor="#000000"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_16ssp"
+                    />
 
                 <TextView
                     android:id="@+id/txt_my_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="Name"
-                    android:textSize="20dp" />
+                    android:textSize="@dimen/_14ssp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
@@ -147,21 +189,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Ngày Sinh"
-                    android:textColor="#000000"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_16ssp"/>
                 <TextView
                     android:id="@+id/txt_my_birthday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
                     android:text="22/10/2012"
-                    android:textSize="20dp" />
+                    android:textSize="@dimen/_14ssp" />
             </LinearLayout>
             <!-- Thành phố -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
@@ -170,16 +213,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Thành Phố"
-                    android:textColor="#000000"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_16ssp"/>
 
                 <TextView
                     android:id="@+id/txt_my_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="None"
-                    android:textSize="20dp" />
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="@dimen/_14ssp" />
             </LinearLayout>
 
 
@@ -187,7 +232,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
@@ -196,9 +241,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Hình ảnh"
-                    android:textColor="#000000"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_16ssp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

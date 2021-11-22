@@ -8,9 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.Luvio.activities.Main.mainActivity;
+import com.android.Luvio.activities.Main.MainActivity;
 import com.android.Luvio.databinding.ActivityInterestBinding;
-import com.android.Luvio.utilities.Constants;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,6 +37,8 @@ public class InterestActivity extends AppCompatActivity {
         Intent intent=getIntent();
         Bundle bundleData=intent.getExtras();
         HashMap<String,Object>user=new HashMap<>();
+        user.put(Constants.KEY_COUNTRY_CODE,bundleData.getString(Constants.KEY_COUNTRY_CODE));
+        user.put(Constants.KEY_PHONE_NUMBER,bundleData.getString(Constants.KEY_PHONE_NUMBER));
         user.put(Constants.KEY_IMAGE,bundleData.getString(Constants.KEY_IMAGE));
         user.put(Constants.KEY_FIRST_NAME,bundleData.getString(Constants.KEY_FIRST_NAME));
         user.put(Constants.KEY_LAST_NAME,bundleData.getString(Constants.KEY_LAST_NAME));
@@ -50,7 +51,8 @@ public class InterestActivity extends AppCompatActivity {
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
-                    Intent intentMain=new Intent(getApplicationContext(), mainActivity.class);
+
+                    Intent intentMain=new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intentMain);
                 })

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="@dimen/_20sdp"
+    android:paddingHorizontal="@dimen/_24sdp"
     android:orientation="vertical"
     android:background="#E5E5E5">
 
@@ -16,15 +18,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
+
             android:src="@drawable/ic_back_btn"
-            android:layout_marginTop="10dp"/>
+            />
         <TextView
             android:id="@+id/setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+
             android:text="Thiết lập"
             android:textStyle="bold"
             android:textAlignment="center"
@@ -37,8 +39,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+
+
         android:background="@drawable/rounded_edittext" >
         <TextView
             android:layout_width="wrap_content"
@@ -71,8 +73,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+
+
         android:background="@drawable/rounded_edittext" >
         <TextView
             android:layout_width="wrap_content"
@@ -104,8 +106,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+
+
         android:background="@drawable/rounded_edittext" >
         <TextView
             android:layout_width="wrap_content"
@@ -139,8 +141,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+
+
         android:background="@drawable/rounded_edittext">
         <TextView
             android:layout_width="wrap_content"
@@ -171,8 +173,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+
         android:background="@drawable/rounded_edittext" >
         <TextView
             android:layout_width="wrap_content"
@@ -202,8 +203,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+
         android:background="@drawable/rounded_edittext" >
         <Button
             android:id="@+id/btn_sign_out"
@@ -214,6 +214,7 @@
             android:textAlignment="center"
             android:backgroundTint="@color/white"
             android:text="Đăng xuất"
+            android:fontFamily="@font/montserrat_semibold"
             android:textSize="@dimen/_13sdp"/>
     </LinearLayout>
     <LinearLayout
@@ -228,10 +229,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:textAlignment="center"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="Xoá tài khoản"
             android:textColor="#ff0000"
             android:background="@drawable/rounded_edittext"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_14sdp"
             android:padding="15dp"
             app:backgroundTint="@android:color/white" />
     </LinearLayout >
