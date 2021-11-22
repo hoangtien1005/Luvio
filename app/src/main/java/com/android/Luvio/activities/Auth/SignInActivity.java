@@ -39,6 +39,7 @@ public class SignInActivity extends AppCompatActivity {
         loading(true);
         FirebaseFirestore db=FirebaseFirestore.getInstance();
         db.collection(Constants.KEY_COLLECTION_USER)
+                .whereEqualTo(Constants.KEY_IS_DELETE,false)
                 .whereEqualTo(Constants.KEY_PHONE_NUMBER,binding.edtPhoneNumber.getText().toString().trim())
                 .whereEqualTo(Constants.KEY_PASSWORD,binding.edtPassword.getText().toString().trim())
                 .get()

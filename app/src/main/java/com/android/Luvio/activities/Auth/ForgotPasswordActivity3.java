@@ -57,7 +57,7 @@ public class ForgotPasswordActivity3 extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 loading(false);
-                                showToast("Không thể thay đổi mật khẩu");
+                                showToast(e.getMessage());
                             }
                         });
             }

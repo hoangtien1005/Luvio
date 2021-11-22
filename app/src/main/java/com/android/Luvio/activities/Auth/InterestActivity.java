@@ -43,6 +43,7 @@ public class InterestActivity extends AppCompatActivity {
         HashMap<String,Object>user=new HashMap<>();
         user.put(Constants.KEY_COUNTRY_CODE,bundleData.getString(Constants.KEY_COUNTRY_CODE));
         user.put(Constants.KEY_PHONE_NUMBER,bundleData.getString(Constants.KEY_PHONE_NUMBER));
+        user.put(Constants.KEY_IS_DELETE,false);
         user.put(Constants.KEY_IMAGE,bundleData.getString(Constants.KEY_IMAGE));
         user.put(Constants.KEY_FIRST_NAME,bundleData.getString(Constants.KEY_FIRST_NAME));
         user.put(Constants.KEY_LAST_NAME,bundleData.getString(Constants.KEY_LAST_NAME));

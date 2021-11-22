@@ -8,6 +8,7 @@ public class Constants {
     public static final String KEY_COUNTRY_CODE="countryCode";
     public static final String KEY_PHONE_NUMBER="phoneNumber";
     public static final String KEY_PASSWORD="password";
+    public static final String KEY_IS_DELETE="isDelete";
     public static final String KEY_SIGN_IN_PREFERENCE="signInPreference";
     public static final String KEY_CHAT_PREFERENCE="chatPreference";
     public static final String KEY_IS_SIGNED_IN="isSignedIn";

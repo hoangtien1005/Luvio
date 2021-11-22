@@ -40,14 +40,22 @@
             android:name=".activities.Auth.SignInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+
+        </activity>
+        <activity
+            android:name=".activities.Auth.InterestActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activities.Setting.SettingActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.Auth.InterestActivity"
+        <activity android:name=".activities.Setting.ChangePasswordActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
     </application>
