@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Luvio">
         <activity
+            android:name=".activities.Setting.ChangePasswordActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.Main.MainActivity"
             android:exported="true" />
     </application>

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio.activities.Main.MainActivity;
 import com.android.Luvio.databinding.ActivityInterestBinding;
+import com.android.Luvio.utilities.Constants;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.firestore.FirebaseFirestore;
 

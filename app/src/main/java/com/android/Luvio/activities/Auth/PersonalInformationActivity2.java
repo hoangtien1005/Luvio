@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivityPersonalInformation2Binding;
+import com.android.Luvio.utilities.Constants;
 
 public class PersonalInformationActivity2 extends AppCompatActivity {
     private ActivityPersonalInformation2Binding binding;

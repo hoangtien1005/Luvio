@@ -20,7 +20,7 @@ public class Personal_Page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personal_page);
+        setContentView(R.layout.activity_personal_page);
 
         mViewPager2 = findViewById(R.id.view_pager2);
         mCircleIndicator3 = findViewById(R.id.circle_indicator3);
