@@ -62,4 +62,7 @@ dependencies {
     //Getstream io
     implementation "io.getstream:stream-chat-android-ui-components:4.18.0"
 
+    //CircleIndicator
+    implementation 'me.relex:circleindicator:2.1.6'
+
 }
