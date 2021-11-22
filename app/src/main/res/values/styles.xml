@@ -29,6 +29,20 @@
         <item name="android:textAppearance">@style/ChipText</item>
     </style>
 
+<!--Personal Page Chip-->
+    <style name="ChipText1" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+    <style name="ChipStyle1" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/primary_1</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/ChipText1</item>
+    </style>
+
+
+
+
 <!--animation-->
     <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
