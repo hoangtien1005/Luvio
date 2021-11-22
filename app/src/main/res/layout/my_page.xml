@@ -73,7 +73,7 @@
                     android:background="@null"
                     android:layout_gravity="bottom"
                     android:text="Le Duc Tam"
-                    android:textSize="@dimen/_23sdp" />
+                    android:textSize="@dimen/_21ssp" />
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -90,6 +90,16 @@
                     android:src="@drawable/ic_change_information_btn"
                     app:tint="@color/black" />
             </LinearLayout>
+            <EditText
+                android:id="@+id/edt_about_me"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:textSize="@dimen/_14ssp"
+                android:text="Hey guys, This is Malena. I’m here to find someone for hookup. I’m not interested in something serious. I would love to hear your adventurous story." />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +120,7 @@
                     android:id="@+id/chipGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:chipSpacingHorizontal="@dimen/_10sdp"
+                    app:chipSpacingHorizontal="@dimen/_6sdp"
 
                     >
                     <com.google.android.material.chip.Chip
@@ -173,6 +183,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="Name"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
             </LinearLayout>
             <LinearLayout
@@ -196,6 +207,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="22/10/2012"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
             </LinearLayout>
             <!-- Thành phố -->
@@ -220,6 +232,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="None"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/montserrat_medium"
                     android:textSize="@dimen/_14ssp" />
             </LinearLayout>
