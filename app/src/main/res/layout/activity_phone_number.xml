@@ -64,6 +64,7 @@
             android:layout_weight="6"
             android:layout_height="@dimen/_60sdp"
             android:fontFamily="@font/montserrat_medium"
+            android:backgroundTint="@color/primary_1"
             android:inputType="number"
             android:imeOptions="actionDone"
             />

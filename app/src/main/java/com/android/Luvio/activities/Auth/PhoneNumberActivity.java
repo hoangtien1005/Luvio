@@ -15,6 +15,7 @@ import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivityPhoneNumberBinding;
 import com.android.Luvio.utilities.Constants;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -42,8 +43,8 @@ public class PhoneNumberActivity extends AppCompatActivity  {
             if(isValidPhoneNumber()){
                 loading(true);
                 PhoneAuthOptions options=
-                        PhoneAuthOptions.newBuilder()
-                            .setPhoneNumber(String.format(binding.countryCode.getText().toString(),binding.edtPhoneNumber.getText().toString()))
+                        PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
+                            .setPhoneNumber(binding.countryCode.getText().toString()+binding.edtPhoneNumber.getText().toString())
                             .setTimeout(60L,TimeUnit.SECONDS)
                             .setActivity(this)
                             .setCallbacks(mCallBack)

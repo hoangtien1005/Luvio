@@ -26,13 +26,13 @@ import java.util.concurrent.TimeUnit;
 
 public class VerifyPhoneNumberActivity extends AppCompatActivity {
     private ActivityVerifyPhoneNumberBinding binding;
-    private String verificationId=getIntent().getExtras().getString("verificationId");
+    private String verificationId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityVerifyPhoneNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        verificationId=getIntent().getExtras().getString("verificationId");
 
 
         setListener();
@@ -48,6 +48,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                 return;
             }
             else{
+                loading(true);
                 Intent intent=getIntent();
                 Bundle bundleData=intent.getExtras();
                 String code=binding.inputCode1.getText().toString()+
