@@ -1,5 +1,6 @@
 package com.android.Luvio.activities.Auth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,13 @@ import android.widget.Toast;
 
 import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivityPhoneNumberBinding;
+import com.android.Luvio.utilities.Constants;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
 
 public class PhoneNumberActivity extends AppCompatActivity  {
     private ActivityPhoneNumberBinding binding;
@@ -32,12 +40,45 @@ public class PhoneNumberActivity extends AppCompatActivity  {
         binding.countryCode.setAdapter(myAdapter);
         binding.nextButtonLayout.setOnClickListener(view -> {
             if(isValidPhoneNumber()){
-                Bundle bundle=new Bundle();
-                Intent intent=new Intent(getApplicationContext(),VerifyPhoneNumberActivity.class);
-                bundle.putString("phoneNumber",binding.edtPhoneNumber.toString().trim());
+                loading(true);
+                PhoneAuthOptions options=
+                        PhoneAuthOptions.newBuilder()
+                            .setPhoneNumber(String.format(binding.countryCode.getText().toString(),binding.edtPhoneNumber.getText().toString()))
+                            .setTimeout(60L,TimeUnit.SECONDS)
+                            .setActivity(this)
+                            .setCallbacks(mCallBack)
+                            .build();
+                PhoneAuthProvider.verifyPhoneNumber(options);
+
             }
+
         });
     }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack=new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+        @Override
+        public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            loading(false);
+            Bundle bundle=new Bundle();
+            Intent intent=new Intent(getApplicationContext(),VerifyPhoneNumberActivity.class);
+            bundle.putString(Constants.KEY_PHONE_NUMBER,binding.edtPhoneNumber.getText().toString().trim());
+            bundle.putString(Constants.KEY_COUNTRY_CODE, binding.countryCode.getText().toString().trim());
+            bundle.putString("verificationId",s);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+
+        @Override
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+            loading(false);
+        }
+
+        @Override
+        public void onVerificationFailed(@NonNull FirebaseException e) {
+            loading(false);
+            showToast(e.getMessage());
+        }
+    };
     private void showToast(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
 

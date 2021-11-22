@@ -85,6 +85,7 @@
                         android:id="@+id/edtFirstName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
                         android:background="@drawable/background_input"
                         />
 
@@ -117,6 +118,7 @@
                         android:id="@+id/edtLastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
                         android:background="@drawable/background_input"
                         />
 

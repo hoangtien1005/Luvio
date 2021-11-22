@@ -8,12 +8,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.Luvio.activities.Main.MainActivity;
 import com.android.Luvio.databinding.ActivitySignInBinding;
+import com.android.Luvio.utilities.Constants;
+import com.android.Luvio.utilities.PreferenceManager;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
+    PreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +27,36 @@ public class SignInActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         setListener();
+    }
+
+    private void signIn(){
+        loading(true);
+        FirebaseFirestore db=FirebaseFirestore.getInstance();
+        db.collection(Constants.KEY_COLLECTION_USER)
+                .whereEqualTo(Constants.KEY_PHONE_NUMBER,binding.edtPhoneNumber.getText().toString().trim())
+                .whereEqualTo(Constants.KEY_PASSWORD,binding.edtPassword.getText().toString().trim())
+                .get()
+                .addOnCompleteListener(task->{
+                    if(task.isSuccessful()&& task.getResult() !=null && task.getResult().getDocuments().size()>0){
+                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                        preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
+                        preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
+                        preferenceManager.putString(Constants.KEY_LAST_NAME,documentSnapshot.getString(Constants.KEY_LAST_NAME));
+                        preferenceManager.putString(Constants.KEY_FIRST_NAME,documentSnapshot.getString(Constants.KEY_FIRST_NAME));
+                        preferenceManager.putString(Constants.KEY_IMAGE,documentSnapshot.getString(Constants.KEY_IMAGE));
+                        preferenceManager.putString(Constants.KEY_BIRTHDAY,documentSnapshot.getString(Constants.KEY_BIRTHDAY));
+                        preferenceManager.putString(Constants.KEY_GENDER,documentSnapshot.getString(Constants.KEY_GENDER));
+                        preferenceManager.putString(Constants.KEY_INTERESTED_GENDER,documentSnapshot.getString(Constants.KEY_INTERESTED_GENDER));
+                        Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+
+                    }
+                    else{
+                        loading(false);
+                        showToast("Không thể đăng nhập");
+                    }
+                });
     }
     private void setListener(){
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {

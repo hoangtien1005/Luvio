@@ -103,8 +103,9 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
 
         binding.nextButton.setOnClickListener(view->{
             if(isValidData()){
+                Intent intentPrev=getIntent();
+                Bundle bundleData=intentPrev.getExtras();
                 Intent intent=new Intent(getApplicationContext(),PersonalInformationActivity2.class);
-                Bundle bundleData=new Bundle();
                 bundleData.putString(Constants.KEY_IMAGE,encodeImage);
                 bundleData.putString(Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString().trim());
                 bundleData.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());

@@ -9,8 +9,14 @@ public class PreferenceManager {
     public PreferenceManager(Context context){
         sharedPreferences=context.getSharedPreferences(Constants.KEY_SIGN_IN_PREFERENCE,Context.MODE_PRIVATE);
     }
+    public void putBoolean(String key,Boolean value){
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putBoolean(key,value);
+        editor.apply();
+    }
 
-    public Boolean putString(String key){
+
+    public Boolean getBoolean(String key){
         return sharedPreferences.getBoolean(key,false);
     }
 
