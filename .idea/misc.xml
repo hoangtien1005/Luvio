@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_main.xml" value="0.10862691960252936" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_my_page.xml" value="0.1" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_phone_number.xml" value="0.10862691960252936" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_set_info.xml" value="0.22592592592592592" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_sign_in.xml" value="0.10862691960252936" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_verify_phone_number.xml" value="0.10862691960252936" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/country_code_row_layout.xml" value="0.10862691960252936" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/photo_fragment.xml" value="0.10862691960252936" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_back_btn.xml" value="0.14635416666666667" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_btn.xml" value="0.18796296296296297" />
