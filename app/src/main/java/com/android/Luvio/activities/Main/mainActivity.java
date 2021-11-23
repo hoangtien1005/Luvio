@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.android.Luvio.R;
 
-public class mainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personal_page);
+        setContentView(R.layout.activity_main);
     }
 }

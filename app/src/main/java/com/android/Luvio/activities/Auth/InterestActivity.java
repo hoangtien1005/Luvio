@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.Luvio.activities.Main.mainActivity;
+import com.android.Luvio.activities.Main.MainActivity;
 import com.android.Luvio.databinding.ActivityInterestBinding;
 import com.android.Luvio.utilities.Constants;
 import com.google.android.material.chip.Chip;
@@ -50,7 +50,7 @@ public class InterestActivity extends AppCompatActivity {
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
-                    Intent intentMain=new Intent(getApplicationContext(), mainActivity.class);
+                    Intent intentMain=new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intentMain);
                 })
