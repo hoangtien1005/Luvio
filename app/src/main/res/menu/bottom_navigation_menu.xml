@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:iconTint="@color/ic_home_color"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/liked"
+        android:enabled="true"
+        android:icon="@drawable/ic_liked"
+        android:iconTint="@color/ic_liked_color"
+        android:title="Liked" />
+    <item
+        android:id="@+id/message"
+        android:enabled="true"
+        android:icon="@drawable/ic_message"
+        android:iconTint="@color/ic_message_color"
+        android:title="Message" />
+</menu>

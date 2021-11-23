@@ -8,14 +8,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.Luvio.activities.Main.MainActivity;
+import com.android.Luvio.activities.Main.HomePageActivity;
 import com.android.Luvio.databinding.ActivitySignInBinding;
 import com.android.Luvio.utilities.Constants;
 import com.android.Luvio.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
@@ -25,7 +23,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         preferenceManager = new PreferenceManager(getApplicationContext());
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
-            Intent intent =new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent =new Intent(getApplicationContext(),HomePageActivity.class);
             startActivity(intent);
             finish();
         }
@@ -54,7 +52,7 @@ public class SignInActivity extends AppCompatActivity {
                         preferenceManager.putString(Constants.KEY_BIRTHDAY,documentSnapshot.getString(Constants.KEY_BIRTHDAY));
                         preferenceManager.putString(Constants.KEY_GENDER,documentSnapshot.getString(Constants.KEY_GENDER));
                         preferenceManager.putString(Constants.KEY_INTERESTED_GENDER,documentSnapshot.getString(Constants.KEY_INTERESTED_GENDER));
-                        Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent=new Intent(getApplicationContext(), HomePageActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
 

@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+<!--    Buttons-->
+    <style name="settingButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/ic_setting_btn</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="profileButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/ic_my_profile_btn</item>
+        <item name="android:background">@color/white</item>
+    </style>
 <!--Back Button Style-->
     <style name="backButton">
         <item name="android:layout_width">wrap_content</item>

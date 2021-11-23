@@ -16,4 +16,8 @@
     <color name="black">#000000</color>
     <color name="ic_active">#15D374</color>
     <color name="ic_launcher_background">#3D72DC</color>
+    <color name="ic_liked_tint">#FF6666</color>
+    <color name="ic_message_tint">#4CD5FF</color>
+    <color name="ic_home_tint">#7F00FF</color>
+    <color name="avatarTint">#ECECEC</color>
 </resources>

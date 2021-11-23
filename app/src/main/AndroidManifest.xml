@@ -40,8 +40,18 @@
             android:name=".activities.Auth.SignInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".activities.User.ProfilePageActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activities.User.PersonalPageActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".activities.Auth.InterestActivity"
             android:exported="true"
@@ -49,15 +59,22 @@
         <activity android:name=".activities.Setting.SettingActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.Setting.ChangePasswordActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activities.Main.HomePageActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activities.Main.LikedUserActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activities.User.SetInfoActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
     </application>
 
 </manifest>

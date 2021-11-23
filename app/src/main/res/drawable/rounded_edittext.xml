@@ -5,8 +5,10 @@
     android:padding="10dp">
     <solid android:color="#ffffff" />
     <corners
-        android:bottomRightRadius="20dp"
-        android:bottomLeftRadius="20dp"
-        android:topLeftRadius="20dp"
-        android:topRightRadius="20dp"/>
+        android:bottomRightRadius="@dimen/_10sdp"
+        android:bottomLeftRadius="@dimen/_10sdp"
+        android:topLeftRadius="@dimen/_10sdp"
+        android:topRightRadius="@dimen/_10sdp"/>
+    <stroke android:width="@dimen/_1sdp"
+        android:color="@color/disable_btn_color"/>
 </shape>

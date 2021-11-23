@@ -25,6 +25,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivitySettingBinding.inflate(getLayoutInflater());
+        preferenceManager=new PreferenceManager(getApplicationContext());
         setContentView(binding.getRoot());
         setListener();
 
@@ -40,9 +41,12 @@ public class SettingActivity extends AppCompatActivity {
         });
         binding.btnSignOut.setOnClickListener(view -> {
             preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,false);
-            Intent intent=new Intent(getApplicationContext(),SignInActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+
+                Intent intent=new Intent(getApplicationContext(),SignInActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+
         });
         binding.btnDeleteAccount.setOnClickListener(view -> {
             loading(true);

@@ -28,7 +28,7 @@
             android:layout_marginLeft="20dp"
 
             android:text="Thiết lập"
-            android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="40dp" />
@@ -48,8 +48,8 @@
             android:text="Dark mode"
             android:layout_gravity="center_vertical"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
-            android:background="@drawable/rounded_edittext"/>
+            android:textSize="@dimen/_14ssp"
+            />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/btn_dark_mode"
@@ -74,7 +74,7 @@
             android:text="Trang thái hoạt động"
             android:layout_gravity="center_vertical"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_14ssp"
 
             />
 
@@ -101,7 +101,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="Thông báo tin nhắn"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_14ssp"
 
             />
 
@@ -128,7 +128,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="Danh sách chặn"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_14ssp"
            />
         <View
             android:layout_width="0dp"
@@ -158,7 +158,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="Đổi mật khẩu"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_14ssp"
             />
         <View
             android:layout_width="0dp"
@@ -178,21 +178,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-
-        android:background="@drawable/rounded_edittext" >
+        >
         <Button
             android:id="@+id/btn_sign_out"
             android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:textAlignment="center"
+            app:backgroundTint="@null"
             android:background="@drawable/rounded_edittext"
-            app:backgroundTint="@android:color/white"
             android:textAllCaps="false"
             android:text="Đăng xuất"
             android:fontFamily="@font/montserrat_bold"
-            android:textSize="@dimen/_13sdp"/>
+            android:textSize="@dimen/_14ssp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -207,19 +205,20 @@
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
+                android:layout_gravity="top|center_horizontal"
+                android:visibility="invisible"/>
             <Button
                 android:id="@+id/btn_delete_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:fontFamily="@font/montserrat_bold"
                 android:textAllCaps="false"
                 android:text="Xoá tài khoản"
                 android:textColor="@color/incoming_message"
                 android:background="@drawable/rounded_edittext"
-                android:textSize="@dimen/_14sdp"
-                app:backgroundTint="@android:color/white" />
+                android:textSize="@dimen/_14ssp"
+                app:backgroundTint="@null" />
         </FrameLayout>
 
     </LinearLayout >
