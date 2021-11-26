@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.Luvio.activities.Main.HomePageActivity;
 import com.android.Luvio.databinding.ActivityInterestBinding;
 import com.android.Luvio.utilities.Constants;
+import com.android.Luvio.utilities.PreferenceManager;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -26,11 +27,13 @@ public class InterestActivity extends AppCompatActivity {
     private ActivityInterestBinding binding;
     private String[] interests =new String[] {"Bóng đá", "Mua sắm", "Yoga", "Bơi lội", "Bóng rổ", "Karaoke", "Quần vợt", "Nấu ăn", "Đọc sách", "Âm nhạc", "Xem phim", "Nghệ thuật", "Động vật", "Chính trị", "Du lịch", "Game"};
     private ArrayList<String> userInterests=new ArrayList<String>();
+    private PreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityInterestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        preferenceManager=new PreferenceManager(getApplicationContext());
         setListener();
 
     }
@@ -45,7 +48,7 @@ public class InterestActivity extends AppCompatActivity {
         user.put(Constants.KEY_COUNTRY_CODE,bundleData.getString(Constants.KEY_COUNTRY_CODE));
         user.put(Constants.KEY_PHONE_NUMBER,bundleData.getString(Constants.KEY_PHONE_NUMBER));
         user.put(Constants.KEY_IS_DELETE,false);
-        user.put(Constants.KEY_IMAGE,bundleData.getString(Constants.KEY_IMAGE));
+        user.put(Constants.KEY_AVATAR,bundleData.getString(Constants.KEY_AVATAR));
         user.put(Constants.KEY_FIRST_NAME,bundleData.getString(Constants.KEY_FIRST_NAME));
         user.put(Constants.KEY_LAST_NAME,bundleData.getString(Constants.KEY_LAST_NAME));
         user.put(Constants.KEY_GENDER,bundleData.getString(Constants.KEY_GENDER));
@@ -53,6 +56,28 @@ public class InterestActivity extends AppCompatActivity {
         user.put(Constants.KEY_PASSWORD,bundleData.getString(Constants.KEY_PASSWORD));
         user.put(Constants.KEY_BIRTHDAY,bundleData.getString(Constants.KEY_BIRTHDAY));
         user.put(Constants.KEY_INTERESTS, userInterests);
+
+        preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
+        preferenceManager.putString(Constants.KEY_COUNTRY_CODE,bundleData.getString(Constants.KEY_COUNTRY_CODE));
+        preferenceManager.putString(Constants.KEY_PHONE_NUMBER,bundleData.getString(Constants.KEY_PHONE_NUMBER));
+        preferenceManager.putString(Constants.KEY_AVATAR,bundleData.getString(Constants.KEY_AVATAR));
+        preferenceManager.putString(Constants.KEY_FIRST_NAME,bundleData.getString(Constants.KEY_FIRST_NAME));
+        preferenceManager.putString(Constants.KEY_LAST_NAME,bundleData.getString(Constants.KEY_LAST_NAME));
+        preferenceManager.putString(Constants.KEY_GENDER,bundleData.getString(Constants.KEY_GENDER));
+        preferenceManager.putString(Constants.KEY_INTERESTED_GENDER,bundleData.getString(Constants.KEY_INTERESTED_GENDER));
+        preferenceManager.putString(Constants.KEY_PASSWORD,bundleData.getString(Constants.KEY_PASSWORD));
+        preferenceManager.putString(Constants.KEY_BIRTHDAY, bundleData.getString(Constants.KEY_BIRTHDAY));
+
+        String[] interests = new String[userInterests.size()];
+
+        for (int i = 0; i < userInterests.size(); i++) {
+            interests[i] = userInterests.get(i);
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < interests.length; i++) {
+            sb.append(interests[i]).append(",");
+        }
+        preferenceManager.putString(Constants.KEY_INTERESTS, sb.toString());
         db.collection(Constants.KEY_COLLECTION_USER)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {

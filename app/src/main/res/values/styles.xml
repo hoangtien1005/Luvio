@@ -66,6 +66,6 @@
 
 <!--    progress bar-->
     <style name="ProgressBarColor" parent="ThemeOverlay.AppCompat.Light">
-        <item name="colorAccent">@color/primary_2</item>
+        <item name="colorAccent">@color/primary_1</item>
     </style>
 </resources>

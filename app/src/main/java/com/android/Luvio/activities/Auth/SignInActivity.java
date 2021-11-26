@@ -15,6 +15,8 @@ import com.android.Luvio.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
     PreferenceManager preferenceManager;
@@ -49,10 +51,21 @@ public class SignInActivity extends AppCompatActivity {
                         preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
                         preferenceManager.putString(Constants.KEY_LAST_NAME,documentSnapshot.getString(Constants.KEY_LAST_NAME));
                         preferenceManager.putString(Constants.KEY_FIRST_NAME,documentSnapshot.getString(Constants.KEY_FIRST_NAME));
-                        preferenceManager.putString(Constants.KEY_IMAGE,documentSnapshot.getString(Constants.KEY_IMAGE));
+                        preferenceManager.putString(Constants.KEY_AVATAR,documentSnapshot.getString(Constants.KEY_AVATAR));
                         preferenceManager.putString(Constants.KEY_BIRTHDAY,documentSnapshot.getString(Constants.KEY_BIRTHDAY));
                         preferenceManager.putString(Constants.KEY_GENDER,documentSnapshot.getString(Constants.KEY_GENDER));
-                        preferenceManager.putString(Constants.KEY_INTERESTED_GENDER,documentSnapshot.getString(Constants.KEY_INTERESTED_GENDER));
+                        preferenceManager.putString(Constants.KEY_INTERESTED_GENDER, documentSnapshot.getString(Constants.KEY_INTERESTED_GENDER));
+                        ArrayList<String> al= (ArrayList<String>) documentSnapshot.get(Constants.KEY_INTERESTS);
+                        String[] interests = new String[al.size()];
+
+                        for (int i = 0; i < al.size(); i++) {
+                            interests[i] = al.get(i);
+                        }
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < interests.length; i++) {
+                            sb.append(interests[i]).append(",");
+                        }
+                        preferenceManager.putString(Constants.KEY_INTERESTS, sb.toString());
                         Intent intent=new Intent(getApplicationContext(), HomePageActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);

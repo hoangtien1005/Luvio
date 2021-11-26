@@ -106,7 +106,7 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
                 Intent intentPrev=getIntent();
                 Bundle bundleData=intentPrev.getExtras();
                 Intent intent=new Intent(getApplicationContext(),PersonalInformationActivity2.class);
-                bundleData.putString(Constants.KEY_IMAGE,encodeImage);
+                bundleData.putString(Constants.KEY_AVATAR,encodeImage);
                 bundleData.putString(Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString().trim());
                 bundleData.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());
                 bundleData.putString(Constants.KEY_BIRTHDAY,binding.edtBirthday.getText().toString().trim());
