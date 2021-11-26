@@ -27,13 +27,13 @@ import java.util.concurrent.TimeUnit;
 public class VerifyPhoneNumberActivity extends AppCompatActivity {
     private ActivityVerifyPhoneNumberBinding binding;
     private String verificationId;
+    private PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityVerifyPhoneNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         verificationId=getIntent().getExtras().getString("verificationId");
-
 
         setListener();
         setupOTPInput();
@@ -44,11 +44,13 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
             onBackPressed();
         });
         binding.verifyButton.setOnClickListener(view -> {
+            loading(true);
             if (!isValid()){
+                loading(false);
                 return;
             }
             else{
-                loading(true);
+
                 Intent intent=getIntent();
                 Bundle bundleData=intent.getExtras();
                 String code=binding.inputCode1.getText().toString()+
@@ -67,7 +69,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    loading(false);
+
                                     if(task.isSuccessful()){
                                         Intent intent1=new Intent(getApplicationContext(),PersonalInformationActivity1.class);
                                         intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -76,6 +78,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                                         startActivity(intent1);
                                     }
                                     else{
+                                        loading(false);
                                         showToast("Mã xác thực không hợp lệ");
                                     }
                                 }
@@ -85,14 +88,14 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
             }
         });
         binding.resendVerficationCode.setOnClickListener(view -> {
-
             Bundle bundleData=getIntent().getExtras();
             PhoneAuthOptions options=
-                    PhoneAuthOptions.newBuilder()
-                            .setPhoneNumber(String.format(bundleData.getString(Constants.KEY_COUNTRY_CODE),bundleData.getString(Constants.KEY_PHONE_NUMBER)))
+                    PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
+                            .setPhoneNumber(bundleData.getString(Constants.KEY_COUNTRY_CODE)+bundleData.getString(Constants.KEY_PHONE_NUMBER))
                             .setTimeout(60L, TimeUnit.SECONDS)
                             .setActivity(this)
                             .setCallbacks(mCallBack)
+                            .setForceResendingToken(mForceResendingToken)
                             .build();
             PhoneAuthProvider.verifyPhoneNumber(options);
         });
@@ -102,6 +105,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
         @Override
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             verificationId=s;
+            mForceResendingToken=forceResendingToken;
             showToast("Đã gửi lại mã xác thực");
         }
 

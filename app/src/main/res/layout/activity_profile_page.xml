@@ -49,7 +49,7 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/my_backgroud_image"
+                android:id="@+id/avatar_image"
                 android:layout_width="match_parent"
                 android:layout_height="220dp" />
         </RelativeLayout>
@@ -131,8 +131,6 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_16sdp"
                         android:textAlignment="center"
-                        android:background="@drawable/background_input"
-
                         app:chipCornerRadius="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Bóng đá"/>
@@ -240,52 +238,61 @@
 
 
             <!-- hình ảnh-->
-            <LinearLayout
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Hình ảnh"
+
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
+                android:textSize="@dimen/_16ssp" />
+
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Hình ảnh"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="@color/black"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/_16ssp" />
-
+                android:fillViewport="true"
+                android:overScrollMode="never"
+                android:scrollbars="none">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_5sdp"
                     android:orientation="horizontal">
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/fragmentMyGalary1"
+                        app:riv_corner_radius="@dimen/_10sdp"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_margin="10dp"
 
-                    <ImageView
-                        android:id="@+id/fragment_my_galary1"
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_margin="3dp"
-                        android:layout_weight=".33" />
+                        android:background="@drawable/rounded_edittext"
+                        />
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/fragmentMyGalary2"
+                        android:layout_width="@dimen/_90sdp"
+                        app:riv_corner_radius="@dimen/_10sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/rounded_edittext" />
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/fragmentMyGalary3"
+                        android:layout_width="@dimen/_90sdp"
+                        app:riv_corner_radius="@dimen/_10sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".33"
+                        android:background="@drawable/rounded_edittext" />
 
-                    <ImageView
-                        android:id="@+id/fragment_my_galary2"
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_margin="3dp"
-                        android:layout_weight=".33" />
-
-                    <ImageView
-                        android:id="@+id/fragment_my_galary3"
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_margin="3dp"
-                        android:layout_weight=".33" />
                 </LinearLayout>
+            </HorizontalScrollView>
 
             </LinearLayout>
         </LinearLayout>
 
-    </LinearLayout>
+
 </ScrollView>

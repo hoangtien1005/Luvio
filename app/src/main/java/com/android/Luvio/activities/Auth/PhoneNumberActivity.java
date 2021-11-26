@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,17 +14,27 @@ import android.widget.Toast;
 
 import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivityPhoneNumberBinding;
+import com.android.Luvio.interfaces.CompleteQueryListener;
 import com.android.Luvio.utilities.Constants;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 public class PhoneNumberActivity extends AppCompatActivity  {
     private ActivityPhoneNumberBinding binding;
+    private PhoneAuthProvider.ForceResendingToken mForceResendingToken;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,18 +51,47 @@ public class PhoneNumberActivity extends AppCompatActivity  {
                 getResources().getStringArray(R.array.country_code));
         binding.countryCode.setAdapter(myAdapter);
         binding.nextButton.setOnClickListener(view -> {
-            if(isValidPhoneNumber()){
-                loading(true);
-                PhoneAuthOptions options=
-                        PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
-                            .setPhoneNumber(binding.countryCode.getText().toString()+binding.edtPhoneNumber.getText().toString())
-                            .setTimeout(60L,TimeUnit.SECONDS)
-                            .setActivity(this)
-                            .setCallbacks(mCallBack)
-                            .build();
-                PhoneAuthProvider.verifyPhoneNumber(options);
+            loading(true);
+            FirebaseFirestore db=FirebaseFirestore.getInstance();
+            readData(db.collection(Constants.KEY_COLLECTION_USER)
+                            .whereEqualTo(Constants.KEY_PHONE_NUMBER, binding.edtPhoneNumber.getText().toString()).get(),
+                    new CompleteQueryListener() {
+                        @Override
+                        public void onSuccess(Task<QuerySnapshot> task) {
+                            loading(false);
+                            showToast("Số điện thoại đã tồn tại");
+                        }
 
-            }
+                        @Override
+                        public void onStart() {
+
+                        }
+
+                        @Override
+                        public void onFailure() {
+                            if(isValidPhoneNumber()){
+                                PhoneAuthOptions options=
+                                        PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
+                                                .setPhoneNumber(binding.countryCode.getText().toString()+binding.edtPhoneNumber.getText().toString())
+                                                .setTimeout(60L,TimeUnit.SECONDS)
+                                                .setActivity(PhoneNumberActivity.this)
+                                                .setCallbacks(mCallBack)
+                                                .setForceResendingToken(mForceResendingToken)
+                                                .build();
+                                PhoneAuthProvider.verifyPhoneNumber(options);
+                            }
+                            else{
+                                loading(false);
+                            }
+
+                        }
+                    });
+
+
+
+
+
+
 
         });
     }
@@ -65,6 +105,7 @@ public class PhoneNumberActivity extends AppCompatActivity  {
             bundle.putString(Constants.KEY_PHONE_NUMBER,binding.edtPhoneNumber.getText().toString().trim());
             bundle.putString(Constants.KEY_COUNTRY_CODE, binding.countryCode.getText().toString().trim());
             bundle.putString("verificationId",s);
+            mForceResendingToken=forceResendingToken;
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -85,6 +126,7 @@ public class PhoneNumberActivity extends AppCompatActivity  {
 
     }
     private boolean isValidPhoneNumber(){
+
         if(binding.edtPhoneNumber.getText().toString().isEmpty()){
             showToast("Nhập số điện thoại");
             return false;
@@ -105,6 +147,38 @@ public class PhoneNumberActivity extends AppCompatActivity  {
             binding.nextButton.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
+    }
+//    private boolean isExist(String phoneNum){
+//        FirebaseFirestore db=FirebaseFirestore.getInstance();
+//        db.collection(Constants.KEY_COLLECTION_USER)
+//                .whereEqualTo(Constants.KEY_PHONE_NUMBER,phoneNum).get()
+//                .addOnCompleteListener(task -> {
+//                    if (!task.isSuccessful() || task.getResult() == null ) {
+//                        isAlreadyExist=false;
+//
+//                    } else {
+//                        isAlreadyExist=true;
+//                    }
+//                    Log.i("Outer1", new Boolean(isAlreadyExist).toString());
+//                });
+//        Log.i("Outer2", new Boolean(isAlreadyExist).toString());
+//        return isAlreadyExist;
+//    }
+    public void readData(Task<QuerySnapshot> querySnapshotTask,final CompleteQueryListener listener){
+        listener.onStart();
+        querySnapshotTask.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()&& task.getResult() !=null && task.getResult().getDocuments().size()>0){
+                    listener.onSuccess(task);
+                }
+                else{
+                    listener.onFailure();
+                }
+
+            }
+
+        });
     }
 
 }

@@ -174,9 +174,5 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
         return previewImage;
     }
 
-    private Bitmap drawableToBitmap(Drawable picture){
 
-        Bitmap bitmap = ((BitmapDrawable)picture).getBitmap();
-        return bitmap;
-    }
 }

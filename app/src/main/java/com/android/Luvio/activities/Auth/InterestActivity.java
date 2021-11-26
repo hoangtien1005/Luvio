@@ -38,6 +38,7 @@ public class InterestActivity extends AppCompatActivity {
     private void signUp(){
         loading(true);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         Intent intent=getIntent();
         Bundle bundleData=intent.getExtras();
         HashMap<String,Object>user=new HashMap<>();

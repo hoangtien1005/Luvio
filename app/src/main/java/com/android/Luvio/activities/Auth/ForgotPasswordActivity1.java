@@ -12,17 +12,23 @@ import android.widget.Toast;
 
 import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivityForgotPassword1Binding;
+import com.android.Luvio.interfaces.CompleteQueryListener;
 import com.android.Luvio.utilities.Constants;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.concurrent.TimeUnit;
 
 public class ForgotPasswordActivity1 extends AppCompatActivity {
     private ActivityForgotPassword1Binding binding;
+    private PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +48,44 @@ public class ForgotPasswordActivity1 extends AppCompatActivity {
         binding.nextButton.setOnClickListener(view -> {
             if(isValidPhoneNumber()){
                 loading(true);
-                PhoneAuthOptions options=
-                        PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
-                                .setPhoneNumber(binding.countryCode.getText().toString()+binding.edtPhoneNumber.getText().toString())
-                                .setTimeout(60L, TimeUnit.SECONDS)
-                                .setActivity(this)
-                                .setCallbacks(mCallBack)
-                                .build();
-                PhoneAuthProvider.verifyPhoneNumber(options);
+                FirebaseFirestore db=FirebaseFirestore.getInstance();
+                readData(db.collection(Constants.KEY_COLLECTION_USER)
+                                .whereEqualTo(Constants.KEY_PHONE_NUMBER, binding.edtPhoneNumber.getText().toString()).get(),
+                        new CompleteQueryListener() {
+                            @Override
+                            public void onSuccess(Task<QuerySnapshot> task) {
+                                if(isValidPhoneNumber()){
+
+                                    PhoneAuthOptions options=
+                                            PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
+                                                    .setPhoneNumber(binding.countryCode.getText().toString()+binding.edtPhoneNumber.getText().toString())
+                                                    .setTimeout(60L,TimeUnit.SECONDS)
+                                                    .setActivity(ForgotPasswordActivity1.this)
+                                                    .setCallbacks(mCallBack)
+                                                    .setForceResendingToken(mForceResendingToken)
+                                                    .build();
+                                    PhoneAuthProvider.verifyPhoneNumber(options);
+                                }
+                                else{
+                                    loading(false);
+                                }
+
+                            }
+
+                            @Override
+                            public void onStart() {
+
+                            }
+
+                            @Override
+                            public void onFailure() {
+                                loading(false);
+                                showToast("Số điện thoại chưa được đăng ký");
+
+                            }
+                        });
+
+
 
             }
 
@@ -65,6 +101,7 @@ public class ForgotPasswordActivity1 extends AppCompatActivity {
             bundle.putString(Constants.KEY_PHONE_NUMBER,binding.edtPhoneNumber.getText().toString().trim());
             bundle.putString(Constants.KEY_COUNTRY_CODE, binding.countryCode.getText().toString().trim());
             bundle.putString("verificationId",s);
+            mForceResendingToken=forceResendingToken;
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -105,5 +142,21 @@ public class ForgotPasswordActivity1 extends AppCompatActivity {
             binding.nextButton.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
+    }
+    public void readData(Task<QuerySnapshot> querySnapshotTask, final CompleteQueryListener listener){
+        listener.onStart();
+        querySnapshotTask.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()&& task.getResult() !=null && task.getResult().getDocuments().size()>0){
+                    listener.onSuccess(task);
+                }
+                else{
+                    listener.onFailure();
+                }
+
+            }
+
+        });
     }
 }

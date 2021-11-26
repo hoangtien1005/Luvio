@@ -28,7 +28,7 @@
             android:textColor="@color/black"
             android:gravity="center_vertical"
             android:text="Yêu thích"
-            android:textSize="@dimen/_30sdp" />
+            android:textSize="@dimen/_25sdp" />
 
 
         <ImageButton

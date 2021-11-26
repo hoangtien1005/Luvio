@@ -17,6 +17,7 @@
         <ImageButton
             android:id="@+id/my_profile_btn"
             style="@style/profileButton"
+
             android:layout_weight="2" />
 
         <TextView
@@ -28,7 +29,7 @@
             android:textColor="@color/black"
             android:gravity="center_vertical"
             android:text="Khám phá"
-            android:textSize="@dimen/_30sdp" />
+            android:textSize="@dimen/_25sdp" />
 
 
         <ImageButton
@@ -46,13 +47,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_20sdp"
+        app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+        app:boxCornerRadiusTopStart="@dimen/_10sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_10sdp"
         app:startIconCheckable="true"
         app:startIconDrawable="@drawable/ic_search">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_input"
+
             android:hint="Tìm kiếm theo tên" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +83,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bottom_nav"
+            android:elevation="@dimen/_10sdp"
+            app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_navigation_menu"
             android:layout_weight="1"
             />

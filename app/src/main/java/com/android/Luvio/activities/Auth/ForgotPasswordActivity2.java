@@ -28,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class ForgotPasswordActivity2 extends AppCompatActivity {
     private ActivityForgotPassword2Binding binding;
     private String verificationId;
+    private PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +84,7 @@ public class ForgotPasswordActivity2 extends AppCompatActivity {
                 }
             }
         });
-        binding.btnResendVerficationCode.setOnClickListener(view -> {
+        binding.resendVerficationCode.setOnClickListener(view -> {
 
             Bundle bundleData=getIntent().getExtras();
             PhoneAuthOptions options=
@@ -91,6 +92,7 @@ public class ForgotPasswordActivity2 extends AppCompatActivity {
                             .setPhoneNumber(String.format(bundleData.getString(Constants.KEY_COUNTRY_CODE),bundleData.getString(Constants.KEY_PHONE_NUMBER)))
                             .setTimeout(60L, TimeUnit.SECONDS)
                             .setActivity(this)
+                            .setForceResendingToken(mForceResendingToken)
                             .setCallbacks(mCallBack)
                             .build();
             PhoneAuthProvider.verifyPhoneNumber(options);
@@ -101,6 +103,7 @@ public class ForgotPasswordActivity2 extends AppCompatActivity {
         @Override
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             verificationId=s;
+            mForceResendingToken=forceResendingToken;
             showToast("Đã gửi lại mã xác thực");
         }
 

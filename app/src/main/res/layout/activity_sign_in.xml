@@ -140,33 +140,37 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:showDividers="middle"
                     android:weightSum="2">
 
-                    <TextView
+                    <Button
                         android:id="@+id/btnForgotPassword"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:clickable="true"
+
                         android:gravity="center_vertical"
                         android:text="Quên mật khẩu"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:textAllCaps="false"
                         android:fontFamily="@font/montserrat_medium"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10ssp" />
 
-                    <TextView
+                    <Button
                         android:id="@+id/btnRegister"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:clickable="true"
+
                         android:fontFamily="@font/montserrat_medium"
-                        android:gravity="right"
+                        android:gravity="right|center_vertical"
                         android:text="Tạo tài khoản"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
                         android:textStyle="bold"
