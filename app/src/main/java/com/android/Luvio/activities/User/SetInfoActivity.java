@@ -163,17 +163,19 @@ public class SetInfoActivity extends AppCompatActivity {
 
 
 //        update info and return to the last activity
-        binding.btnMysettingBack.setOnClickListener(view -> {
+        binding.btnBack.setOnClickListener(view -> {
             if(isValidData()) {
 
 //          TODO: update phone number, interested gender, about text on database and personal information
             Intent returnIntent = new Intent();
             Bundle bundleData = new Bundle();
+
+            bundleData.putString(Constants.KEY_ABOUT_ME,binding.edtAboutMe.getText().toString().trim());
             bundleData.putString(Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString().trim());
             bundleData.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());
             bundleData.putString(Constants.KEY_BIRTHDAY,binding.edtBirthday.getText().toString().trim());
             bundleData.putString(Constants.KEY_GENDER, binding.edtGender.getText().toString().trim());
-            bundleData.putString("city", binding.edtCity.getText().toString().trim());
+            bundleData.putString(Constants.KEY_CITY, binding.edtCity.getText().toString().trim());
             bundleData.putString("firstImage", encodeFirstImage);
             bundleData.putString("secondImage", encodeSecondImage);
             bundleData.putString("thirdImage", encodeThirdImage);

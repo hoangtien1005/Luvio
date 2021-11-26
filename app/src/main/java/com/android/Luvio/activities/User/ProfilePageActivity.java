@@ -90,10 +90,13 @@ public class ProfilePageActivity extends AppCompatActivity {
         if(result.getResultCode() == RESULT_OK) {
             if(result.getData() != null) {
                 Bundle data = result.getData().getExtras();
+                binding.txtAboutMe.setText(data.getString(Constants.KEY_ABOUT_ME));
                 binding.txtFirstName.setText(data.getString(Constants.KEY_FIRST_NAME));
                 binding.txtLastName.setText(data.getString(Constants.KEY_LAST_NAME));
                 binding.txtMyGender.setText(data.getString(Constants.KEY_GENDER));
                 binding.txtMyBirthday.setText(data.getString(Constants.KEY_BIRTHDAY));
+                binding.txtMyCity.setText(data.getString(Constants.KEY_CITY));
+                binding.txtAge.setText(findAge(data.getString(Constants.KEY_BIRTHDAY)));
 //                decode images string to bitmap
                 if(!data.get("firstImage").equals("")){
                     byte[] bytes= Base64.decode(data.getString("firstImage"),Base64.DEFAULT);
@@ -101,7 +104,7 @@ public class ProfilePageActivity extends AppCompatActivity {
                     binding.fragmentMyGalary1.setImageBitmap(cropImage(bitmap));
                 }
 //                TODO: add "city" to Constants
-                binding.txtMyCity.setText(data.getString("city"));
+
             }
         }
     });

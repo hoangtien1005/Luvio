@@ -82,7 +82,7 @@ public class InterestActivity extends AppCompatActivity {
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
-
+                    preferenceManager.putString(Constants.KEY_USER_ID,documentReference.getId());
                     Intent intentMain=new Intent(getApplicationContext(), HomePageActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intentMain);
