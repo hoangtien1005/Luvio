@@ -70,7 +70,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         else{
             binding.txtAboutMe.setText("Không có lời giới thiệu");
         }
-
+        binding.txtInterestGender.setText(preferenceManager.getString(Constants.KEY_INTERESTED_GENDER));
         binding.txtMyBirthday.setText(preferenceManager.getString(Constants.KEY_BIRTHDAY));
         binding.txtMyGender.setText(preferenceManager.getString(Constants.KEY_GENDER));
         String[] interests = preferenceManager.getString(Constants.KEY_INTERESTS).split(",");
@@ -94,6 +94,7 @@ public class ProfilePageActivity extends AppCompatActivity {
                 binding.txtFirstName.setText(data.getString(Constants.KEY_FIRST_NAME));
                 binding.txtLastName.setText(data.getString(Constants.KEY_LAST_NAME));
                 binding.txtMyGender.setText(data.getString(Constants.KEY_GENDER));
+                binding.txtInterestGender.setText(data.getString(Constants.KEY_INTERESTED_GENDER));
                 binding.txtMyBirthday.setText(data.getString(Constants.KEY_BIRTHDAY));
                 binding.txtMyCity.setText(data.getString(Constants.KEY_CITY));
                 binding.txtAge.setText(findAge(data.getString(Constants.KEY_BIRTHDAY)));
@@ -102,6 +103,16 @@ public class ProfilePageActivity extends AppCompatActivity {
                     byte[] bytes= Base64.decode(data.getString("firstImage"),Base64.DEFAULT);
                     Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
                     binding.fragmentMyGalary1.setImageBitmap(cropImage(bitmap));
+                }
+                if(!data.get("secondImage").equals("")){
+                    byte[] bytes= Base64.decode(data.getString("secondImage"),Base64.DEFAULT);
+                    Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                    binding.fragmentMyGalary2.setImageBitmap(cropImage(bitmap));
+                }
+                if(!data.get("thirdImage").equals("")){
+                    byte[] bytes= Base64.decode(data.getString("thirdImage"),Base64.DEFAULT);
+                    Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                    binding.fragmentMyGalary3.setImageBitmap(cropImage(bitmap));
                 }
 //                TODO: add "city" to Constants
 
@@ -123,12 +134,14 @@ public class ProfilePageActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), SetInfoActivity.class);
             Bundle bundleData = new Bundle();
 //            TODO: put string of encode bitmap images to bundle
+            bundleData.putString(Constants.KEY_ABOUT_ME,binding.txtAboutMe.getText().toString());
             bundleData.putString(Constants.KEY_FIRST_NAME,binding.txtFirstName.getText().toString());
             bundleData.putString(Constants.KEY_LAST_NAME, binding.txtLastName.getText().toString());
             bundleData.putString(Constants.KEY_BIRTHDAY,binding.txtMyBirthday.getText().toString().trim());
             bundleData.putString(Constants.KEY_GENDER, binding.txtMyGender.getText().toString().trim());
+            bundleData.putString(Constants.KEY_INTERESTED_GENDER, binding.txtInterestGender.getText().toString().trim());
 //            TODO: add "city" to Constants
-            bundleData.putString("city", binding.txtMyCity.getText().toString().trim());
+            bundleData.putString(Constants.KEY_CITY, binding.txtMyCity.getText().toString().trim());
             intent.putExtras(bundleData);
             editInfo.launch(intent);
         });

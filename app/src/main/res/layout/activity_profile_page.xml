@@ -90,7 +90,16 @@
                         android:fontFamily="@font/montserrat_bold"
                         android:background="@null"
                         android:layout_gravity="bottom"
-                        android:text="Duc Tam,"
+                        android:text="Duc Tam"
+                        android:textSize="@dimen/_21ssp" />
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:background="@null"
+                        android:layout_gravity="bottom"
+                        android:text=","
                         android:textSize="@dimen/_21ssp" />
                     <EditText
 
@@ -263,7 +272,31 @@
                         android:fontFamily="@font/montserrat_medium"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Muốn làm quen với"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/black"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/_16ssp"/>
+
+                    <TextView
+                        android:id="@+id/txt_interest_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textSize="@dimen/_14ssp" />
+                </LinearLayout>
 
                 <!-- hình ảnh-->
 
@@ -291,7 +324,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/_20sdp"
+                    android:paddingHorizontal="@dimen/_16sdp"
                     android:orientation="horizontal">
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/fragmentMyGalary1"

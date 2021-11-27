@@ -13,8 +13,12 @@ import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -24,8 +28,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.Luvio.R;
 import com.android.Luvio.databinding.ActivitySetInfoBinding;
 import com.android.Luvio.utilities.Constants;
+import com.android.Luvio.utilities.PreferenceManager;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -42,6 +48,7 @@ public class SetInfoActivity extends AppCompatActivity {
     boolean firstImageAdded = false;
     boolean secondImageAdded = false;
     int currentImage = 1;
+    private InputFilter filter;
     private ActivitySetInfoBinding binding;
     private final ActivityResultLauncher<Intent> pickImage=registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -77,25 +84,31 @@ public class SetInfoActivity extends AppCompatActivity {
                 }
             }
     );
-
+    FirebaseFirestore db;
+    PreferenceManager preferenceManager;
+    Bundle extras ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySetInfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 //        TODO: get phone, interested gender and 3 images encode string from database or from previous activity, add "city" to Constants
-        Bundle extras = getIntent().getExtras();
+        extras=getIntent().getExtras();
+        preferenceManager=new PreferenceManager(getApplicationContext());
+        setData();
+        setListener();
+    }
+
+    private void setData(){
         binding.edtFirstName.setText(extras.getString(Constants.KEY_FIRST_NAME));
         binding.edtLastName.setText(extras.getString(Constants.KEY_LAST_NAME));
         binding.edtBirthday.setText(extras.getString(Constants.KEY_BIRTHDAY));
         binding.edtGender.setText(extras.getString(Constants.KEY_GENDER));
-        binding.edtCity.setText(extras.getString("city"));
-        binding.edtInterestedGender.setText("Nữ");
-        binding.edtPhone.setText("1235983295");
-
-        setListener();
+        binding.edtCity.setText(extras.getString(Constants.KEY_CITY));
+        binding.edtAboutMe.setText(extras.getString(Constants.KEY_ABOUT_ME));
+        binding.edtInterestedGender.setText(extras.getString(Constants.KEY_INTERESTED_GENDER));
+        binding.txtPhone.setText(preferenceManager.getString(Constants.KEY_PHONE_NUMBER));
     }
-
     private String encodeImage(Bitmap bitmap){
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
@@ -114,7 +127,29 @@ public class SetInfoActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.interested_gender));
         binding.edtInterestedGender.setAdapter(interestedGenderAdapter);
+        binding.edtAboutMe.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                int wordsLength = countWords(s.toString());// words.length;
+                // count == 0 means a new word is going to start
+                if (count == 0 && wordsLength >= 50) {
+                    setCharLimit(binding.edtAboutMe, binding.edtAboutMe.getText().length());
+                } else {
+                    removeFilter(binding.edtAboutMe);
+                }
+                binding.textCount.setText(String.valueOf(wordsLength) + "/50" );
+            }
 
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         binding.imgMySettingNew1.setOnClickListener(view -> {
             currentImage = 1;
             Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -175,6 +210,7 @@ public class SetInfoActivity extends AppCompatActivity {
             bundleData.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());
             bundleData.putString(Constants.KEY_BIRTHDAY,binding.edtBirthday.getText().toString().trim());
             bundleData.putString(Constants.KEY_GENDER, binding.edtGender.getText().toString().trim());
+            bundleData.putString(Constants.KEY_INTERESTED_GENDER, binding.edtInterestedGender.getText().toString().trim());
             bundleData.putString(Constants.KEY_CITY, binding.edtCity.getText().toString().trim());
             bundleData.putString("firstImage", encodeFirstImage);
             bundleData.putString("secondImage", encodeSecondImage);
@@ -203,10 +239,6 @@ public class SetInfoActivity extends AppCompatActivity {
             return false;
         }
 
-        else if (binding.edtPhone.getText().toString().trim().isEmpty()) {
-            showToast("Chưa nhập số điện thoại");
-            return false;
-        }
 
         return true;
     }
@@ -252,6 +284,26 @@ public class SetInfoActivity extends AppCompatActivity {
         return output;
     }
 
+    private int countWords(String s) {
+        String trim = s.trim();
+        if (trim.isEmpty())
+            return 0;
+        return trim.split("\\s+").length; // separate string around spaces
+    }
+
+
+
+    private void setCharLimit(EditText et, int max) {
+        filter = new InputFilter.LengthFilter(max);
+        et.setFilters(new InputFilter[] { filter });
+    }
+
+    private void removeFilter(EditText et) {
+        if (filter != null) {
+            et.setFilters(new InputFilter[0]);
+            filter = null;
+        }
+    }
     private void updateImagesAdded() {
         if(firstImageAdded) {
             binding.imgMySettingNew2.setImageResource(R.drawable.ic_button_add_img);

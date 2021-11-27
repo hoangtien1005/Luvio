@@ -18,6 +18,7 @@
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_camera.xml" value="0.2189873417721519" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_caret_left.xml" value="0.14635416666666667" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_caretleft.xml" value="0.14635416666666667" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_change_information_btn.xml" value="0.17357859531772576" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_default_user_image.xml" value="0.2189873417721519" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_edit_calendar.xml" value="0.17037037037037037" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_home_tint.xml" value="0.1" />
@@ -26,12 +27,14 @@
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_like_btn.xml" value="0.1" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_message_fab.xml" value="0.1" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_setting.xml" value="0.17123745819397992" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_setting_btn.xml" value="0.17357859531772576" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/ic_sign_in_logo.xml" value="0.14635416666666667" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/logo.xml" value="0.23796296296296296" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/online_check.xml" value="0.1" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/outline_edit_calendar_20.xml" value="0.2189873417721519" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/outline_edit_calendar_24.xml" value="0.2189873417721519" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/radio_button_female_checked.xml" value="0.1" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/radio_button_female_uncheck.xml" value="0.17357859531772576" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/rounded_edittext.xml" value="0.1701388888888889" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/switch_thumb.xml" value="0.17123745819397992" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/switch_track.xml" value="0.1" />
@@ -41,7 +44,7 @@
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_forgot_password3.xml" value="0.152" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_hobby.xml" value="0.16576086956521738" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_home_page.xml" value="0.4" />
-        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_interest.xml" value="0.264" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_interest.xml" value="0.136" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_liked_user.xml" value="0.16" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_personal_information.xml" value="0.176" />
@@ -50,7 +53,7 @@
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_personal_page.xml" value="0.1" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_phone_number.xml" value="0.136" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_profile_page.xml" value="0.152" />
-        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_set_info.xml" value="0.1" />
+        <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_set_info.xml" value="0.176" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_setting.xml" value="0.176" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_setting_my_info.xml" value="0.11099726775956284" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/layout/activity_sign_in.xml" value="0.176" />
