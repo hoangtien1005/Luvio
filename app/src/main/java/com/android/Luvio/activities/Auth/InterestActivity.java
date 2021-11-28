@@ -26,13 +26,14 @@ import java.util.List;
 public class InterestActivity extends AppCompatActivity {
     private ActivityInterestBinding binding;
     private String[] interests =new String[] {"Bóng đá", "Mua sắm", "Yoga", "Bơi lội", "Bóng rổ", "Karaoke", "Quần vợt", "Nấu ăn", "Đọc sách", "Âm nhạc", "Xem phim", "Nghệ thuật", "Động vật", "Chính trị", "Du lịch", "Game"};
-    private ArrayList<String> userInterests=new ArrayList<String>();
+    private ArrayList<String> userInterests;
     private PreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityInterestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        userInterests=new ArrayList<String>();
         preferenceManager=new PreferenceManager(getApplicationContext());
         setListener();
 

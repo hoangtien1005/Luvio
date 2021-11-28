@@ -17,6 +17,9 @@ public class Constants {
     public static final String KEY_USER_ID="userId";
     public static final String KEY_AVATAR="avatar";
     public static final String KEY_IMAGES="images";
+    public static final String KEY_FIRST_IMAGE="firstImage";
+    public static final String KEY_SECOND_IMAGE="secondImage";
+    public static final String KEY_THIRD_IMAGE="thirdImage";
     public static final String KEY_GENDER="gender";
     public static final String KEY_INTERESTS="interests";
     public static final String KEY_INTERESTED_GENDER="interestedGender";

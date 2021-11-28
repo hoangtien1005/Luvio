@@ -8,6 +8,7 @@ import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -17,15 +18,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.Luvio.R;
 import com.android.Luvio.activities.Setting.SettingActivity;
 import com.android.Luvio.databinding.ActivityProfilePageBinding;
+import com.android.Luvio.interfaces.CompleteDocumentListener;
 import com.android.Luvio.utilities.Constants;
 import com.android.Luvio.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,13 +40,16 @@ public class ProfilePageActivity extends AppCompatActivity {
     // this is just a temporary solution
     PreferenceManager preferenceManager;
     FirebaseFirestore db;
+    String encodeFirstImage = "";
+    String encodeSecondImage = "";
+    String encodeThirdImage = "";
+    ArrayList<String> images;
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         binding=ActivityProfilePageBinding.inflate(getLayoutInflater());
         preferenceManager=new PreferenceManager(getApplicationContext());
-
-
-
+        db=FirebaseFirestore.getInstance();
+        images=new ArrayList<String>();
         setContentView(binding.getRoot());
         setFirstTimeData();
         setListener();
@@ -57,12 +64,11 @@ public class ProfilePageActivity extends AppCompatActivity {
         return String.valueOf(age);
     }
     void setFirstTimeData(){
-        byte[] bytes= Base64.decode(preferenceManager.getString(Constants.KEY_AVATAR),Base64.DEFAULT);
-        Bitmap avatar= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+        Bitmap avatar= decodeImage(preferenceManager.getString(Constants.KEY_AVATAR));
         cropAvatar(avatar);
         binding.avatarImage.setImageBitmap(avatar);
         binding.txtFirstName.setText(preferenceManager.getString(Constants.KEY_FIRST_NAME) );
-        binding.txtLastName.setText(preferenceManager.getString(Constants.KEY_LAST_NAME)+", " );
+        binding.txtLastName.setText(preferenceManager.getString(Constants.KEY_LAST_NAME) );
         binding.txtAge.setText(findAge(preferenceManager.getString(Constants.KEY_BIRTHDAY)));
         if (preferenceManager.getString(Constants.KEY_ABOUT_ME)!=null){
             binding.txtAboutMe.setText(preferenceManager.getString(Constants.KEY_ABOUT_ME));
@@ -83,9 +89,38 @@ public class ProfilePageActivity extends AppCompatActivity {
         else{
             binding.txtMyCity.setText("Không có");
         }
+        addImages();
+
 
     }
-    int LAUNCH_SET_INFO_ACTIVITY = 1;
+    private void showToast(String message){
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+
+    }
+    private Bitmap decodeImage(String encodeImage){
+        byte[] imageBytes= Base64.decode(encodeImage,Base64.DEFAULT);
+        Bitmap bitmap= BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+        return bitmap;
+    }
+    private void addImages(){
+        encodeFirstImage=preferenceManager.getString(Constants.KEY_FIRST_IMAGE);
+        encodeSecondImage=preferenceManager.getString(Constants.KEY_SECOND_IMAGE);
+        encodeThirdImage=preferenceManager.getString(Constants.KEY_THIRD_IMAGE);
+        if (encodeFirstImage!=""&&encodeFirstImage!=null){
+            Bitmap bitmap=decodeImage(encodeFirstImage);
+            binding.fragmentMyGalary1.setImageBitmap(cropImage(bitmap));
+        }
+        if (encodeSecondImage!=""&&encodeSecondImage!=null){
+            Bitmap bitmap=decodeImage(encodeSecondImage);
+            binding.fragmentMyGalary2.setImageBitmap(cropImage(bitmap));
+        }if (encodeThirdImage!=""&&encodeThirdImage!=null){
+            Bitmap bitmap=decodeImage(encodeThirdImage);
+            binding.fragmentMyGalary3.setImageBitmap(cropImage(bitmap));
+        }
+
+
+    }
+
     private final ActivityResultLauncher<Intent> editInfo = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if(result.getResultCode() == RESULT_OK) {
             if(result.getData() != null) {
@@ -99,19 +134,19 @@ public class ProfilePageActivity extends AppCompatActivity {
                 binding.txtMyCity.setText(data.getString(Constants.KEY_CITY));
                 binding.txtAge.setText(findAge(data.getString(Constants.KEY_BIRTHDAY)));
 //                decode images string to bitmap
-                if(!data.get("firstImage").equals("")){
-                    byte[] bytes= Base64.decode(data.getString("firstImage"),Base64.DEFAULT);
-                    Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                if(!data.get(Constants.KEY_FIRST_IMAGE).equals("")&&data.get(Constants.KEY_FIRST_IMAGE)!=null){
+                    encodeFirstImage=data.getString(Constants.KEY_FIRST_IMAGE);
+                    Bitmap bitmap= decodeImage(encodeFirstImage);
                     binding.fragmentMyGalary1.setImageBitmap(cropImage(bitmap));
                 }
-                if(!data.get("secondImage").equals("")){
-                    byte[] bytes= Base64.decode(data.getString("secondImage"),Base64.DEFAULT);
-                    Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                if(!data.get(Constants.KEY_SECOND_IMAGE).equals("")&&data.get(Constants.KEY_SECOND_IMAGE)!=null){
+                    encodeSecondImage=data.getString(Constants.KEY_SECOND_IMAGE);
+                    Bitmap bitmap= decodeImage(encodeSecondImage);
                     binding.fragmentMyGalary2.setImageBitmap(cropImage(bitmap));
                 }
-                if(!data.get("thirdImage").equals("")){
-                    byte[] bytes= Base64.decode(data.getString("thirdImage"),Base64.DEFAULT);
-                    Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                if(!data.get(Constants.KEY_THIRD_IMAGE).equals("")&&data.get(Constants.KEY_THIRD_IMAGE)!=null){
+                    encodeThirdImage=data.getString(Constants.KEY_THIRD_IMAGE);
+                    Bitmap bitmap= decodeImage(encodeThirdImage);
                     binding.fragmentMyGalary3.setImageBitmap(cropImage(bitmap));
                 }
 //                TODO: add "city" to Constants
@@ -142,6 +177,13 @@ public class ProfilePageActivity extends AppCompatActivity {
             bundleData.putString(Constants.KEY_INTERESTED_GENDER, binding.txtInterestGender.getText().toString().trim());
 //            TODO: add "city" to Constants
             bundleData.putString(Constants.KEY_CITY, binding.txtMyCity.getText().toString().trim());
+
+            if(encodeFirstImage!="")
+                bundleData.putString(Constants.KEY_FIRST_IMAGE,encodeFirstImage);
+            if(encodeSecondImage!="")
+                bundleData.putString(Constants.KEY_SECOND_IMAGE,encodeSecondImage);
+            if (encodeThirdImage!="")
+                bundleData.putString(Constants.KEY_THIRD_IMAGE,encodeThirdImage);
             intent.putExtras(bundleData);
             editInfo.launch(intent);
         });

@@ -23,12 +23,18 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio.R;
+import com.android.Luvio.activities.Auth.SignInActivity;
 import com.android.Luvio.databinding.ActivitySetInfoBinding;
 import com.android.Luvio.utilities.Constants;
 import com.android.Luvio.utilities.PreferenceManager;
+import com.google.android.exoplayer2.C;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,6 +43,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -45,10 +52,11 @@ public class SetInfoActivity extends AppCompatActivity {
     String encodeFirstImage = "";
     String encodeSecondImage = "";
     String encodeThirdImage = "";
-    boolean firstImageAdded = false;
-    boolean secondImageAdded = false;
     int currentImage = 1;
     private InputFilter filter;
+    FirebaseFirestore db;
+    PreferenceManager preferenceManager;
+    ArrayList<String> images;
     private ActivitySetInfoBinding binding;
     private final ActivityResultLauncher<Intent> pickImage=registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -63,13 +71,11 @@ public class SetInfoActivity extends AppCompatActivity {
                             Bitmap previewImage=cropImage(imageProfile);
                             if(currentImage == 1) {
                                 encodeFirstImage=encodeImage(imageProfile);
-                                firstImageAdded = true;
                                 updateImagesAdded();
                                 binding.imgMySettingNew1.setImageBitmap(getRoundedCornerBitmap(previewImage, 20));
                             }
                             else if(currentImage == 2) {
                                 encodeSecondImage=encodeImage(imageProfile);
-                                secondImageAdded = true;
                                 updateImagesAdded();
                                 binding.imgMySettingNew2.setImageBitmap(getRoundedCornerBitmap(previewImage, 20));
                             }
@@ -84,8 +90,7 @@ public class SetInfoActivity extends AppCompatActivity {
                 }
             }
     );
-    FirebaseFirestore db;
-    PreferenceManager preferenceManager;
+
     Bundle extras ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +99,28 @@ public class SetInfoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 //        TODO: get phone, interested gender and 3 images encode string from database or from previous activity, add "city" to Constants
         extras=getIntent().getExtras();
+        db=FirebaseFirestore.getInstance();
+        images=new ArrayList<String>();
         preferenceManager=new PreferenceManager(getApplicationContext());
         setData();
         setListener();
     }
 
     private void setData(){
+        if(extras.getString(Constants.KEY_FIRST_IMAGE)!=null){
+            encodeFirstImage=extras.getString(Constants.KEY_FIRST_IMAGE);
+            binding.imgMySettingNew1.setImageBitmap(cropImage(decodeImage(encodeFirstImage)));
+        }
+        if(extras.getString(Constants.KEY_SECOND_IMAGE)!=null){
+            encodeSecondImage=extras.getString(Constants.KEY_SECOND_IMAGE);
+            binding.imgMySettingNew2.setImageBitmap(cropImage(decodeImage(encodeSecondImage)));
+        }
+        if(extras.getString(Constants.KEY_THIRD_IMAGE)!=null){
+            encodeThirdImage=extras.getString(Constants.KEY_THIRD_IMAGE);
+            binding.imgMySettingNew3.setImageBitmap(cropImage(decodeImage(encodeThirdImage)));
+        }
+        updateImagesAdded();
+
         binding.edtFirstName.setText(extras.getString(Constants.KEY_FIRST_NAME));
         binding.edtLastName.setText(extras.getString(Constants.KEY_LAST_NAME));
         binding.edtBirthday.setText(extras.getString(Constants.KEY_BIRTHDAY));
@@ -108,6 +129,11 @@ public class SetInfoActivity extends AppCompatActivity {
         binding.edtAboutMe.setText(extras.getString(Constants.KEY_ABOUT_ME));
         binding.edtInterestedGender.setText(extras.getString(Constants.KEY_INTERESTED_GENDER));
         binding.txtPhone.setText(preferenceManager.getString(Constants.KEY_PHONE_NUMBER));
+    }
+    private Bitmap decodeImage(String encodeImage){
+        byte[] imageBytes= Base64.decode(encodeImage,Base64.DEFAULT);
+        Bitmap bitmap= BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+        return bitmap;
     }
     private String encodeImage(Bitmap bitmap){
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
@@ -151,14 +177,16 @@ public class SetInfoActivity extends AppCompatActivity {
             }
         });
         binding.imgMySettingNew1.setOnClickListener(view -> {
-            currentImage = 1;
-            Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            pickImage.launch(intent);
+            if(encodeFirstImage==""){
+                currentImage = 1;
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                pickImage.launch(intent);
+            }
         });
 
         binding.imgMySettingNew2.setOnClickListener(view -> {
-            if(firstImageAdded) {
+            if(encodeSecondImage==""&&encodeFirstImage!="") {
                 currentImage = 2;
                 Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -167,7 +195,7 @@ public class SetInfoActivity extends AppCompatActivity {
         });
 
         binding.imgMySettingNew3.setOnClickListener(view -> {
-            if(secondImageAdded) {
+            if(encodeThirdImage==""&&encodeFirstImage!=""&&encodeSecondImage!="") {
                 currentImage = 3;
                 Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -204,7 +232,8 @@ public class SetInfoActivity extends AppCompatActivity {
 //          TODO: update phone number, interested gender, about text on database and personal information
             Intent returnIntent = new Intent();
             Bundle bundleData = new Bundle();
-
+            updateFireStore();
+            updatePreferenceManager();
             bundleData.putString(Constants.KEY_ABOUT_ME,binding.edtAboutMe.getText().toString().trim());
             bundleData.putString(Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString().trim());
             bundleData.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());
@@ -212,15 +241,28 @@ public class SetInfoActivity extends AppCompatActivity {
             bundleData.putString(Constants.KEY_GENDER, binding.edtGender.getText().toString().trim());
             bundleData.putString(Constants.KEY_INTERESTED_GENDER, binding.edtInterestedGender.getText().toString().trim());
             bundleData.putString(Constants.KEY_CITY, binding.edtCity.getText().toString().trim());
-            bundleData.putString("firstImage", encodeFirstImage);
-            bundleData.putString("secondImage", encodeSecondImage);
-            bundleData.putString("thirdImage", encodeThirdImage);
+            bundleData.putString(Constants.KEY_FIRST_IMAGE, encodeFirstImage);
+            bundleData.putString(Constants.KEY_SECOND_IMAGE, encodeSecondImage);
+            bundleData.putString(Constants.KEY_THIRD_IMAGE, encodeThirdImage);
             returnIntent.putExtras(bundleData);
             setResult(Activity.RESULT_OK, returnIntent);
             finish();
             }
 
         });
+    }
+
+    private void updatePreferenceManager() {
+        preferenceManager.putString(Constants.KEY_ABOUT_ME,binding.edtAboutMe.getText().toString().trim());
+        preferenceManager.putString(Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString().trim());
+        preferenceManager.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());
+        preferenceManager.putString(Constants.KEY_BIRTHDAY,binding.edtBirthday.getText().toString().trim());
+        preferenceManager.putString(Constants.KEY_GENDER, binding.edtGender.getText().toString().trim());
+        preferenceManager.putString(Constants.KEY_INTERESTED_GENDER, binding.edtInterestedGender.getText().toString().trim());
+        preferenceManager.putString(Constants.KEY_CITY, binding.edtCity.getText().toString().trim());
+        preferenceManager.putString(Constants.KEY_FIRST_IMAGE, encodeFirstImage);
+        preferenceManager.putString(Constants.KEY_SECOND_IMAGE, encodeSecondImage);
+        preferenceManager.putString(Constants.KEY_THIRD_IMAGE, encodeThirdImage);
     }
 
     private void showToast(String message){
@@ -305,12 +347,46 @@ public class SetInfoActivity extends AppCompatActivity {
         }
     }
     private void updateImagesAdded() {
-        if(firstImageAdded) {
+        if(encodeFirstImage!=""&&encodeSecondImage=="") {
             binding.imgMySettingNew2.setImageResource(R.drawable.ic_button_add_img);
         }
-        if(secondImageAdded) {
+        if(encodeSecondImage!=""&&encodeFirstImage!=""&&encodeThirdImage=="") {
             binding.imgMySettingNew3.setImageResource(R.drawable.ic_button_add_img);
         }
     }
 
+    private void updateFireStore(){
+        if(encodeFirstImage!=""){
+            images.add(0,encodeFirstImage);
+        }
+        if(encodeSecondImage!=""){
+            images.add(1,encodeSecondImage);
+        }
+        if (encodeThirdImage!=""){
+            images.add(2,encodeThirdImage);
+        }
+        db.collection(Constants.KEY_COLLECTION_USER)
+                .document(preferenceManager.getString(Constants.KEY_USER_ID))
+                .update(Constants.KEY_GENDER,binding.edtGender.getText().toString(),
+                        Constants.KEY_INTERESTED_GENDER,binding.edtInterestedGender.getText().toString(),
+                        Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString(),
+                        Constants.KEY_LAST_NAME,binding.edtLastName.getText().toString(),
+                        Constants.KEY_ABOUT_ME,binding.edtAboutMe.getText().toString(),
+                        Constants.KEY_BIRTHDAY,binding.edtBirthday.getText().toString(),
+                        Constants.KEY_CITY,binding.edtCity.getText().toString(),
+                        Constants.KEY_IMAGES,images
+                        )
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        showToast("Cập nhật thành công");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        showToast("Không thể cập nhật");
+                    }
+                });
+    }
 }

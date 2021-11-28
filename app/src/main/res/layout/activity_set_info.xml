@@ -176,6 +176,7 @@
                 android:layout_height="wrap_content"
                 android:breakStrategy="high_quality"
                 android:background="@drawable/background_input"
+                android:inputType="text"
                 android:imeOptions="actionDone"
                 />
 
@@ -202,6 +203,8 @@
                 android:id="@+id/edt_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
+                android:inputType="text"
+                android:imeOptions="actionDone"
                 android:background="@drawable/rounded_edittext"
                 android:paddingLeft="@dimen/_16sdp"
                 />
@@ -256,7 +259,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:background="@drawable/rounded_edittext"
-                android:inputType="phone"
+                android:inputType="text"
+                android:imeOptions="actionDone"
                 android:paddingLeft="@dimen/_16sdp"
                 />
         </LinearLayout>
