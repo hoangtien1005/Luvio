@@ -79,6 +79,8 @@
             android:background="@drawable/bottom_nav"
             app:menu="@menu/bottom_navigation_menu"
             android:layout_weight="1"
+            app:labelVisibilityMode="unlabeled"
+            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             />
 
     </LinearLayout>

@@ -51,6 +51,7 @@ public class HomePageActivity extends AppCompatActivity {
 //            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             SearchDialog(R.layout.search_filter);
         });
+
     }
 
     private void SearchDialog (int layoutStyle){

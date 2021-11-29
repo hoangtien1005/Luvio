@@ -6,8 +6,15 @@
         android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/ic_home"
-        android:iconTint="@color/ic_home_color"
-        android:title="Home" />
+        android:title="Home"
+        android:iconTint="@color/ic_home_color"/>
+
+    <item
+        android:id="@+id/message"
+        android:enabled="true"
+        android:icon="@drawable/ic_message"
+        android:iconTint="@color/ic_message_color"
+        android:title="Message" />
 
     <item
         android:id="@+id/liked"
@@ -15,10 +22,4 @@
         android:icon="@drawable/ic_liked"
         android:iconTint="@color/ic_liked_color"
         android:title="Liked" />
-    <item
-        android:id="@+id/message"
-        android:enabled="true"
-        android:icon="@drawable/ic_message"
-        android:iconTint="@color/ic_message_color"
-        android:title="Message" />
 </menu>

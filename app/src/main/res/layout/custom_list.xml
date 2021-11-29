@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/like_btn"
         android:layout_marginRight="50dp"
-        android:background="@drawable/background_input"
+        android:background="@drawable/bio_box"
         android:backgroundTint="@color/white"
         android:orientation="vertical"
         android:padding="@dimen/_5sdp"
