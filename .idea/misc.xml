@@ -3,6 +3,43 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/background_gradient.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/background_input.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/background_sign_in_btn.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/background_sign_in_form.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/bottom_nav.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_back_btn.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_bottom_navi.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_camera.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_default_user_image.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_edit_calendar.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_home.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_home_tint.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_info_btn.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_like_btn.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_liked.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_liked_check.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_liked_tint.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_message.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_message_btn.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_message_tint.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_my_profile_btn.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_search.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_setting_btn.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/ic_sign_in_logo.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/online_check.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/radio_button_female_checked.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/radio_button_female_selector.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/drawable/star.xml" value="0.23378995433789954" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_home_page.xml" value="0.22268518518518518" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_liked_user.xml" value="0.22268518518518518" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_personal_information1.xml" value="0.10862691960252936" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_verify_phone_number.xml" value="0.10862691960252936" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/country_code_row_layout.xml" value="0.10862691960252936" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/custom_list.xml" value="0.22268518518518518" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/search_filter.xml" value="0.22268518518518518" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.22268518518518518" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_back_btn.xml" value="0.14635416666666667" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_btn.xml" value="0.18796296296296297" />
