@@ -54,14 +54,14 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/like_btn"
         android:layout_marginRight="50dp"
-        android:background="@drawable/background_input"
+        android:background="@drawable/background_brief_info"
         android:backgroundTint="@color/white"
         android:orientation="vertical"
         android:padding="@dimen/_5sdp"
         android:paddingEnd="@dimen/_20sdp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
@@ -70,9 +70,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/black"
                 android:gravity="center"
                 android:text="Leilani"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_16ssp" />
 
             <TextView
@@ -80,9 +80,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_4sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/black"
                 android:gravity="center"
                 android:text=","
+                android:textColor="@color/black"
                 android:textSize="@dimen/_16ssp" />
 
             <TextView
@@ -91,9 +91,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_6sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/black"
                 android:gravity="center"
                 android:text="19"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_16ssp" />
 
             <ImageView
@@ -103,23 +103,30 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:src="@drawable/online_check" />
 
-
-            <TextView
-                android:id="@+id/txt_star"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_30sdp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:text="4.5"
-                android:textSize="@dimen/_14ssp" />
+                android:gravity="right|center_vertical">
+                <TextView
+                    android:id="@+id/txt_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:src="@drawable/star" />
+
+                    android:fontFamily="@font/montserrat_medium"
+
+
+                    android:text="4.5"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/star" />
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -130,8 +137,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/montserrat_light"
-            android:textColor="@color/black"
             android:text="Hey guys, This is Malena. I’m here to find someone for hookup..."
+            android:textColor="@color/black"
             android:textSize="@dimen/_10ssp" />
 
     </LinearLayout>

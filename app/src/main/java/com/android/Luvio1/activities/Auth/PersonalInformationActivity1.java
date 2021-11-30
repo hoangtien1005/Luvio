@@ -12,7 +12,6 @@ import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -87,8 +86,9 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 int wordsLength = countWords(s.toString());// words.length;
                 // count == 0 means a new word is going to start
-                if (count == 0 && wordsLength >= 1) {
+                if (count == 0 && wordsLength >= 2) {
                     setCharLimit(binding.edtFirstName, binding.edtFirstName.getText().length());
+                    showToast("Không được nhập quá 2 từ");
                 } else {
                     removeFilter(binding.edtFirstName);
                 }
@@ -101,7 +101,7 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                showToast("Không được nhập quá 1 từ");
+
             }
         });
         binding.edtLastName.addTextChangedListener(new TextWatcher() {
@@ -109,8 +109,9 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 int wordsLength = countWords(s.toString());// words.length;
                 // count == 0 means a new word is going to start
-                if (count == 0 && wordsLength >= 2) {
+                if (count == 0 && wordsLength >= 1) {
                     setCharLimit(binding.edtLastName, binding.edtLastName.getText().length());
+                    showToast("Không được nhập quá 1 từ");
                 } else {
                     removeFilter(binding.edtLastName);
                 }
@@ -123,7 +124,7 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                showToast("Không được nhập quá 2 từ");
+
             }
         });
         MaterialDatePicker datePicker = MaterialDatePicker.Builder.datePicker()

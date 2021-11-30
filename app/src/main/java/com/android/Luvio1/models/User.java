@@ -1,20 +1,16 @@
 package com.android.Luvio1.models;
 
-import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.database.Exclude;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.TimeZone;
 
 public class User  implements Serializable{
     @Exclude
+    private String fsId;
     private String avatar;
     private String firstName;
     private String lastName;
     private String birthday;
-    private String fsId;
     private String star;
     private String aboutMe;
     public User() {

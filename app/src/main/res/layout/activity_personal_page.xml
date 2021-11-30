@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".activities.User.PersonalPageActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:fontFamily = "#9Slide03 Montserrat Medium"
-        android:background="@drawable/ic_heart_fab">
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,11 +43,12 @@
                     android:gravity="right" />
 
                 <ImageButton
+                    android:id="@+id/back_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginHorizontal="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
 
 
                     android:background="@null"
@@ -100,13 +102,14 @@
 
                 <!--something about me-->
                 <EditText
+                    android:id="@+id/txt_about_me"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:textSize="@dimen/_14ssp"
-                    android:text="Hey guys, This is Malena. I’m here to find someone for hookup. I’m not interested in something serious. I would love to hear your adventurous story." />
+                    android:text="" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -254,42 +257,42 @@
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Hình ảnh"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:textColor="@color/black"
-                        android:textAllCaps="true"
-                        android:textSize="@dimen/_16ssp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:text="Hình ảnh"-->
+<!--                        android:fontFamily="@font/montserrat_bold"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textAllCaps="true"-->
+<!--                        android:textSize="@dimen/_16ssp" />-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <ImageView
-                            android:id="@+id/fragment_my_galary1"
-                            android:layout_width="0dp"
-                            android:layout_height="80dp"
-                            android:layout_margin="3dp"
-                            android:layout_weight=".33" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/fragment_my_galary1"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="80dp"-->
+<!--                            android:layout_margin="3dp"-->
+<!--                            android:layout_weight=".33" />-->
 
-                        <ImageView
-                            android:id="@+id/fragment_my_galary2"
-                            android:layout_width="0dp"
-                            android:layout_height="80dp"
-                            android:layout_margin="3dp"
-                            android:layout_weight=".33" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/fragment_my_galary2"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="80dp"-->
+<!--                            android:layout_margin="3dp"-->
+<!--                            android:layout_weight=".33" />-->
 
-                        <ImageView
-                            android:id="@+id/fragment_my_galary3"
-                            android:layout_width="0dp"
-                            android:layout_height="80dp"
-                            android:layout_margin="3dp"
-                            android:layout_weight=".33" />
-                    </LinearLayout>
+<!--                        <ImageView-->
+<!--                            android:id="@+id/fragment_my_galary3"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="80dp"-->
+<!--                            android:layout_margin="3dp"-->
+<!--                            android:layout_weight=".33" />-->
+<!--                    </LinearLayout>-->
 
                 </LinearLayout>
             </LinearLayout>

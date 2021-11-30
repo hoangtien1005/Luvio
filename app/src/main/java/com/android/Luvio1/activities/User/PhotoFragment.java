@@ -23,7 +23,7 @@ public class PhotoFragment extends Fragment {
         Bundle bundle = getArguments();
         Photo photo = (Photo) bundle.get("object photo");
         ImageView imgPhoto = mView.findViewById(R.id.img_photo);
-        imgPhoto.setImageResource(photo.getRsc());
+        imgPhoto.setImageBitmap(photo.getRsc());
         return mView;
     }
 }

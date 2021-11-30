@@ -29,7 +29,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.Luvio1.R;
 import com.android.Luvio1.databinding.ActivitySetInfoBinding;
 import com.android.Luvio1.firebase.RealTimeDBManager;
-import com.android.Luvio1.models.User;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,6 +45,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.TimeZone;
 
 
@@ -276,18 +276,23 @@ public class SetInfoActivity extends AppCompatActivity {
         preferenceManager.putString(Constants.KEY_THIRD_IMAGE, encodeThirdImage);
 
 
-        User user=new User(preferenceManager.getString(Constants.KEY_AVATAR),
-                firstName,lastName,birthday,
-                preferenceManager.getString(Constants.KEY_USER_ID),
-                preferenceManager.getString(Constants.KEY_STAR),aboutMe);
-        realTimeDBManager.add(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                showToast("Cập nhật Real time DB thành công");
-            }
-        }).addOnFailureListener(e->{
-            showToast(e.getMessage());
-        });
+
+        HashMap<String,Object>hashMap=new HashMap();
+        hashMap.put(Constants.KEY_ABOUT_ME,aboutMe);
+        hashMap.put(Constants.KEY_BIRTHDAY,birthday);
+        hashMap.put(Constants.KEY_FIRST_NAME,firstName);
+        hashMap.put(Constants.KEY_LAST_NAME,lastName);
+
+        realTimeDBManager.update(preferenceManager.getString(Constants.KEY_USER_ID),hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        showToast("Cập nhật Real time DB thành công");
+                        finish();
+                    }
+                }).addOnFailureListener(e->{
+                    showToast(e.getMessage());
+                });
     }
 
     private void showToast(String message){

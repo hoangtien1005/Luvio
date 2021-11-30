@@ -1,18 +1,18 @@
 package com.android.Luvio1.activities.User;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 public class Photo implements  Serializable{
-    private int rscID;
+    private Bitmap bitmap;
 
-    public Photo(int rscID) {
-        this.rscID = rscID;
+    public Photo(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
-    public int getRsc(){
-        return rscID;
+    public Bitmap getRsc(){
+        return bitmap;
     }
 
-    public void setRsc(int rscID) {
-        this.rscID = rscID;
-    }
+
 }

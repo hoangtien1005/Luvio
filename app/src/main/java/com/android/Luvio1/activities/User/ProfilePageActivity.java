@@ -63,7 +63,8 @@ public class ProfilePageActivity extends AppCompatActivity {
             binding.txtAboutMe.setText(preferenceManager.getString(Constants.KEY_ABOUT_ME));
         }
         else{
-            binding.txtAboutMe.setText("Không có lời giới thiệu");
+//            binding.txtAboutMe.setVisibility(View.GONE);
+            binding.txtAboutMe.setText("");
         }
         binding.txtInterestGender.setText(preferenceManager.getString(Constants.KEY_INTERESTED_GENDER));
         binding.txtMyBirthday.setText(preferenceManager.getString(Constants.KEY_BIRTHDAY));
