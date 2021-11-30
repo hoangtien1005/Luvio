@@ -107,7 +107,7 @@ public class InterestActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
                     preferenceManager.putString(Constants.KEY_USER_ID,documentReference.getId());
-                    User user1=new User(avatar,firstName,lastName,birthday,documentReference.getId(),star,aboutMe);
+                    User user1=new User(avatar,gender,firstName,lastName,birthday,documentReference.getId(),star,aboutMe);
                     realTimeDBManager.add(user1)
                             .addOnSuccessListener(suc ->
                             {

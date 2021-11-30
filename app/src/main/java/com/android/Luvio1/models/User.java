@@ -8,6 +8,7 @@ public class User  implements Serializable{
     @Exclude
     private String fsId;
     private String avatar;
+    private String gender;
     private String firstName;
     private String lastName;
     private String birthday;
@@ -16,9 +17,10 @@ public class User  implements Serializable{
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-    public User(String avatar, String firstName, String lastName, String birthday, String fsId, String star, String aboutMe) {
+    public User(String avatar,String gender, String firstName,String lastName, String birthday, String fsId, String star, String aboutMe) {
         this.avatar = avatar;
-        this.firstName = firstName;
+        this.gender=gender;
+        this.firstName=firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.fsId = fsId;
@@ -28,6 +30,9 @@ public class User  implements Serializable{
 
     public String getAvatar() {
         return avatar;
+    }
+    public String getGender() {
+        return gender;
     }
 
     public String getFirstName() {

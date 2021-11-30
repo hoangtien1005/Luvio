@@ -47,7 +47,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         User user=list.get(position);
         vh.txt_name.setText(user.getLastName());
         if(user.getAboutMe()==""){
-            vh.txt_bio.setText(user.getBirthday());
+            vh.txt_bio.setText(user.getGender());
         }
         else{
             vh.txt_bio.setText(user.getAboutMe());

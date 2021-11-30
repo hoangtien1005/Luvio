@@ -281,6 +281,8 @@ public class SetInfoActivity extends AppCompatActivity {
         hashMap.put(Constants.KEY_ABOUT_ME,aboutMe);
         hashMap.put(Constants.KEY_BIRTHDAY,birthday);
         hashMap.put(Constants.KEY_FIRST_NAME,firstName);
+        hashMap.put(Constants.KEY_GENDER,gender);
+        hashMap.put(Constants.KEY_FIRST_NAME,firstName);
         hashMap.put(Constants.KEY_LAST_NAME,lastName);
 
         realTimeDBManager.update(preferenceManager.getString(Constants.KEY_USER_ID),hashMap)
