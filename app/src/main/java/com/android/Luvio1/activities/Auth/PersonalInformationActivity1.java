@@ -8,8 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Base64;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.R;
 import com.android.Luvio1.databinding.ActivityPersonalInformation1Binding;
-import com.android.Luvio1.interfaces.TextChangeListener;
 import com.android.Luvio1.utilities.Constants;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -36,6 +37,7 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
     private ActivityPersonalInformation1Binding binding;
     String encodeImage;
     DatePickerDialog.OnDateSetListener setDateListener;
+    private InputFilter filter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,23 +82,50 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             pickImage.launch(intent);
         });
-        limitWord(binding.edtFirstName, new TextChangeListener() {
+        binding.edtFirstName.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeChange() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                int wordsLength = countWords(s.toString());// words.length;
+                // count == 0 means a new word is going to start
+                if (count == 0 && wordsLength >= 1) {
+                    setCharLimit(binding.edtFirstName, binding.edtFirstName.getText().length());
+                } else {
+                    removeFilter(binding.edtFirstName);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
 
             @Override
-            public void onChange() {
-
-            }
-
-            @Override
-            public void afterChange() {
-
+            public void afterTextChanged(Editable s) {
+                showToast("Không được nhập quá 1 từ");
             }
         });
-        binding.edtFirstName.addTextChangedListener();
+        binding.edtLastName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                int wordsLength = countWords(s.toString());// words.length;
+                // count == 0 means a new word is going to start
+                if (count == 0 && wordsLength >= 2) {
+                    setCharLimit(binding.edtLastName, binding.edtLastName.getText().length());
+                } else {
+                    removeFilter(binding.edtLastName);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                showToast("Không được nhập quá 2 từ");
+            }
+        });
         MaterialDatePicker datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Chọn ngày sinh")
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
@@ -135,24 +164,25 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
         });
     }
 
-    private void limitWord(TextView view, final TextChangeListener listener){
-        view.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                listener.beforeChange();
-            }
+    private int countWords(String s) {
+        String trim = s.trim();
+        if (trim.isEmpty())
+            return 0;
+        return trim.split("\\s+").length; // separate string around spaces
+    }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                listener.onChange();
-            }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                listener.afterChange();
-            }
-        });
 
+    private void setCharLimit(EditText et, int max) {
+        filter = new InputFilter.LengthFilter(max);
+        et.setFilters(new InputFilter[] { filter });
+    }
+
+    private void removeFilter(EditText et) {
+        if (filter != null) {
+            et.setFilters(new InputFilter[0]);
+            filter = null;
+        }
     }
     private void showToast(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
