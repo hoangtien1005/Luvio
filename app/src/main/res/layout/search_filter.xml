@@ -8,7 +8,7 @@
     android:backgroundTint="@color/white"
     android:orientation="vertical"
     android:padding="30dp"
-    tools:context=".activities.SearchFilterActivity"
+
     android:id="@+id/search_filter_sheet"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     app:behavior_hideable="true"

@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/_20sdp"
     android:paddingHorizontal="@dimen/_24sdp"
     android:orientation="vertical"
-    tools:context=".activities.Auth.PhoneNumberActivity">
+    tools:context="com.android.Luvio1.activities.Auth.PhoneNumberActivity">
 
     <ImageButton
         android:id="@+id/btnBack"

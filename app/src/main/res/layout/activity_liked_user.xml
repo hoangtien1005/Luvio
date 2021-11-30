@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="@dimen/_20sdp"
-    tools:context=".activities.Main.LikedUserActivity">
+    tools:context="com.android.Luvio1.activities.Main.LikedUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

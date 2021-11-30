@@ -10,7 +10,7 @@
     android:overScrollMode="never"
     android:scrollbars="none"
     android:paddingHorizontal="@dimen/_24sdp"
-    tools:context=".activities.Auth.InterestActivity">
+    tools:context="com.android.Luvio1.activities.Auth.InterestActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
