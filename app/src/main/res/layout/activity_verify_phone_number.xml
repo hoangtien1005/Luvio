@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/_20sdp"
     android:paddingHorizontal="@dimen/_24sdp"
-    tools:context=".activities.VerifyPhoneNumberActivity">
+    tools:context=".activities.Auth.VerifyPhoneNumberActivity">
     <ImageButton
         android:id="@+id/btnBack"
         style="@style/backButton"
@@ -137,22 +137,25 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:text="Xác thực" />
         <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
+            android:theme="@style/ProgressBarColor"
             android:layout_gravity="center"/>
     </FrameLayout>
-    <TextView
+    <Button
         android:id="@+id/resendVerficationCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/montserrat_semibold"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:textAllCaps="false"
         android:text="Gửi lại mã xác thực"
-        android:clickable="true"
         android:textAlignment="center"
-        android:textColor="@color/primary_1"
-        android:textSize="@dimen/_14sdp" />
+
+        android:textSize="@dimen/_12sdp" />
 
 </LinearLayout>

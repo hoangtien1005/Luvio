@@ -15,28 +15,44 @@
         android:backgroundTint="@color/avatarTint"
         android:src="@drawable/photo" />
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/like_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@id/user_avatar"
         android:layout_alignBottom="@id/user_avatar"
-        android:background="@drawable/ic_like_btn" />
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_heart_fab"
+        app:backgroundTint="@color/white"
+        app:fabCustomSize="60dp"
+        app:tint="#FF6666" />
 
-    <ImageButton
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/info_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/user_avatar"
+        android:layout_alignBottom="@+id/user_avatar"
         android:layout_centerInParent="true"
-        android:background="@drawable/ic_info_btn" />
+        android:layout_marginBottom="35dp"
+        android:src="@drawable/ic_info_fab"
+        app:backgroundTint="@color/white"
+        app:fabCustomSize="55dp"
+        app:tint="#13497B" />
 
-    <ImageButton
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/message_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/user_avatar"
-        android:background="@drawable/ic_message_btn" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_message_fab"
+        app:backgroundTint="@color/white"
+        app:fabCustomSize="60dp"
+        app:tint="#4CD5FF" />
 
     <ImageView
         android:id="@+id/liked_check"
@@ -52,6 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/like_btn"
         android:layout_marginRight="50dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/bio_box"
         android:backgroundTint="@color/white"
         android:orientation="vertical"
@@ -70,6 +87,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
                 android:text="Leilani, 19"
+                android:textColor="?text"
                 android:textSize="@dimen/_18sdp" />
 
             <ImageView
@@ -87,6 +105,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
                 android:text="4.5"
+                android:textColor="?text"
                 android:textSize="@dimen/_18sdp" />
 
             <ImageView
@@ -105,6 +124,7 @@
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/montserrat_light"
             android:text="Hey guys, This is Malena. I’m here to find someone for hookup..."
+            android:textColor="?bio_text"
             android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>

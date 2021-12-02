@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/_20sdp"
+    android:paddingHorizontal="@dimen/_24sdp"
+    android:orientation="vertical"
+    android:background="?background_2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@null"
+            android:src="@drawable/ic_back_btn"
+            />
+        <TextView
+            android:id="@+id/setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+
+            android:text="Thiết lập"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAlignment="center"
+            android:textColor="?text"
+            android:textSize="40dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:background="@drawable/background_input" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Dark mode"
+            android:layout_gravity="center_vertical"
+            android:textColor="?text"
+            android:textSize="@dimen/_14ssp"
+            />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/btn_dark_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:thumb="@drawable/switch_thumb"
+            app:track="@drawable/switch_track"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:background="@drawable/background_input" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Trang thái hoạt động"
+            android:layout_gravity="center_vertical"
+            android:textColor="?text"
+            android:textSize="@dimen/_14ssp"
+
+            />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/btn_active_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:thumb="@drawable/switch_thumb"
+            app:track="@drawable/switch_track"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:background="@drawable/background_input" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Thông báo tin nhắn"
+            android:textColor="?text"
+            android:textSize="@dimen/_14ssp"
+
+            />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/btn_notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:thumb="@drawable/switch_thumb"
+            app:track="@drawable/switch_track"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:background="@drawable/background_input">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Danh sách chặn"
+            android:textColor="?text"
+            android:textSize="@dimen/_14ssp"
+           />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btn_block_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/ic_next"
+            app:tint="#13497B" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:background="@drawable/background_input" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Đổi mật khẩu"
+            android:textColor="?text"
+            android:textSize="@dimen/_14ssp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <ImageButton
+            android:id="@+id/btn_change_password"
+            android:src="@drawable/ic_next"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            app:tint="#13497B"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <Button
+            android:id="@+id/btn_sign_out"
+            android:textColor="?text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            app:backgroundTint="@null"
+            android:background="@drawable/background_input"
+            android:textAllCaps="false"
+            android:text="Đăng xuất"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="@dimen/_14ssp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:visibility="invisible"/>
+            <Button
+                android:id="@+id/btn_delete_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAllCaps="false"
+                android:text="Xoá tài khoản"
+                android:textColor="@color/incoming_message"
+                android:background="@drawable/account_del_btn"
+                android:textSize="@dimen/_14ssp"
+                app:backgroundTint="@null" />
+        </FrameLayout>
+
+    </LinearLayout >
+
+</LinearLayout>
+

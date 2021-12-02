@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="@dimen/_20sdp"
-    tools:context=".activities.HomePageActivity">
+    android:background="?attr/background_1"
+    tools:context=".activities.Main.HomePageActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +18,7 @@
         <ImageButton
             android:id="@+id/my_profile_btn"
             style="@style/profileButton"
+
             android:layout_weight="2" />
 
         <TextView
@@ -24,14 +26,15 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_weight="6"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="?text"
             android:gravity="center_vertical"
             android:text="Khám phá"
-            android:textSize="@dimen/_30sdp" />
+            android:textSize="@dimen/_25sdp" />
 
 
         <ImageButton
-            android:id="@+id/setting_btn"
+            android:id="@+id/filter_btn"
             style="@style/settingButton"
             android:layout_gravity="right"
             android:layout_weight="2" />
@@ -45,14 +48,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_20sdp"
+        app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+        app:boxCornerRadiusTopStart="@dimen/_10sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_10sdp"
         app:startIconCheckable="true"
         app:startIconDrawable="@drawable/ic_search">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_input"
-            android:hint="Tìm kiếm theo tên" />
+            android:hint="Tìm kiếm theo tên"
+            android:textColorHint="?hint"
+            android:background="@drawable/background_input"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,10 +85,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bottom_nav"
+            android:elevation="@dimen/_10sdp"
+            app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_navigation_menu"
             android:layout_weight="1"
-            app:labelVisibilityMode="unlabeled"
-            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             />
 
     </LinearLayout>

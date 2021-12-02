@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "137398360632",
-    "project_id": "luvio-ba72a",
-    "storage_bucket": "luvio-ba72a.appspot.com"
+    "project_number": "7679392930",
+    "project_id": "cham-5e6ab",
+    "storage_bucket": "cham-5e6ab.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:137398360632:android:284b7bb9aa9a348b8a24cd",
+        "mobilesdk_app_id": "1:7679392930:android:5a55a546f21ff6d48d6bfb",
         "android_client_info": {
-          "package_name": "com.android.Luvio"
+          "package_name": "com.android.Luvio1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "137398360632-d9nvvogq8rg5vn6u3v146ubqc2d0fkuk.apps.googleusercontent.com",
+          "client_id": "7679392930-f4s3dj592d5ne5umglsf21hiugrnpukv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.Luvio1",
+            "certificate_hash": "8244a50d94bac2b11e1ddb1cc31b45724ea96148"
+          }
+        },
+        {
+          "client_id": "7679392930-9t1vclnpj15ump14pdultd7bivk8j74o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBxhS4Q-mx2WqKkCu6vki82MaryB7L1Abc"
+          "current_key": "AIzaSyAGtWpwr1wbXjYZOk4JFDV8MqffipOjxYY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "137398360632-d9nvvogq8rg5vn6u3v146ubqc2d0fkuk.apps.googleusercontent.com",
+              "client_id": "7679392930-9t1vclnpj15ump14pdultd7bivk8j74o.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

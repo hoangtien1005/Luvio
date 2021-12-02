@@ -10,7 +10,7 @@
     android:fillViewport="true"
     android:overScrollMode="never"
     android:scrollbars="none"
-    tools:context=".activities.PersonalInformationActivity2">
+    tools:context=".activities.Auth.PersonalInformationActivity2">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:imeOptions="actionDone"
                     android:background="@drawable/background_input"
                     />
 
@@ -71,7 +72,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/edtRetypePassword"
+                android:labelFor="@id/edtConfirmPassword"
                 android:text="Nhập lại mật khẩu"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/black"
@@ -79,17 +80,18 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutRetypePassword"
+                android:id="@+id/layoutConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:endIconMode="password_toggle"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtRetypePassword"
+                    android:id="@+id/edtConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:imeOptions="actionDone"
                     android:background="@drawable/background_input"
                     />
 
@@ -182,7 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/signInButton"
+                android:id="@+id/nextButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="bottom"

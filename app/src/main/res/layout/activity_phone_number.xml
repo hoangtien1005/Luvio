@@ -7,11 +7,12 @@
     android:paddingTop="@dimen/_20sdp"
     android:paddingHorizontal="@dimen/_24sdp"
     android:orientation="vertical"
-    tools:context=".activities.PhoneNumberActivity">
+    tools:context=".activities.Auth.PhoneNumberActivity">
 
     <ImageButton
         android:id="@+id/btnBack"
-        style="@style/backButton" />
+        style="@style/backButton"
+        />
 
     <TextView
         android:layout_marginTop="@dimen/_12sdp"
@@ -33,11 +34,13 @@
         android:layout_marginTop="@dimen/_16sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="fill_vertical"
+
+
         android:weightSum="10">
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_weight="4"
+            android:layout_weight="3.5"
             android:layout_width="0dp"
+            android:layout_gravity="bottom"
             android:layout_height="wrap_content"
             app:boxBackgroundColor="@color/white"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
@@ -46,7 +49,7 @@
                 android:id="@+id/countryCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:imeOptions="actionDone"
                 android:paddingTop="@dimen/_16sdp"
                 android:paddingBottom="@dimen/_16sdp"
                 android:fontFamily="@font/montserrat_semibold"
@@ -58,11 +61,12 @@
         </com.google.android.material.textfield.TextInputLayout>
         <EditText
             android:id="@+id/edtPhoneNumber"
-            android:layout_marginTop="@dimen/_16sdp"
+
             android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="@dimen/_54sdp"
+            android:layout_weight="6.5"
+            android:layout_height="match_parent"
             android:fontFamily="@font/montserrat_medium"
+            android:backgroundTint="@color/primary_1"
             android:inputType="number"
             android:imeOptions="actionDone"
             />
@@ -88,6 +92,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:theme="@style/ProgressBarColor"
             android:visibility="invisible"
             android:layout_gravity="center"/>
     </FrameLayout>

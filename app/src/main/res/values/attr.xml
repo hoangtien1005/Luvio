@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="dark_theme">
+        <attr name="background_1" format="color"/>
+        <attr name="background_2" format="color"/>
+        <attr name="text" format="color"/>
+        <attr name="box" format="color"/>
+        <attr name="box_stroke" format="color"/>
+        <attr name="bar_stroke" format="color"/>
+        <attr name="hint" format="color"/>
+        <attr name="bio_text" format="color"/>
+        <attr name="bio_box" format="color"/>
+        <attr name="bio_stroke" format="color"/>
+        <attr name="name" format="color"/>
+        <attr name="rounded_editext" format="color"/>
+
+    </declare-styleable>
+</resources>

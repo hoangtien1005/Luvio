@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fillViewport="true"
+    android:fontFamily = "#9Slide03 Montserrat Medium"
+    android:orientation="vertical"
+    android:overScrollMode="never"
+    android:scrollbars="vertical"
+    tools:context=".activities.User.SetInfoActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?background_2"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:background="@null"
+                android:src="@drawable/ic_back_btn"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+
+                android:text="Chỉnh sửa"
+                android:textAlignment="center"
+                android:textColor="?text"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- image -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Hình ảnh"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="?text"/>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:orientation="horizontal">
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img_mySetting_new1"
+                    app:riv_corner_radius="@dimen/_10sdp"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_margin="10dp"
+
+                    android:background="@drawable/rounded_edittext"
+                    android:src="@drawable/ic_button_add_img" />
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img_mySetting_new2"
+                    android:layout_width="@dimen/_90sdp"
+                    app:riv_corner_radius="@dimen/_10sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rounded_edittext" />
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img_mySetting_new3"
+                    android:layout_width="@dimen/_90sdp"
+                    app:riv_corner_radius="@dimen/_10sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".33"
+                    android:background="@drawable/rounded_edittext" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <!-- about my self -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+
+            android:text="Về bản thân"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="?text"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutAbout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_about_me"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:breakStrategy="high_quality"
+                android:inputType="text"
+                android:background="@drawable/background_input"
+                android:imeOptions="actionDone"
+                android:textColor="?text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/text_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_14ssp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textColor="?text"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:src="@drawable/ic_change_information_btn"
+                />
+        </LinearLayout>
+
+
+
+        <!-- Họ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="?text"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:text="Họ"
+            android:textSize="@dimen/_16ssp"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:breakStrategy="high_quality"
+                android:background="@drawable/background_input"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:textColor="?text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Tên -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:textColor="?text"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Tên"
+            android:textSize="@dimen/_16ssp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:background="@drawable/background_input"
+                android:paddingLeft="@dimen/_16sdp"
+                android:textColor="?text"
+                />
+        </LinearLayout>
+        <!-- Số điện thoại -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:text="Số điện thoại"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="?text"
+            android:fontFamily="@font/montserrat_bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:background="@drawable/background_input"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center_vertical"
+                android:textColor="?text"
+                android:textSize="@dimen/_12ssp"
+                android:paddingLeft="@dimen/_16sdp"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:text="Thành phố"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="?text"
+            android:fontFamily="@font/montserrat_bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/edt_city"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/background_input"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:textColor="?text"
+                android:paddingLeft="@dimen/_16sdp"
+                />
+        </LinearLayout>
+        <!-- Giới tính -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:textColor="?text"
+            android:layout_marginTop="@dimen/_10sdp"
+
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Giới tính"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutGender"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+                app:boxCornerRadiusTopStart="@dimen/_15sdp"
+                app:boxStrokeWidth="1dp"
+                >
+                <AutoCompleteTextView
+                    android:id="@+id/edtGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_input"
+                    android:inputType="none"
+                    android:textColor="?text"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+        <!-- Ngày Sinh -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:textColor="?text"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginTop="@dimen/_10sdp"
+
+            android:text="Ngày Sinh"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/edtBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/background_input"
+                android:textColor="?text"
+                android:focusable="false"
+                android:inputType="date"
+                android:paddingLeft="@dimen/_16sdp" />
+        </LinearLayout>
+        <!-- Muốn làm quen với -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="?text"
+            android:layout_marginTop="@dimen/_10sdp"
+
+            android:text="Muốn làm quen với"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutInterestedGender"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+                app:boxCornerRadiusTopStart="@dimen/_15sdp"
+                app:boxStrokeWidth="@dimen/_1sdp">
+                <AutoCompleteTextView
+                    android:id="@+id/edtInterestedGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_input"
+                    android:inputType="none"
+                    android:textColor="?text"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
