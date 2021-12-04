@@ -218,7 +218,8 @@ public class InterestActivity extends AppCompatActivity {
         return true;
     }
     private boolean isNumberExist(){
-        dv
+//        temporary
+        return true;
     }
     private void setCounter(List<Integer> ids) {
 
