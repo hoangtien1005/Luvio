@@ -13,6 +13,7 @@ import com.android.Luvio1.databinding.ActivityChannelListBinding;
 import io.getstream.chat.android.client.ChatClient;
 import io.getstream.chat.android.client.api.models.FilterObject;
 import io.getstream.chat.android.client.logger.ChatLogLevel;
+import io.getstream.chat.android.client.models.Channel;
 import io.getstream.chat.android.client.models.Filters;
 import io.getstream.chat.android.client.models.User;
 import io.getstream.chat.android.livedata.ChatDomain;
@@ -21,13 +22,19 @@ import io.getstream.chat.android.ui.channel.list.viewmodel.ChannelListViewModelB
 import io.getstream.chat.android.ui.channel.list.viewmodel.factory.ChannelListViewModelFactory;
 import static java.util.Collections.singletonList;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ChannelListActivity extends AppCompatActivity {
-    
+
+//    temporary ids and names
+    String[] ids = {"tien", "someone", "another-one", "a-fourth-one"};
+    String[] names = {"Tiến", "Tài", "Tâm", "Phụng"};
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         ActivityChannelListBinding binding = ActivityChannelListBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -42,17 +49,29 @@ public class ChannelListActivity extends AppCompatActivity {
 
 //        TODO: get user's id, name, image from database
         User user = new User();
-        user.setId("tien");
-        user.getExtraData().put("name", "Tiến");
+        user.setId(ids[3]);
+        user.getExtraData().put("name", names[3]);
         user.getExtraData().put("image", "https://bit.ly/2TIt8NR");
 
         String token = client.devToken(user.getId());
 
         client.connectUser(user, token).enqueue();
 
+        String channelType = "messaging";
+
+//        TODO: select from like table where column has the user's id and create the channel
+//        example: for (id1, id2 in LikeTable)
+//        {
+//            List<String> members = Arrays.asList(id1, id2);
+//            client.createChannel(channelType, members).enqueue();
+//        }
+        List<String> members1 = Arrays.asList(ids[0], ids[3]);
+        List<String> members2 = Arrays.asList(ids[3], ids[1]);
+        client.createChannel(channelType, members1).enqueue();
+        client.createChannel(channelType, members2).enqueue();
 
 
-
+//        filter channels where members include this user
         FilterObject filter = Filters.and(
                 Filters.eq("type", "messaging"),
                 Filters.in("members", singletonList(user.getId()))

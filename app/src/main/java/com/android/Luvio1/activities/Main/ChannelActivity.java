@@ -56,13 +56,13 @@ public class ChannelActivity extends AppCompatActivity {
             throw new IllegalStateException("Specifying a channel id is required when starting ChannelActivity");
         }
 
+//        TODO: select from block table where column has the user's id and show dialog
 
         MessageListViewModelFactory factory = new MessageListViewModelFactory(cid);
         ViewModelProvider provider = new ViewModelProvider(this, factory);
         MessageListHeaderViewModel messageListHeaderViewModel = provider.get(MessageListHeaderViewModel.class);
         MessageListViewModel messageListViewModel = provider.get(MessageListViewModel.class);
         MessageInputViewModel messageInputViewModel = provider.get(MessageInputViewModel.class);
-
 
 
         MessageListHeaderViewModelBinding.bind(messageListHeaderViewModel, binding.messageListHeaderView, this);
@@ -81,16 +81,13 @@ public class ChannelActivity extends AppCompatActivity {
 //            }
         });
 
-
         binding.messageListView.setMessageEditHandler(messageInputViewModel::postMessageToEdit);
-
 
         messageListViewModel.getState().observe(this, state -> {
             if (state instanceof NavigateUp) {
                 finish();
             }
         });
-
 
         MessageListHeaderView.OnClickListener backHandler = () -> {
             messageListViewModel.onEvent(MessageListViewModel.Event.BackButtonPressed.INSTANCE);
@@ -109,7 +106,6 @@ public class ChannelActivity extends AppCompatActivity {
                 else if(menuItem.getItemId() == R.id.block) {
                     FragmentManager fm = getSupportFragmentManager();
                     CustomDialog dialog =  new CustomDialog("block");
-
                     dialog.show(fm, "");
                 }
                 return true;

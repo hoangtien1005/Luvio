@@ -56,7 +56,6 @@ public class CustomDialog extends DialogFragment {
             });
         }
         else if(type.equals("block")) {
-
             Button btnRemove = (Button) view.findViewById(R.id.btnRemove);
             Button btnContinue = (Button) view.findViewById(R.id.btnContinue);
             btnContinue.setOnClickListener(new View.OnClickListener() {
