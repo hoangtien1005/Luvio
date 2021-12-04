@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.activities.Auth.SignInActivity;
 import com.android.Luvio1.databinding.ActivitySettingBinding;
+import com.android.Luvio1.firebase.DBUserManager;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -57,6 +58,9 @@ public class SettingActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             loading(false);
+                            preferenceManager.clear();
+                            DBUserManager dbUserManager=new DBUserManager();
+                            dbUserManager.remove(preferenceManager.getString(Constants.KEY_USER_ID));
                             showToast("Tài khoản đã xóa thành công");
                             Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -71,7 +75,7 @@ public class SettingActivity extends AppCompatActivity {
                         }
                     });
 
-            preferenceManager.clear();
+
 
 
         });

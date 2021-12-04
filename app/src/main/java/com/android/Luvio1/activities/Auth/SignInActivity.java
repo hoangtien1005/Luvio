@@ -6,26 +6,32 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.Luvio1.activities.Main.HomePageActivity;
+import com.android.Luvio1.activities.Main.MainActivity;
 import com.android.Luvio1.databinding.ActivitySignInBinding;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
     PreferenceManager preferenceManager;
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferenceManager = new PreferenceManager(getApplicationContext());
+        db=FirebaseFirestore.getInstance();
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
-            Intent intent =new Intent(getApplicationContext(), HomePageActivity.class);
+            Intent intent =new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -38,7 +44,6 @@ public class SignInActivity extends AppCompatActivity {
 
     private void signIn(){
         loading(true);
-        FirebaseFirestore db=FirebaseFirestore.getInstance();
         db.collection(Constants.KEY_COLLECTION_USER)
                 .whereEqualTo(Constants.KEY_IS_DELETE,false)
                 .whereEqualTo(Constants.KEY_PHONE_NUMBER,binding.edtPhoneNumber.getText().toString().trim())
@@ -47,6 +52,8 @@ public class SignInActivity extends AppCompatActivity {
                 .addOnCompleteListener(task->{
                     if(task.isSuccessful()&& task.getResult() !=null && task.getResult().getDocuments().size()>0){
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                        preferenceManager.clear();
+                        updateLikeUser(documentSnapshot.getId());
                         preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
                         preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
                         preferenceManager.putString(Constants.KEY_STAR, documentSnapshot.getString(Constants.KEY_STAR));
@@ -59,6 +66,8 @@ public class SignInActivity extends AppCompatActivity {
                         preferenceManager.putString(Constants.KEY_BIRTHDAY,documentSnapshot.getString(Constants.KEY_BIRTHDAY));
                         preferenceManager.putString(Constants.KEY_GENDER,documentSnapshot.getString(Constants.KEY_GENDER));
                         preferenceManager.putString(Constants.KEY_INTERESTED_GENDER, documentSnapshot.getString(Constants.KEY_INTERESTED_GENDER));
+
+
                         ArrayList<String> al= (ArrayList<String>) documentSnapshot.get(Constants.KEY_INTERESTS);
                         String[] interests = new String[al.size()];
 
@@ -70,7 +79,7 @@ public class SignInActivity extends AppCompatActivity {
                             sb.append(interests[i]).append(",");
                         }
                         preferenceManager.putString(Constants.KEY_INTERESTS, sb.toString());
-                        Intent intent=new Intent(getApplicationContext(), HomePageActivity.class);
+                        Intent intent=new Intent(getApplicationContext(), MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
 
@@ -117,6 +126,25 @@ public class SignInActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+    private void updateLikeUser(String id){
+        db.collection(Constants.KEY_COLLECTION_LIKE)
+                .whereEqualTo(Constants.KEY_ID_1,id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0) {
+                            StringBuilder sb = new StringBuilder();
+                            for (DocumentSnapshot each : task.getResult().getDocuments()) {
+                                sb.append(each.get(Constants.KEY_ID_2)).append(",");
+                            }
+
+
+                            preferenceManager.putString(Constants.KEY_COLLECTION_LIKE, sb.toString());
+                        }
+                    }
+                });
     }
     private void loading(boolean isLoading){
         if(isLoading){

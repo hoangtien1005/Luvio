@@ -6,16 +6,21 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.Luvio1.activities.Main.HomePageActivity;
+import com.android.Luvio1.activities.Main.MainActivity;
 import com.android.Luvio1.databinding.ActivityInterestBinding;
-import com.android.Luvio1.firebase.RealTimeDBManager;
+import com.android.Luvio1.firebase.DBUserManager;
 import com.android.Luvio1.models.User;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 import java.util.ArrayList;
@@ -26,14 +31,16 @@ public class InterestActivity extends AppCompatActivity {
     private ActivityInterestBinding binding;
     private String[] interests =new String[] {"Bóng đá", "Mua sắm", "Yoga", "Bơi lội", "Bóng rổ", "Karaoke", "Quần vợt", "Nấu ăn", "Đọc sách", "Âm nhạc", "Xem phim", "Nghệ thuật", "Động vật", "Chính trị", "Du lịch", "Game"};
     private ArrayList<String> userInterests;
+    FirebaseFirestore db;
     private PreferenceManager preferenceManager;
-    private RealTimeDBManager realTimeDBManager = new RealTimeDBManager();
+    private DBUserManager DBUserManager = new DBUserManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityInterestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         userInterests=new ArrayList<String>();
+        db=FirebaseFirestore.getInstance();
         preferenceManager=new PreferenceManager(getApplicationContext());
         setListener();
 
@@ -41,7 +48,7 @@ public class InterestActivity extends AppCompatActivity {
 
     private void signUp(){
         loading(true);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
         Intent intent=getIntent();
         Bundle bundleData=intent.getExtras();
@@ -80,10 +87,6 @@ public class InterestActivity extends AppCompatActivity {
         preferenceManager.putString(Constants.KEY_INTERESTS, sb.toString());
 
 
-
-
-
-
         HashMap<String,Object>user=new HashMap<>();
         user.put(Constants.KEY_COUNTRY_CODE,countryCode);
         user.put(Constants.KEY_PHONE_NUMBER,phoneNumber);
@@ -100,15 +103,13 @@ public class InterestActivity extends AppCompatActivity {
         user.put(Constants.KEY_INTERESTS, userInterests);
 
 
-
-
         db.collection(Constants.KEY_COLLECTION_USER)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
                     preferenceManager.putString(Constants.KEY_USER_ID,documentReference.getId());
                     User user1=new User(avatar,gender,firstName,lastName,birthday,documentReference.getId(),star,aboutMe);
-                    realTimeDBManager.add(user1)
+                    DBUserManager.add(user1)
                             .addOnSuccessListener(suc ->
                             {
                                 showToast("Cập nhật Real Time DB thành công");
@@ -119,7 +120,7 @@ public class InterestActivity extends AppCompatActivity {
                                 showToast(e.getMessage());
                             });
 
-                    Intent intentMain=new Intent(getApplicationContext(), HomePageActivity.class);
+                    Intent intentMain=new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intentMain);
                 })
@@ -144,9 +145,21 @@ public class InterestActivity extends AppCompatActivity {
         });
     }
 
-    private void updateDatabase(){
-
-    }
+//    private void updateDeleteAccount(String countryCode,String phoneNum){
+//        db.collection(Constants.KEY_COLLECTION_USER)
+//                .whereEqualTo(Constants.KEY_PHONE_NUMBER,phoneNum)
+//                .whereEqualTo(Constants.KEY_COUNTRY_CODE,countryCode)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()&&task.getResult()!=null){
+//                            DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+//                            documentSnapshot.getId();
+//                        }
+//                    }
+//                })
+//    }
     private  void getChipValue(){
         List<Integer> ids=binding.chipGroup.getCheckedChipIds();
         for (Integer id:ids){
@@ -204,7 +217,9 @@ public class InterestActivity extends AppCompatActivity {
         }
         return true;
     }
-
+    private boolean isNumberExist(){
+        dv
+    }
     private void setCounter(List<Integer> ids) {
 
         if(ids.size()==0){

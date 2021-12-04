@@ -70,14 +70,6 @@
         <activity android:name="com.android.Luvio1.activities.Setting.ChangePasswordActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.android.Luvio1.activities.Main.HomePageActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
-        <activity android:name="com.android.Luvio1.activities.Main.LikedUserActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.android.Luvio1.activities.User.SetInfoActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">

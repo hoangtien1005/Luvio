@@ -9,10 +9,10 @@ import com.google.firebase.database.Query;
 
 import java.util.HashMap;
 
-public class RealTimeDBManager {
+public class DBUserManager {
 
     private DatabaseReference databaseReference;
-    public RealTimeDBManager(){
+    public DBUserManager(){
         FirebaseDatabase db=FirebaseDatabase.getInstance("https://cham-5e6ab-default-rtdb.asia-southeast1.firebasedatabase.app/");
         databaseReference = db.getReference(Constants.KEY_COLLECTION_USER);
 
@@ -36,6 +36,7 @@ public class RealTimeDBManager {
     {
         if(key == null)
         {
+
             return databaseReference.orderByKey().limitToFirst(8);
         }
         return databaseReference.orderByKey().startAfter(key).limitToFirst(8);

@@ -1,14 +1,14 @@
 package com.android.Luvio1.activities.Auth;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.R;
 import com.android.Luvio1.databinding.ActivityPhoneNumberBinding;
@@ -49,6 +49,7 @@ public class PhoneNumberActivity extends AppCompatActivity  {
             loading(true);
             FirebaseFirestore db=FirebaseFirestore.getInstance();
             readData(db.collection(Constants.KEY_COLLECTION_USER)
+                            .whereEqualTo(Constants.KEY_IS_DELETE,false)
                             .whereEqualTo(Constants.KEY_PHONE_NUMBER, binding.edtPhoneNumber.getText().toString()).get(),
                     new CompleteQueryListener() {
                         @Override
@@ -81,13 +82,6 @@ public class PhoneNumberActivity extends AppCompatActivity  {
 
                         }
                     });
-
-
-
-
-
-
-
         });
     }
 

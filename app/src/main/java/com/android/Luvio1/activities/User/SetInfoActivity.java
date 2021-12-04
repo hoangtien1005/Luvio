@@ -28,7 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.R;
 import com.android.Luvio1.databinding.ActivitySetInfoBinding;
-import com.android.Luvio1.firebase.RealTimeDBManager;
+import com.android.Luvio1.firebase.DBUserManager;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,7 +53,7 @@ public class SetInfoActivity extends AppCompatActivity {
     String encodeFirstImage = "";
     String encodeSecondImage = "";
     String encodeThirdImage = "";
-    RealTimeDBManager realTimeDBManager;
+    DBUserManager DBUserManager;
     int currentImage = 1;
     private InputFilter filter;
     FirebaseFirestore db;
@@ -104,7 +104,7 @@ public class SetInfoActivity extends AppCompatActivity {
         db=FirebaseFirestore.getInstance();
         images=new ArrayList<String>();
         preferenceManager=new PreferenceManager(getApplicationContext());
-        realTimeDBManager=new RealTimeDBManager();
+        DBUserManager =new DBUserManager();
         setData();
         setListener();
     }
@@ -285,7 +285,7 @@ public class SetInfoActivity extends AppCompatActivity {
         hashMap.put(Constants.KEY_FIRST_NAME,firstName);
         hashMap.put(Constants.KEY_LAST_NAME,lastName);
 
-        realTimeDBManager.update(preferenceManager.getString(Constants.KEY_USER_ID),hashMap)
+        DBUserManager.update(preferenceManager.getString(Constants.KEY_USER_ID),hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

@@ -24,5 +24,7 @@ public class Constants {
     public static final String KEY_GENDER="gender";
     public static final String KEY_INTERESTS="interests";
     public static final String KEY_INTERESTED_GENDER="interestedGender";
-
+    public static final String KEY_COLLECTION_LIKE="likes";
+    public static final String KEY_ID_1="userID1";
+    public static final String KEY_ID_2="userID2";
 }

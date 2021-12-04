@@ -17,29 +17,45 @@
         android:src="@drawable/photo"
         app:riv_corner_radius="@dimen/_15sdp" />
 
-    <ImageButton
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/like_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@id/user_avatar"
         android:layout_alignBottom="@id/user_avatar"
-        android:background="@drawable/ic_like_btn" />
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_heart_fab"
+        app:backgroundTint="@color/white"
+        app:fabCustomSize="60dp"
+        app:tint="#FF6666" />
 
-    <ImageButton
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/info_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/user_avatar"
+        android:layout_alignBottom="@+id/user_avatar"
         android:layout_centerInParent="true"
-        android:background="@drawable/ic_info_btn" />
+        android:layout_marginBottom="35dp"
+        android:src="@drawable/ic_info_btn"
+        app:backgroundTint="@color/white"
+        app:fabCustomSize="55dp"
+        app:tint="#13497B" />
 
-    <ImageButton
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/message_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/user_avatar"
-        android:background="@drawable/ic_message_btn" />
-
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_message_fab"
+        app:backgroundTint="@color/white"
+        app:fabCustomSize="60dp"
+        app:tint="#4CD5FF" />
     <ImageView
         android:id="@+id/liked_check"
         android:layout_width="wrap_content"
@@ -47,8 +63,6 @@
         android:layout_alignEnd="@id/user_avatar"
         android:background="@drawable/ic_liked_check"
         android:visibility="invisible" />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

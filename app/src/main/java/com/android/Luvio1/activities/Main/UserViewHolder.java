@@ -2,6 +2,7 @@ package com.android.Luvio1.activities.Main;
 
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 public class UserViewHolder extends RecyclerView.ViewHolder {
     public TextView txt_name,txt_age,txt_bio,txt_star;
     public ImageButton info_btn,message_btn,like_btn;
+    public ImageView like_check;
     public RoundedImageView avatar;
     public UserViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -24,6 +26,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
         info_btn= itemView.findViewById(R.id.info_btn);
         message_btn=itemView.findViewById(R.id.message_btn);
         like_btn= itemView.findViewById(R.id.like_btn);
+        like_check=itemView.findViewById(R.id.liked_check);
     }
 }
 
