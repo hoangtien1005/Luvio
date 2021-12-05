@@ -13,11 +13,9 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/imageProfile"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:background="@drawable/ic_primary_user_image" />
+        <ImageButton
+            android:id="@+id/my_profile_btn"
+            style="@style/profileButton"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,29 +52,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_25sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:tabIndicatorColor="@color/primary_2"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="@color/disable_tab_text_color">
-
-        <com.google.android.material.tabs.TabItem
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tin nhắn chính"
-            />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tin nhắn chờ"
-            />
-
-
-    </com.google.android.material.tabs.TabLayout>
 
     <io.getstream.chat.android.ui.channel.list.ChannelListView
         android:id="@+id/channelListView"

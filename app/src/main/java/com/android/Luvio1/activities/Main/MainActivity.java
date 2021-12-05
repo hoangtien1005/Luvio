@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.liked:
                     selectedFragment=new LikedUserFragment();
                     break;
+
+                case R.id.message:
+                    selectedFragment = new ChatFragment();
+                    break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
             return true;

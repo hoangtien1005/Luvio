@@ -84,9 +84,12 @@
         <entry key="app/src/main/res/drawable/star_disabled.xml" value="0.2875" />
         <entry key="app/src/main/res/layout/activity_channel.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/activity_channel_list.xml" value="0.1390625" />
+        <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.2713541666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/dialog_block.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/dialog_is_blocked.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/dialog_rating.xml" value="0.161231884057971" />
+        <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.2713541666666667" />
         <entry key="app/src/main/res/menu/chat_top_menu.xml" value="0.2713541666666667" />
       </map>
     </option>
