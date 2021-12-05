@@ -8,6 +8,7 @@
     android:backgroundTint="@color/white"
     android:orientation="vertical"
     android:padding="30dp"
+
     android:id="@+id/search_filter_sheet"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     app:behavior_hideable="true"
@@ -27,8 +28,7 @@
             android:layout_weight="9"
             android:fontFamily="@font/montserrat_medium"
             android:text="Sao"
-            android:textSize="24dp"
-            android:textColor="?text"/>
+            android:textSize="24dp" />
 
         <TextView
             android:id="@+id/chosen_star_scope"
@@ -39,8 +39,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:gravity="right"
             android:text="2 - 3.5"
-            android:textSize="16dp"
-            android:textColor="?text"/>
+            android:textSize="16dp" />
 
 
     </LinearLayout>
@@ -69,8 +68,7 @@
             android:layout_weight="9"
             android:fontFamily="@font/montserrat_medium"
             android:text="Tuổi"
-            android:textSize="24dp"
-            android:textColor="?text"/>
+            android:textSize="24dp" />
 
         <TextView
             android:id="@+id/chosen_age_scope"
@@ -81,8 +79,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:gravity="right"
             android:text="20 - 35"
-            android:textSize="16dp"
-            android:textColor="?text"/>
+            android:textSize="16dp" />
 
 
     </LinearLayout>
@@ -107,8 +104,7 @@
         android:text="Giới tính"
         android:layout_marginTop="10dp"
         android:textSize="24dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:textColor="?text"/>
+        android:fontFamily="@font/montserrat_medium"/>
 
     <RadioGroup
         android:id="@+id/gender_group"
@@ -166,16 +162,14 @@
 
     <Button
         android:id="@+id/finish_btn"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:backgroundTint="@color/ic_home_tint"
-        android:fontFamily="@font/montserrat_bold"
         android:text="Hoàn thành"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
+        android:backgroundTint="@color/ic_home_tint"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:fontFamily="@font/montserrat_bold"
+        android:textStyle="bold"
+        android:textAllCaps="false"/>
 
 </LinearLayout>

@@ -11,7 +11,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     android:orientation="vertical"
-    tools:context=".activities.User.ProfilePageActivity">
+    tools:context="com.android.Luvio1.activities.User.ProfilePageActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,7 +52,8 @@
             <ImageView
                 android:id="@+id/avatar_image"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_220sdp" />
+                android:layout_height="@dimen/_220sdp"
+                 />
         </RelativeLayout>
 
         <LinearLayout
@@ -76,7 +77,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="?text"
+                        android:background="@null"
                         android:layout_gravity="bottom"
                         android:text="Le "
                         android:textSize="@dimen/_21ssp" />
@@ -90,8 +91,7 @@
                         android:background="@null"
                         android:layout_gravity="bottom"
                         android:text="Duc Tam"
-                        android:textSize="@dimen/_21ssp"
-                        android:textColor="?text"/>
+                        android:textSize="@dimen/_21ssp" />
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -100,8 +100,7 @@
                         android:background="@null"
                         android:layout_gravity="bottom"
                         android:text=","
-                        android:textSize="@dimen/_21ssp"
-                        android:textColor="?text"/>
+                        android:textSize="@dimen/_21ssp" />
                     <EditText
 
                         android:id="@+id/txt_age"
@@ -112,8 +111,7 @@
                         android:layout_marginLeft="@dimen/_6sdp"
                         android:layout_gravity="bottom"
                         android:text="20"
-                        android:textSize="@dimen/_21ssp"
-                        android:textColor="?text"/>
+                        android:textSize="@dimen/_21ssp" />
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -138,7 +136,6 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:textSize="@dimen/_14ssp"
-                    android:textColor="?text"
                     android:text="Hey guys, This is Malena. I’m here to find someone for hookup. I’m not interested in something serious. I would love to hear your adventurous story." />
 
                 <LinearLayout
@@ -152,11 +149,10 @@
                         android:layout_marginTop="10dp"
                         android:text="Sở thích"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="?text"
+                        android:textColor="@color/black"
                         android:textAllCaps="true"
                         android:textSize="@dimen/_16ssp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroup"
@@ -212,7 +208,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Giới Tính"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="?text"
+                        android:textColor="@color/black"
                         android:textAllCaps="true"
                         android:textSize="@dimen/_16ssp"
                         />
@@ -223,7 +219,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="Name"
-                        android:textColor="?text"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
                 <LinearLayout
@@ -238,7 +234,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Ngày Sinh"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="?text"
+                        android:textColor="@color/black"
                         android:textAllCaps="true"
                         android:textSize="@dimen/_16ssp"/>
                     <TextView
@@ -247,7 +243,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="22/10/2012"
-                        android:textColor="?text"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
                 <!-- Thành phố -->
@@ -263,7 +259,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Thành Phố"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="?text"
+                        android:textColor="@color/black"
                         android:textAllCaps="true"
                         android:textSize="@dimen/_16ssp"/>
 
@@ -272,7 +268,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="None"
-                        android:textColor="?text"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/montserrat_medium"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
@@ -288,7 +284,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Muốn làm quen với"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="?text"
+                        android:textColor="@color/black"
                         android:textAllCaps="true"
                         android:textSize="@dimen/_16ssp"/>
 
@@ -297,7 +293,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="None"
-                        android:textColor="?text"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/montserrat_medium"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
@@ -312,7 +308,7 @@
                     android:text="Hình ảnh"
 
                     android:fontFamily="@font/montserrat_bold"
-                    android:textColor="?text"
+                    android:textColor="@color/black"
                     android:textAllCaps="true"
                     android:textSize="@dimen/_16ssp" />
 

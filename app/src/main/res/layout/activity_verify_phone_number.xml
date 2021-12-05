@@ -7,10 +7,11 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/_20sdp"
     android:paddingHorizontal="@dimen/_24sdp"
-    tools:context=".activities.Auth.VerifyPhoneNumberActivity">
+    tools:context="com.android.Luvio1.activities.Auth.VerifyPhoneNumberActivity">
     <ImageButton
         android:id="@+id/btnBack"
         style="@style/backButton"
+
         />
 
     <TextView
@@ -26,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_14sdp"
-        android:text="Vui lòng nhập mã xác thực 6 số chúng tôi vừa gửi cho bạn. Mã sẽ hết hạn sau 5 phút."
+        android:text="Vui lòng nhập mã xác thực 6 số chúng tôi vừa gửi cho bạn. Mã sẽ hết hạn sau 1 phút."
         android:fontFamily="@font/montserrat_light"
         android:textColor="@color/black"/>
     <LinearLayout
@@ -41,7 +42,9 @@
             android:gravity="center"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
+            android:backgroundTint="@color/primary_1"
             android:inputType="number"
+            
             android:maxLength="1"
             android:textColor="@color/primary_1"
             android:textSize="@dimen/_24sdp"
@@ -55,6 +58,7 @@
             android:gravity="center"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
+            android:backgroundTint="@color/primary_1"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/primary_1"
@@ -69,6 +73,7 @@
             android:gravity="center"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
+            android:backgroundTint="@color/primary_1"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/primary_1"
@@ -83,6 +88,7 @@
             android:gravity="center"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
+            android:backgroundTint="@color/primary_1"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/primary_1"
@@ -97,6 +103,7 @@
             android:gravity="center"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
+            android:backgroundTint="@color/primary_1"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/primary_1"
@@ -111,6 +118,7 @@
             android:gravity="center"
             android:imeOptions="actionDone"
             android:importantForAutofill="no"
+            android:backgroundTint="@color/primary_1"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="@color/primary_1"

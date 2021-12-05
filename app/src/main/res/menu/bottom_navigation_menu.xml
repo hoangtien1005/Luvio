@@ -6,20 +6,19 @@
         android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/ic_home"
-        android:title="Home"
-        app:iconTint="@color/ic_home_color"
-        />
+        android:iconTint="@color/ic_home_color"
+        android:title="Home" />
     <item
         android:id="@+id/message"
         android:enabled="true"
         android:icon="@drawable/ic_message"
-        android:title="Message"
-        app:iconTint="@color/ic_message_color" />
+        android:iconTint="@color/ic_message_color"
+        android:title="Message" />
     <item
         android:id="@+id/liked"
         android:enabled="true"
         android:icon="@drawable/ic_liked"
-        android:title="Liked"
-        app:iconTint="@color/ic_liked_color" />
+        android:iconTint="@color/ic_liked_color"
+        android:title="Liked" />
 
 </menu>

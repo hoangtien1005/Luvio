@@ -1,40 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Luvio.Light" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Luvio" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
 
         <item name="colorPrimary">@color/primary_1</item>
+
         <item name="android:statusBarColor" tools:targetApi='l'>@color/white</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
-
-        <item name="background_1">#FFFFFF</item>
-        <item name="background_2">#F9F7F7</item>
-        <item name="text">#000000</item>
-        <item name="box">#FFFFFF</item>
-        <item name="box_stroke">#A09E9E</item>
-        <item name="bar_stroke">#A09E9E</item>
-        <item name="hint">#13497B</item>
-        <item name="bio_text">#4E4B6F</item>
-        <item name="bio_box">#FFFFFF</item>
-        <item name="bio_stroke">#CECECE</item>
-        <item name="name">#16123D</item>
-        <item name="rounded_editext">#9E9E9E</item>
-
-<!--        <item name="background">#424448</item>-->
-<!--        <item name="background_2">#424448</item>-->
-<!--        <item name="text">#FFFFFF</item>-->
-<!--        <item name="box">#848992</item>-->
-<!--        <item name="box_stroke">#848992</item>-->
-<!--        <item name="bar_stroke">#998B8B</item>-->
-<!--        <item name="hint">#FFFFFF</item>-->
-<!--        <item name="bio_text">#FFFFFF</item>-->
-<!--        <item name="bio_box">#848992</item>-->
-<!--        <item name="bio_stroke">#848992</item>-->
-<!--        <item name="name">#FFFFFF</item>-->
-<!--        <item name="rounded_editext">#424448</item>-->
 
     </style>
 

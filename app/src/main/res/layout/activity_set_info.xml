@@ -10,11 +10,11 @@
     android:orientation="vertical"
     android:overScrollMode="never"
     android:scrollbars="vertical"
-    tools:context=".activities.User.SetInfoActivity">
+    tools:context="com.android.Luvio1.activities.User.SetInfoActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?background_2"
+        android:background="#E5E5E5"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
 
                 android:text="Chỉnh sửa"
                 android:textAlignment="center"
-                android:textColor="?text"
+                android:textColor="@color/black"
                 android:textSize="40dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -53,7 +53,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="Hình ảnh"
             android:textSize="@dimen/_16ssp"
-            android:textColor="?text"/>
+            android:textColor="@color/black"/>
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
 
             android:text="Về bản thân"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="?text"
+            android:textColor="@color/black"
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold"/>
 
@@ -124,7 +124,6 @@
                 android:inputType="text"
                 android:background="@drawable/background_input"
                 android:imeOptions="actionDone"
-                android:textColor="?text"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -141,7 +140,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14ssp"
                 android:fontFamily="@font/montserrat_semibold"
-                android:textColor="?text"
                 />
             <ImageView
                 android:layout_width="wrap_content"
@@ -159,7 +157,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
             android:layout_marginTop="@dimen/_10sdp"
-            android:textColor="?text"
+            android:textColor="@color/black"
             android:layout_marginHorizontal="@dimen/_24sdp"
             android:text="Họ"
             android:textSize="@dimen/_16ssp"
@@ -180,7 +178,6 @@
                 android:background="@drawable/background_input"
                 android:inputType="text"
                 android:imeOptions="actionDone"
-                android:textColor="?text"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -190,7 +187,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_24sdp"
-            android:textColor="?text"
+            android:textColor="@color/black"
             android:fontFamily="@font/montserrat_bold"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="Tên"
@@ -208,9 +205,8 @@
                 android:layout_height="@dimen/_40sdp"
                 android:inputType="text"
                 android:imeOptions="actionDone"
-                android:background="@drawable/background_input"
+                android:background="@drawable/rounded_edittext"
                 android:paddingLeft="@dimen/_16sdp"
-                android:textColor="?text"
                 />
         </LinearLayout>
         <!-- Số điện thoại -->
@@ -222,13 +218,13 @@
             android:layout_marginHorizontal="@dimen/_24sdp"
             android:text="Số điện thoại"
             android:textSize="@dimen/_16ssp"
-            android:textColor="?text"
+            android:textColor="@color/black"
             android:fontFamily="@font/montserrat_bold"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_24sdp"
-            android:background="@drawable/background_input"
+            android:background="@drawable/rounded_edittext"
             android:layout_marginBottom="5dp"
             android:orientation="horizontal">
             <TextView
@@ -237,7 +233,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_vertical"
-                android:textColor="?text"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 android:paddingLeft="@dimen/_16sdp"
                 />
@@ -250,7 +246,7 @@
             android:layout_marginHorizontal="@dimen/_24sdp"
             android:text="Thành phố"
             android:textSize="@dimen/_16ssp"
-            android:textColor="?text"
+            android:textColor="@color/black"
             android:fontFamily="@font/montserrat_bold"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -262,10 +258,9 @@
                 android:id="@+id/edt_city"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:background="@drawable/background_input"
+                android:background="@drawable/rounded_edittext"
                 android:inputType="text"
                 android:imeOptions="actionDone"
-                android:textColor="?text"
                 android:paddingLeft="@dimen/_16sdp"
                 />
         </LinearLayout>
@@ -274,7 +269,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_24sdp"
-            android:textColor="?text"
+            android:textColor="@color/black"
             android:layout_marginTop="@dimen/_10sdp"
 
             android:fontFamily="@font/montserrat_bold"
@@ -303,9 +298,8 @@
                     android:id="@+id/edtGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/background_input"
+                    android:background="@drawable/rounded_edittext"
                     android:inputType="none"
-                    android:textColor="?text"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -317,7 +311,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_24sdp"
-            android:textColor="?text"
+            android:textColor="@color/black"
             android:fontFamily="@font/montserrat_bold"
             android:layout_marginTop="@dimen/_10sdp"
 
@@ -334,8 +328,7 @@
                 android:id="@+id/edtBirthday"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:background="@drawable/background_input"
-                android:textColor="?text"
+                android:background="@drawable/rounded_edittext"
                 android:focusable="false"
                 android:inputType="date"
                 android:paddingLeft="@dimen/_16sdp" />
@@ -346,7 +339,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_24sdp"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="?text"
+            android:textColor="@color/black"
             android:layout_marginTop="@dimen/_10sdp"
 
             android:text="Muốn làm quen với"
@@ -373,9 +366,8 @@
                     android:id="@+id/edtInterestedGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/background_input"
+                    android:background="@drawable/rounded_edittext"
                     android:inputType="none"
-                    android:textColor="?text"
                     />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

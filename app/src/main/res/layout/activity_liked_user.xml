@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="@dimen/_20sdp"
-    android:background="?attr/background_1"
-    tools:context=".activities.Main.LikedUserActivity">
+    tools:context="com.android.Luvio1.activities.Main.LikedUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,9 +26,9 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_weight="6"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="?text"
+            android:textColor="@color/black"
             android:gravity="center_vertical"
-            android:text="Khám phá"
+            android:text="Yêu thích"
             android:textSize="@dimen/_25sdp" />
 
 
@@ -56,28 +55,31 @@
         app:startIconDrawable="@drawable/ic_search">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
             android:hint="Tìm kiếm theo tên"
-            android:textColorHint="?hint"
-            android:background="@drawable/background_input"/>
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <ListView
-            android:id="@+id/user_list"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="9"
-            android:fadingEdge="vertical"
-            android:fadingEdgeLength="100dp"
-            android:divider="@color/white"/>
+            android:id="@+id/swipe"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rv"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

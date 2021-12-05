@@ -13,7 +13,10 @@
         android:layout_height="500dp"
         android:background="@drawable/background_input"
         android:backgroundTint="@color/avatarTint"
-        android:src="@drawable/photo" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/photo"
+        app:riv_corner_radius="@dimen/_15sdp" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/like_btn"
@@ -36,7 +39,7 @@
         android:layout_alignBottom="@+id/user_avatar"
         android:layout_centerInParent="true"
         android:layout_marginBottom="35dp"
-        android:src="@drawable/ic_info_fab"
+        android:src="@drawable/ic_info_btn"
         app:backgroundTint="@color/white"
         app:fabCustomSize="55dp"
         app:tint="#13497B" />
@@ -53,7 +56,6 @@
         app:backgroundTint="@color/white"
         app:fabCustomSize="60dp"
         app:tint="#4CD5FF" />
-
     <ImageView
         android:id="@+id/liked_check"
         android:layout_width="wrap_content"
@@ -61,71 +63,97 @@
         android:layout_alignEnd="@id/user_avatar"
         android:background="@drawable/ic_liked_check"
         android:visibility="invisible" />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/like_btn"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/bio_box"
+        android:background="@drawable/background_brief_info"
         android:backgroundTint="@color/white"
         android:orientation="vertical"
         android:padding="@dimen/_5sdp"
         android:paddingEnd="@dimen/_20sdp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/name_age"
+                android:id="@+id/txt_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:fontFamily="@font/montserrat_medium"
+                android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:text="Leilani, 19"
-                android:textColor="?text"
-                android:textSize="@dimen/_18sdp" />
+                android:text="Leilani"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text=","
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp" />
+
+            <TextView
+                android:id="@+id/txt_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="19"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp" />
 
             <ImageView
+                android:id="@+id/onlineCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:src="@drawable/online_check" />
 
-
-            <TextView
-                android:id="@+id/star"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_30sdp"
-                android:fontFamily="@font/montserrat_medium"
-                android:gravity="center"
-                android:text="4.5"
-                android:textColor="?text"
-                android:textSize="@dimen/_18sdp" />
+                android:gravity="right|center_vertical">
+                <TextView
+                    android:id="@+id/txt_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:src="@drawable/star" />
+
+                    android:fontFamily="@font/montserrat_medium"
+
+
+                    android:text="4.5"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/star" />
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
         <TextView
-            android:id="@+id/bio"
+            android:id="@+id/txt_bio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/montserrat_light"
             android:text="Hey guys, This is Malena. I’m here to find someone for hookup..."
-            android:textColor="?bio_text"
-            android:textSize="@dimen/_12sdp" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp" />
 
     </LinearLayout>
 
