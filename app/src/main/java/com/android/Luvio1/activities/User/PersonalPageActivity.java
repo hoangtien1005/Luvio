@@ -11,7 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.Luvio1.R;
 import com.android.Luvio1.databinding.ActivityPersonalPageBinding;
-import com.android.Luvio1.models.User;
+import com.android.Luvio1.models.UserModel;
 import com.android.Luvio1.utilities.Constants;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -32,7 +32,7 @@ public class PersonalPageActivity extends AppCompatActivity {
     private CircleIndicator3 mCircleIndicator3;
     private ActivityPersonalPageBinding binding;
     FirebaseFirestore db;
-    User user;
+    UserModel userModel;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         binding=ActivityPersonalPageBinding.inflate(getLayoutInflater());
@@ -44,27 +44,27 @@ public class PersonalPageActivity extends AppCompatActivity {
 
 
         db=FirebaseFirestore.getInstance();
-        user=(User) getIntent().getSerializableExtra("INFO");
+        userModel =(UserModel) getIntent().getSerializableExtra("INFO");
         setListener();
         setData();
     }
 
     void setData(){
         db.collection(Constants.KEY_COLLECTION_USER)
-                .document(user.getFsId())
+                .document(userModel.getFsId())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        binding.txtPersonalName.setText(user.getFirstName() + " " + user.getLastName()+", ");
-                        binding.txtAge.setText(findAge(user.getBirthday()));
-                        if (user.getAboutMe()==""){
+                        binding.txtPersonalName.setText(userModel.getFirstName() + " " + userModel.getLastName()+", ");
+                        binding.txtAge.setText(findAge(userModel.getBirthday()));
+                        if (userModel.getAboutMe()==""){
                             binding.txtAboutMe.setVisibility(View.GONE);
                         }
                         else{
-                            binding.txtAboutMe.setText(user.getAboutMe());
+                            binding.txtAboutMe.setText(userModel.getAboutMe());
                         }
-                        binding.txtMyBirthday.setText(user.getBirthday());
+                        binding.txtMyBirthday.setText(userModel.getBirthday());
                         ArrayList<String> interests = (ArrayList<String>) documentSnapshot.get(Constants.KEY_INTERESTS);
                         binding.chip1.setText(interests.get(0));
                         binding.chip2.setText(interests.get(1));

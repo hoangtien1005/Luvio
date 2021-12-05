@@ -1,31 +1,36 @@
 package com.android.Luvio1.activities.Auth;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.activities.Main.MainActivity;
 import com.android.Luvio1.databinding.ActivityInterestBinding;
 import com.android.Luvio1.firebase.DBUserManager;
-import com.android.Luvio1.models.User;
+import com.android.Luvio1.models.UserModel;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
-
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import io.getstream.chat.android.client.ChatClient;
+import io.getstream.chat.android.client.logger.ChatLogLevel;
+import io.getstream.chat.android.client.models.User;
+import io.getstream.chat.android.livedata.ChatDomain;
 
 public class InterestActivity extends AppCompatActivity {
     private ActivityInterestBinding binding;
@@ -33,6 +38,7 @@ public class InterestActivity extends AppCompatActivity {
     private ArrayList<String> userInterests;
     FirebaseFirestore db;
     private PreferenceManager preferenceManager;
+    ChatClient client;
     private DBUserManager DBUserManager = new DBUserManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,10 @@ public class InterestActivity extends AppCompatActivity {
         userInterests=new ArrayList<String>();
         db=FirebaseFirestore.getInstance();
         preferenceManager=new PreferenceManager(getApplicationContext());
+        client= new ChatClient.Builder("an38qgjtsfsj", getApplicationContext())
+                .logLevel(ChatLogLevel.ALL)
+                .build();
+        new ChatDomain.Builder(client, getApplicationContext()).build();
         setListener();
 
     }
@@ -108,8 +118,16 @@ public class InterestActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
                     preferenceManager.putString(Constants.KEY_USER_ID,documentReference.getId());
-                    User user1=new User(avatar,gender,firstName,lastName,birthday,documentReference.getId(),star,aboutMe);
-                    DBUserManager.add(user1)
+                    User user1 = new User();
+                    user1.setId(documentReference.getId());
+                    user1.getExtraData().put("name", firstName+" "+lastName);
+                    user1.getExtraData().put("image", decodeImage(avatar));
+                    String token = client.devToken(documentReference.getId());
+                    client.connectUser(user1, token).enqueue();
+                    preferenceManager.putString(Constants.KEY_CHAT_TOKEN,token);
+
+                    UserModel userModel1 =new UserModel(avatar,gender,firstName,lastName,birthday,documentReference.getId(),star,aboutMe);
+                    DBUserManager.add(userModel1)
                             .addOnSuccessListener(suc ->
                             {
                                 showToast("Cập nhật Real Time DB thành công");
@@ -129,7 +147,15 @@ public class InterestActivity extends AppCompatActivity {
                     showToast(Exception.getMessage());
                 });
     }
+    private String decodeImage(String encodeImage){
+        byte[] imageBytes= Base64.decode(encodeImage,Base64.DEFAULT);
+        Bitmap bitmap= BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
+        String path= MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(),bitmap,"val",null);
 
+        return path;
+    }
     private void setListener(){
         binding.btnBack.setOnClickListener(view -> {
             onBackPressed();

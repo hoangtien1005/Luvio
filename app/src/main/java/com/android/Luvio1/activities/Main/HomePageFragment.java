@@ -19,7 +19,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.android.Luvio1.R;
 import com.android.Luvio1.activities.User.ProfilePageActivity;
 import com.android.Luvio1.firebase.DBUserManager;
-import com.android.Luvio1.models.User;
+import com.android.Luvio1.models.UserModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -118,14 +118,14 @@ public class HomePageFragment extends Fragment {
         DBUserManager.get(key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<User> users = new ArrayList<>();
+                ArrayList<UserModel> userModels = new ArrayList<>();
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    User user = data.getValue(User.class);
-                    users.add(user);
+                    UserModel userModel = data.getValue(UserModel.class);
+                    userModels.add(userModel);
                     key = data.getKey();
 
                 }
-                userAdapter.setItems(users);
+                userAdapter.setItems(userModels);
                 userAdapter.notifyDataSetChanged();
                 isLoading=false;
                 swipeRefreshLayout.setRefreshing(false);

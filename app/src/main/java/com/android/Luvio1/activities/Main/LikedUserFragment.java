@@ -18,7 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.android.Luvio1.R;
 import com.android.Luvio1.activities.User.ProfilePageActivity;
 import com.android.Luvio1.interfaces.CompleteQueryListener;
-import com.android.Luvio1.models.User;
+import com.android.Luvio1.models.UserModel;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,7 +34,7 @@ public class LikedUserFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     UserAdapter userAdapter;
-    ArrayList<User> like_users;
+    ArrayList<UserModel> like_userModels;
     ImageButton filterBtn,profileBtn;
     PreferenceManager preferenceManager;
     String[] like_users_id ;
@@ -65,7 +65,7 @@ public class LikedUserFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         filterBtn=(ImageButton) view.findViewById(R.id.filter_btn);
         profileBtn=(ImageButton) view.findViewById(R.id.my_profile_btn);
-        like_users=new ArrayList<>();
+        like_userModels =new ArrayList<>();
         db= FirebaseFirestore.getInstance();
         userAdapter = new UserAdapter(context);
         recyclerView.setAdapter(userAdapter);
@@ -106,7 +106,7 @@ public class LikedUserFragment extends Fragment {
             return;
         }
         like_users_id=preferenceManager.getString(Constants.KEY_COLLECTION_LIKE).split(",");
-        ArrayList<User> like_users = new ArrayList<>();
+        ArrayList<UserModel> like_userModels = new ArrayList<>();
         readData(db.collection(Constants.KEY_COLLECTION_USER)
                 .get(), new CompleteQueryListener() {
             @Override
@@ -114,7 +114,7 @@ public class LikedUserFragment extends Fragment {
                 for (DocumentSnapshot documentSnapshot: task.getResult().getDocuments()){
                     for (int i=0;i<like_users_id.length;i++){
                         if (documentSnapshot.getId().equals(like_users_id[i])){
-                            User user = new User((String) documentSnapshot.get(Constants.KEY_AVATAR),
+                            UserModel userModel = new UserModel((String) documentSnapshot.get(Constants.KEY_AVATAR),
                                     (String)documentSnapshot.get(Constants.KEY_GENDER),
                                     (String)documentSnapshot.get(Constants.KEY_FIRST_NAME),
                                     (String)documentSnapshot.get(Constants.KEY_LAST_NAME),
@@ -122,7 +122,7 @@ public class LikedUserFragment extends Fragment {
                                     (String)documentSnapshot.getId(),
                                     (String)documentSnapshot.get(Constants.KEY_STAR),
                                     (String)documentSnapshot.get(Constants.KEY_ABOUT_ME));
-                            like_users.add(user);
+                            like_userModels.add(userModel);
                         }
                     }
 
@@ -130,7 +130,7 @@ public class LikedUserFragment extends Fragment {
 
 
                 }
-                userAdapter.setItems(like_users);
+                userAdapter.setItems(like_userModels);
                 userAdapter.notifyDataSetChanged();
                 isLoading=false;
                 swipeRefreshLayout.setRefreshing(false);

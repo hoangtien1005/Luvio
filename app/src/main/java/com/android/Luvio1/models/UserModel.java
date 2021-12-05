@@ -4,7 +4,7 @@ import com.google.firebase.database.Exclude;
 
 import java.io.Serializable;
 
-public class User  implements Serializable{
+public class UserModel implements Serializable{
     @Exclude
     private String fsId;
     private String avatar;
@@ -14,10 +14,10 @@ public class User  implements Serializable{
     private String birthday;
     private String star;
     private String aboutMe;
-    public User() {
+    public UserModel() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-    public User(String avatar,String gender, String firstName,String lastName, String birthday, String fsId, String star, String aboutMe) {
+    public UserModel(String avatar, String gender, String firstName, String lastName, String birthday, String fsId, String star, String aboutMe) {
         this.avatar = avatar;
         this.gender=gender;
         this.firstName=firstName;

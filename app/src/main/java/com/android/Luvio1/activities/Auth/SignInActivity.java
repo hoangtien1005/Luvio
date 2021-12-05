@@ -19,19 +19,37 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import io.getstream.chat.android.client.ChatClient;
+import io.getstream.chat.android.client.logger.ChatLogLevel;
+import io.getstream.chat.android.client.models.User;
+import io.getstream.chat.android.livedata.ChatDomain;
+
 import java.util.ArrayList;
+
+import io.getstream.chat.android.client.models.User;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
     PreferenceManager preferenceManager;
     FirebaseFirestore db;
+    ChatClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferenceManager = new PreferenceManager(getApplicationContext());
         db=FirebaseFirestore.getInstance();
+        client= new ChatClient.Builder("an38qgjtsfsj", getApplicationContext())
+                .logLevel(ChatLogLevel.ALL)
+                .build();
+        new ChatDomain.Builder(client, getApplicationContext()).build();
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
             Intent intent =new Intent(getApplicationContext(), MainActivity.class);
+
+            User user1 = new User();
+            user1.setId(preferenceManager.getString(Constants.KEY_USER_ID));
+            user1.getExtraData().put("name", preferenceManager.getString(Constants.KEY_FIRST_NAME)+" "+preferenceManager.getString(Constants.KEY_LAST_NAME));
+            String token = client.devToken(preferenceManager.getString(Constants.KEY_USER_ID));
+            client.connectUser(user1, token).enqueue();
             startActivity(intent);
             finish();
         }
@@ -67,7 +85,12 @@ public class SignInActivity extends AppCompatActivity {
                         preferenceManager.putString(Constants.KEY_GENDER,documentSnapshot.getString(Constants.KEY_GENDER));
                         preferenceManager.putString(Constants.KEY_INTERESTED_GENDER, documentSnapshot.getString(Constants.KEY_INTERESTED_GENDER));
 
-
+                        User user1 = new User();
+                        user1.setId(documentSnapshot.getId());
+                        user1.getExtraData().put("name", documentSnapshot.getString(Constants.KEY_FIRST_NAME)+" "+documentSnapshot.getString(Constants.KEY_LAST_NAME));
+//                        user1.getExtraData().put("image", decodeImage(avatar));
+                        String token = client.devToken(documentSnapshot.getId());
+                        client.connectUser(user1, token).enqueue();
                         ArrayList<String> al= (ArrayList<String>) documentSnapshot.get(Constants.KEY_INTERESTS);
                         String[] interests = new String[al.size()];
 
