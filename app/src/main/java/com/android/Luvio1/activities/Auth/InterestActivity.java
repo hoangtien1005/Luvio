@@ -1,11 +1,11 @@
 package com.android.Luvio1.activities.Auth;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -22,10 +22,15 @@ import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import io.getstream.chat.android.client.ChatClient;
 import io.getstream.chat.android.client.logger.ChatLogLevel;
@@ -121,7 +126,7 @@ public class InterestActivity extends AppCompatActivity {
                     User user1 = new User();
                     user1.setId(documentReference.getId());
                     user1.getExtraData().put("name", firstName+" "+lastName);
-                    user1.getExtraData().put("image", decodeImage(avatar));
+                    user1.getExtraData().put("image", bitmapToUri(avatar));
                     String token = client.devToken(documentReference.getId());
                     client.connectUser(user1, token).enqueue();
                     preferenceManager.putString(Constants.KEY_CHAT_TOKEN,token);
@@ -147,14 +152,40 @@ public class InterestActivity extends AppCompatActivity {
                     showToast(Exception.getMessage());
                 });
     }
-    private String decodeImage(String encodeImage){
+    public File createImageFile(Context context) {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File mFileTemp = null;
+        String root=context.getDir("my_sub_dir", Context.MODE_PRIVATE).getAbsolutePath();
+        File myDir = new File(root + "/Img");
+        if(!myDir.exists()){
+            myDir.mkdirs();
+        }
+        try {
+            mFileTemp= File.createTempFile(imageFileName,".jpg",myDir.getAbsoluteFile());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return mFileTemp;
+    }
+    private String bitmapToUri(String encodeImage){
         byte[] imageBytes= Base64.decode(encodeImage,Base64.DEFAULT);
         Bitmap bitmap= BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
-        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
-        String path= MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(),bitmap,"val",null);
-
-        return path;
+        File file = createImageFile(getApplicationContext());
+        if (file != null) {
+            FileOutputStream fout;
+            try {
+                fout = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 70, fout);
+                fout.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Uri uri = Uri.fromFile(file);
+            String hi = uri.toString();
+            return hi;
+        }
+        return "";
     }
     private void setListener(){
         binding.btnBack.setOnClickListener(view -> {
@@ -171,7 +202,7 @@ public class InterestActivity extends AppCompatActivity {
         });
     }
 
-//    private void updateDeleteAccount(String countryCode,String phoneNum){
+    //    private void updateDeleteAccount(String countryCode,String phoneNum){
 //        db.collection(Constants.KEY_COLLECTION_USER)
 //                .whereEqualTo(Constants.KEY_PHONE_NUMBER,phoneNum)
 //                .whereEqualTo(Constants.KEY_COUNTRY_CODE,countryCode)

@@ -3,21 +3,30 @@ package com.android.Luvio1.activities.Main;
 import static java.util.Collections.singletonList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.android.Luvio1.activities.User.ProfilePageActivity;
 import com.android.Luvio1.databinding.ActivityChannelListBinding;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +34,7 @@ import io.getstream.chat.android.client.ChatClient;
 import io.getstream.chat.android.client.api.models.FilterObject;
 import io.getstream.chat.android.client.logger.ChatLogLevel;
 import io.getstream.chat.android.client.models.Filters;
+import io.getstream.chat.android.client.models.Member;
 import io.getstream.chat.android.client.models.User;
 import io.getstream.chat.android.livedata.ChatDomain;
 import io.getstream.chat.android.ui.channel.list.viewmodel.ChannelListViewModel;
@@ -32,13 +42,15 @@ import io.getstream.chat.android.ui.channel.list.viewmodel.ChannelListViewModelB
 import io.getstream.chat.android.ui.channel.list.viewmodel.factory.ChannelListViewModelFactory;
 
 
-
 public class ChatFragment extends Fragment {
-    String[] ids = {"tien", "someone", "another-one", "a-fourth-one"};
-    String[] names = {"Tiến", "Tài", "Tâm", "Phụng"};
+    String currentUserId;
+    String otherUserId;
+
     MainActivity main;
     PreferenceManager preferenceManager;
+    FirebaseFirestore db;
     Context context=null;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +61,9 @@ public class ChatFragment extends Fragment {
         }catch (IllegalStateException e){
             throw new IllegalStateException("Error");
         }
+        
+        db = FirebaseFirestore.getInstance();
+        
     }
 
     @Nullable
@@ -58,24 +73,15 @@ public class ChatFragment extends Fragment {
         View view = binding.getRoot();
         preferenceManager= new PreferenceManager(context);
         ChatClient client = ChatClient.instance();
-//        TODO: get user's id, name, image from database
-//        User user = new User();
 
-//        user.setId(preferenceManager.getString(Constants.KEY_USER_ID));
-//        user.getExtraData().put("name", preferenceManager.getString(Constants.KEY_FIRST_NAME)+" "+preferenceManager.getString(Constants.KEY_LAST_NAME));
-//        user.getExtraData().put("image", preferenceManager.getString(Constants.KEY_AVATAR));
-        Log.i("IDSSSS",preferenceManager.getString(Constants.KEY_CHAT_IDS));
-//        String token=client.devToken(preferenceManager.getString(Constants.KEY_USER_ID));
-//        client.connectUser(user, token).enqueue();
 
         String channelType = "messaging";
 
-//        TODO: select from like table where column has the user's id and create the channel
-//        example: for (id1, id2 in LikeTable)
-//        {
-//            List<String> members = Arrays.asList(id1, id2);
-//            client.createChannel(channelType, members).enqueue();
-//        }
+        binding.myProfileBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProfilePageActivity.class);
+            startActivity(intent);
+        });
+
         if (preferenceManager.getString(Constants.KEY_CHAT_IDS)==null){
             return view;
         }
@@ -102,7 +108,39 @@ public class ChatFragment extends Fragment {
 
         ChannelListViewModelBinding.bind(channelsViewModel, binding.channelListView, this);
         binding.channelListView.setChannelItemClickListener(
-                channel -> startActivity(ChannelActivity.newIntent(context, channel))
+                channel -> {
+//                    Get currentUserId and otherUserId
+                    List<Member> members =  channel.getMembers();
+                    List<String> membersId = new ArrayList<String>();
+
+                    for(int i = 0 ; i < 2; i ++)
+                    {
+                        membersId.add(members.get(i).getUser().getId());
+                    }
+                    currentUserId = client.getCurrentUser().getId();
+
+                    for(int i = 0 ; i < 2; i ++)
+                    {
+                        if(!membersId.get(i).equals(currentUserId)) {
+                            otherUserId = membersId.get(i);
+                        }
+                    }
+
+                    db.collection(Constants.KEY_COLLECTION_BLOCK)
+                            .whereEqualTo(Constants.KEY_ID_1, otherUserId)
+                            .whereEqualTo(Constants.KEY_ID_2, currentUserId)
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0) {
+                                        Toast.makeText(context, "Người dùng này đã chặn bạn", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        startActivity(ChannelActivity.newIntent(context, channel, currentUserId, otherUserId));
+                                    }
+                                }
+                            });
+                }
         );
         return view;
     }
