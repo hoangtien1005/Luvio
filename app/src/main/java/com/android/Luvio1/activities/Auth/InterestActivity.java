@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.activities.Main.MainActivity;
@@ -19,8 +20,12 @@ import com.android.Luvio1.firebase.DBUserManager;
 import com.android.Luvio1.models.UserModel;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -151,6 +156,7 @@ public class InterestActivity extends AppCompatActivity {
                     loading(false);
                     showToast(Exception.getMessage());
                 });
+
     }
     public File createImageFile(Context context) {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());

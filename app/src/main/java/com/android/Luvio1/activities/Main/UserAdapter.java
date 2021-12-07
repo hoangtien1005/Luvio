@@ -70,9 +70,10 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         vh.avatar.setImageBitmap(decodeImage(userModel.getAvatar()));
         vh.info_btn.setOnClickListener(v -> {
             Intent intent=new Intent(context, PersonalPageActivity.class);
-            intent.putExtra("INFO", userModel);
+            intent.putExtra("INFO", userModel.getFsId());
             context.startActivity(intent);
         });
+        Log.i("LIKE_IDS",preferenceManager.getString(Constants.KEY_COLLECTION_LIKE));
         if(isAlreadyLike(userModel.getFsId())){
 
             Log.i("users",preferenceManager.getString(Constants.KEY_COLLECTION_LIKE));
