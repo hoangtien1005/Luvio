@@ -3,7 +3,6 @@ package com.android.Luvio1.activities.Main;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,9 +77,8 @@ public class HomePageFragment extends Fragment {
                 int totalItem = linearLayoutManager.getItemCount();
                 int lastVisible= linearLayoutManager.findLastVisibleItemPosition();
 
-                if(totalItem<lastVisible+2){
+                if(totalItem<lastVisible+3){
                     if(!isLoading){
-                        Log.i("last", String.valueOf(lastVisible));
                         isLoading=true;
                         loadData();
                     }

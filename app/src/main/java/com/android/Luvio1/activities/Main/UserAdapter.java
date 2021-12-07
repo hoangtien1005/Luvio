@@ -21,8 +21,6 @@ import com.android.Luvio1.models.UserModel;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.firestore.DocumentReference;
@@ -56,16 +54,23 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         View view = LayoutInflater.from(context).inflate(R.layout.custom_list,parent,false);
         return new UserViewHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position)
+    {
+        UserModel e = null;
+        this.onBindViewHolder(holder,position,e);
+    }
+
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position,UserModel e) {
         UserViewHolder vh=(UserViewHolder) holder;
         preferenceManager=new PreferenceManager(context);
+
+        UserModel userModel = e==null?list.get(holder.getAbsoluteAdapterPosition()):e;
         db=FirebaseFirestore.getInstance();
-        UserModel userModel =list.get(position);
         vh.txt_name.setText(userModel.getLastName());
         vh.txt_bio.setText(userModel.getGender());
         vh.txt_star.setText(userModel.getStar());
+
         vh.txt_age.setText(findAge(userModel.getBirthday()));
         vh.avatar.setImageBitmap(decodeImage(userModel.getAvatar()));
         vh.info_btn.setOnClickListener(v -> {
@@ -75,12 +80,10 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         });
         Log.i("LIKE_IDS",preferenceManager.getString(Constants.KEY_COLLECTION_LIKE));
         if(isAlreadyLike(userModel.getFsId())){
-
-            Log.i("users",preferenceManager.getString(Constants.KEY_COLLECTION_LIKE));
-
-            Log.i("userID", userModel.getFsId());
-            Log.i("userName", userModel.getLastName());
             vh.like_check.setVisibility(View.VISIBLE);
+        }
+        else{
+            vh.like_check.setVisibility(View.INVISIBLE);
         }
 
         vh.like_btn.setOnClickListener(v->{
@@ -170,10 +173,8 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
         else{
-            if(isAlreadyLike(userModel.getFsId())){
-                return;
-            }
-            else{
+
+
                 StringBuilder sb = new StringBuilder(preferenceManager.getString(Constants.KEY_COLLECTION_LIKE));
                 sb.append(userModel.getFsId()).append(",");
                 preferenceManager.putString(Constants.KEY_COLLECTION_LIKE,sb.toString());
@@ -181,20 +182,32 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 like_user.put(Constants.KEY_ID_2, userModel.getFsId());
                 db.collection(Constants.KEY_COLLECTION_LIKE)
                         .add(like_user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                showToast("Cập nhật thành công");
-                                vh.like_check.setVisibility(View.VISIBLE);
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                showToast("Cập nhật thất bại");
+                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                if (task.isSuccessful()&&task.getResult()!=null){
+                                    showToast("Cập nhật thành công");
+                                    vh.like_check.setVisibility(View.VISIBLE);
+                                }
+                                else{
+                                    showToast("Cập nhật thất bại");
+                                }
                             }
                         });
-            }
+//                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                            @Override
+//                            public void onSuccess(DocumentReference documentReference) {
+//                                showToast("Cập nhật thành công");
+//                                vh.like_check.setVisibility(View.VISIBLE);
+//                            }
+//                        })
+//                        .addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                showToast("Cập nhật thất bại");
+//                            }
+//                        });
+
 
 
         }
