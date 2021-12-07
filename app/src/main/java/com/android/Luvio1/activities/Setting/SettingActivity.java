@@ -28,7 +28,6 @@ public class SettingActivity extends AppCompatActivity {
         preferenceManager=new PreferenceManager(getApplicationContext());
         setContentView(binding.getRoot());
         setListener();
-
     }
     private void setListener(){
 
@@ -45,7 +44,6 @@ public class SettingActivity extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(),SignInActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-
 
         });
         binding.btnDeleteAccount.setOnClickListener(view -> {
@@ -75,9 +73,11 @@ public class SettingActivity extends AppCompatActivity {
                         }
                     });
 
+        });
 
-
-
+        binding.btnBlockList.setOnClickListener(view -> {
+            Intent intent = new Intent(this, BlockListActivity.class);
+            startActivity(intent);
         });
 
     }
