@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="@dimen/_20sdp"
-    tools:context="com.android.Luvio1.activities.Main.LikedUserActivity">
+    tools:context="com.android.Luvio1.activities.Main.LikedUserActivity"
+    android:background="?backgroundColor1">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_weight="6"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/black"
+            android:textColor="?textColor"
             android:gravity="center_vertical"
             android:text="Yêu thích"
             android:textSize="@dimen/_25sdp" />
@@ -58,9 +59,9 @@
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:imeOptions="actionSearch"
-            android:hint="Tìm kiếm theo tên"
-            />
+            android:background="@drawable/function_box"
+            android:autofillHints="username"
+            android:imeOptions="actionSearch" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,7 +69,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?backgroundColor1">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
@@ -86,11 +88,10 @@
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bottom_nav"
             android:elevation="@dimen/_10sdp"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_navigation_menu"
-            android:layout_weight="1"
+            android:background="@drawable/bottom_nav"
             />
 
     </LinearLayout>

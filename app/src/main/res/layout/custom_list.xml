@@ -63,13 +63,14 @@
         android:layout_alignEnd="@id/user_avatar"
         android:background="@drawable/ic_liked_check"
         android:visibility="invisible" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/like_btn"
         android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/background_brief_info"
-        android:backgroundTint="@color/white"
         android:orientation="vertical"
         android:padding="@dimen/_5sdp"
         android:paddingEnd="@dimen/_20sdp">
@@ -86,7 +87,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
                 android:text="Leilani"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/_16ssp" />
 
             <TextView
@@ -96,7 +97,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
                 android:text=","
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/_16ssp" />
 
             <TextView
@@ -107,7 +108,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
                 android:text="19"
-                android:textColor="@color/black"
+                android:textColor="?textColor"
                 android:textSize="@dimen/_16ssp" />
 
             <ImageView
@@ -121,17 +122,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="right|center_vertical">
+
                 <TextView
                     android:id="@+id/txt_star"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-
-
                     android:fontFamily="@font/montserrat_medium"
-
-
                     android:text="4.5"
-                    android:textColor="@color/black"
+                    android:textColor="?textColor"
                     android:textSize="@dimen/_14ssp" />
 
                 <ImageView
@@ -152,7 +150,7 @@
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/montserrat_light"
             android:text="Hey guys, This is Malena. I’m here to find someone for hookup..."
-            android:textColor="@color/black"
+            android:textColor="?textColor"
             android:textSize="@dimen/_10ssp" />
 
     </LinearLayout>

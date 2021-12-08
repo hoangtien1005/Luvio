@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.R;
+import com.android.Luvio1.activities.Setting.ThemeChangeActivity;
 import com.android.Luvio1.databinding.ActivitySetInfoBinding;
 import com.android.Luvio1.firebase.DBUserManager;
 import com.android.Luvio1.utilities.Constants;
@@ -49,7 +50,7 @@ import java.util.HashMap;
 import java.util.TimeZone;
 
 
-public class SetInfoActivity extends AppCompatActivity {
+public class SetInfoActivity extends ThemeChangeActivity {
     String encodeFirstImage = "";
     String encodeSecondImage = "";
     String encodeThirdImage = "";

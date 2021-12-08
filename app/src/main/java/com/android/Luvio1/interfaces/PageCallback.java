@@ -1,5 +1,5 @@
 package com.android.Luvio1.interfaces;
 
-public interface PageCallback {
+public interface PageCallBack {
     public void callbackMethod(String data);
 }

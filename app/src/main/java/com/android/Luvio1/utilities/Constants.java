@@ -14,6 +14,15 @@ public class Constants {
     public static final String KEY_IS_DELETE="isDelete";
     public static final String KEY_SIGN_IN_PREFERENCE="signInPreference";
     public static final String KEY_CHAT_PREFERENCE="chatPreference";
+    public static final String KEY_CHAT_TOKEN="msToken";
+    public static final String KEY_CHAT_IDS="chatIds";
+
+    public static final String KEY_COLLECTION_BLOCK="blocks";
+    public static final String KEY_COLLECTION_CHAT="chats";
+
+    public static final String KEY_BLOCK="blockId";
+
+
     public static final String KEY_IS_SIGNED_IN="isSignedIn";
     public static final String KEY_USER_ID="userId";
     public static final String KEY_AVATAR="avatar";

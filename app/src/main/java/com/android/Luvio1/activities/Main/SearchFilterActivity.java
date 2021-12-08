@@ -9,28 +9,27 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatRadioButton;
 
 import com.android.Luvio1.R;
-import com.android.Luvio1.interfaces.PageCallback;
+import com.android.Luvio1.activities.Setting.ThemeChangeDialog;
+import com.android.Luvio1.interfaces.PageCallBack;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.slider.RangeSlider;
 
 import java.util.List;
 
 
-public class SearchFilterActivity extends BottomSheetDialogFragment {
+public class SearchFilterActivity extends ThemeChangeDialog {
     private int layoutStyle;
-    private PageCallback callback;
     TextView chosenStarScope, chosenAgeScope;
     RangeSlider ageScope, starScope;
-    RadioGroup radioGroup;
+    RadioGroup genderGroup;
     Button maleBtn, femaleBtn, othersBtn, finishBtn;
+    PageCallBack callBack;
 
-
-    public SearchFilterActivity(int layoutStyle, PageCallback callback) {
+    public SearchFilterActivity(int layoutStyle, PageCallBack callBack){
         this.layoutStyle = layoutStyle;
-        this.callback = callback;
+        this.callBack = callBack;
     }
 
 
@@ -44,7 +43,7 @@ public class SearchFilterActivity extends BottomSheetDialogFragment {
         chosenStarScope = view.findViewById(R.id.chosen_star_scope);
         ageScope = view.findViewById(R.id.age_scope);
         starScope = view.findViewById(R.id.star_scope);
-        radioGroup = view.findViewById(R.id.gender_group);
+        genderGroup=view.findViewById(R.id.gender_group);
         maleBtn = view.findViewById(R.id.male_btn);
         femaleBtn = view.findViewById(R.id.female_btn);
         othersBtn = view.findViewById(R.id.others_btn);
@@ -55,7 +54,8 @@ public class SearchFilterActivity extends BottomSheetDialogFragment {
         setListener();
     }
 
-    private void setListener() {
+    private void setListener()
+    {
 
         maleBtn.setOnClickListener(view ->
         {
@@ -86,11 +86,11 @@ public class SearchFilterActivity extends BottomSheetDialogFragment {
             List<Float> ageRange = ageScope.getValues();
             List<Float> starRange = starScope.getValues();
             String gender;
-            switch (radioGroup.getCheckedRadioButtonId()) {
-                case 1:
+            switch (genderGroup.getCheckedRadioButtonId()) {
+                case R.id.male_btn:
                     gender = "Nam";
                     break;
-                case 2:
+                case R.id.female_btn:
                     gender = "Nữ";
                     break;
                 default:
@@ -98,10 +98,9 @@ public class SearchFilterActivity extends BottomSheetDialogFragment {
                     break;
             }
             data = starRange.get(0) + "|" + starRange.get(1) + "|" + ageRange.get(0).intValue() + "|" + ageRange.get(1).intValue() + "|" + gender;
-            callback.callbackMethod(data);
+            callBack.callbackMethod(data);
             this.dismiss();
         });
-
 
         ageScope.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
             @Override
@@ -123,14 +122,12 @@ public class SearchFilterActivity extends BottomSheetDialogFragment {
                 List<Float> values = slider.getValues();
                 chosenStarScope.setText(values.get(0) + " - " + values.get(1));
             }
-
             @Override
             public void onStopTrackingTouch(@NonNull RangeSlider slider) {
                 List<Float> values = slider.getValues();
                 chosenStarScope.setText(values.get(0) + " - " + values.get(1));
             }
         });
-
 
     }
 }

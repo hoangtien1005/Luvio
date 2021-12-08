@@ -1,17 +1,18 @@
 package com.android.Luvio1.activities.Main;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.android.Luvio1.R;
+import com.android.Luvio1.activities.Setting.ThemeChangeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ThemeChangeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.home:
                     selectedFragment=new HomePageFragment();
+                    break;
+                case R.id.message:
+                    selectedFragment=new ChatFragment();
                     break;
                 case R.id.liked:
                     selectedFragment=new LikedUserFragment();

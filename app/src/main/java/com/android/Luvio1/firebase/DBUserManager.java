@@ -1,6 +1,6 @@
 package com.android.Luvio1.firebase;
 
-import com.android.Luvio1.models.User;
+import com.android.Luvio1.models.UserModel;
 import com.android.Luvio1.utilities.Constants;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -17,9 +17,9 @@ public class DBUserManager {
         databaseReference = db.getReference(Constants.KEY_COLLECTION_USER);
 
     }
-    public Task<Void> add(User user)
+    public Task<Void> add(UserModel userModel)
     {
-        return databaseReference.child(user.getFsId()).setValue(user);
+        return databaseReference.child(userModel.getFsId()).setValue(userModel);
 
     }
 

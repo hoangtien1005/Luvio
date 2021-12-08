@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 
 <!--    Buttons-->
@@ -14,14 +14,14 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:src">@drawable/ic_my_profile_btn</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@null</item>
     </style>
 <!--Back Button Style-->
     <style name="backButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:src">@drawable/ic_back_btn</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@null</item>
     </style>
 <!--Date Picker Style-->
 
@@ -68,7 +68,31 @@
     <style name="ProgressBarColor" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorAccent">@color/primary_1</item>
     </style>
-    
-    
+
+    <style name="DarkTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="colorPrimary">@color/primary_1</item>
+        <item name="android:statusBarColor" tools:targetApi='l'>@color/white</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+
+        <item name="backgroundColor1">#424448</item>
+        <item name="backgroundColor2">#424448</item>
+        <item name="textColor">#FFFFFF</item>
+        <item name="BottomNavi">#848992</item>
+        <item name="BottomNaviStroke">#848992</item>
+        <item name="Box">#848992</item>
+        <item name="BoxStroke">#848992</item>
+        <item name="hintColor">#C1C1C1</item>
+        <item name="BriefInfoStroke">#424448</item>
+        <item name="DateColor">#DADADA</item>
+        <item name="BtnColor">#FFFFFF</item>
+        <item name="DateSeparator">#686B71</item>
+        <item name="ChatBackground">#676A70</item>
+
+    </style>
 
 </resources>

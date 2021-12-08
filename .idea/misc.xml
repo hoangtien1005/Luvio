@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_channel_list.xml" value="0.2" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_forgot_password1.xml" value="0.12360688956433637" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_phone_number.xml" value="0.1793478260869565" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/layout/activity_setting.xml" value="0.12360688956433637" />
+        <entry key="..\:/Androidapp/Luvio chat/Luvio/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_back_btn.xml" value="0.14635416666666667" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/drawable/background_brief_info.xml" value="0.176" />
@@ -72,13 +77,33 @@
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.23796296296296296" />
         <entry key="..\:/Androidapp/Luvio/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.23796296296296296" />
-        <entry key="..\:/pp/mobile/Luvio/Luvio-main/app/src/main/res/layout/activity_home_page.xml" value="0.264" />
-        <entry key="..\:/pp/mobile/Luvio/Luvio-main/app/src/main/res/layout/activity_liked_user.xml" value="0.259375" />
-        <entry key="..\:/pp/mobile/Luvio/Luvio-main/app/src/main/res/layout/activity_main.xml" value="0.259375" />
-        <entry key="..\:/pp/mobile/Luvio/Luvio-main/app/src/main/res/layout/custom_list.xml" value="0.12613981762917933" />
-        <entry key="..\:/pp/mobile/Luvio/Luvio-main/app/src/main/res/layout/fragment_home_page.xml" value="0.12613981762917933" />
-        <entry key="..\:/pp/mobile/Luvio/Luvio-main/app/src/main/res/layout/search_filter.xml" value="0.13385416666666666" />
-        <entry key="..\:/pp/mobile/Luvio/Luvio-main/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.259375" />
+        <entry key="app/src/main/res/drawable/background_dialog.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/background_message_list_search_input.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_back_btn.xml" value="0.178125" />
+        <entry key="app/src/main/res/drawable/ic_channel_list_search.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_chat_send_btn.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_chat_send_btn_disabled.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_primary_user_image.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_user_is_blocked.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/ic_warning.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/star_active.xml" value="0.2875" />
+        <entry key="app/src/main/res/drawable/star_disabled.xml" value="0.2875" />
+        <entry key="app/src/main/res/layout/activity_block_list.xml" value="0.2713541666666667" />
+        <entry key="app/src/main/res/layout/activity_channel.xml" value="0.161231884057971" />
+        <entry key="app/src/main/res/layout/activity_channel_list.xml" value="0.1390625" />
+<<<<<<< HEAD
+=======
+        <entry key="app/src/main/res/layout/activity_forgot_password1.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.19479166666666667" />
+        <entry key="app/src/main/res/layout/activity_set_info.xml" value="0.1897644927536232" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.30616586238494853" />
+        <entry key="app/src/main/res/layout/custom_block_list_item.xml" value="0.2713541666666667" />
+        <entry key="app/src/main/res/layout/custom_list.xml" value="0.2713541666666667" />
+>>>>>>> 959edde617f4980b3bea0b08ecac2a7732acee9c
+        <entry key="app/src/main/res/layout/dialog_block.xml" value="0.161231884057971" />
+        <entry key="app/src/main/res/layout/dialog_is_blocked.xml" value="0.161231884057971" />
+        <entry key="app/src/main/res/layout/dialog_rating.xml" value="0.161231884057971" />
+        <entry key="app/src/main/res/menu/chat_top_menu.xml" value="0.2713541666666667" />
       </map>
     </option>
   </component>

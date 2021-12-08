@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/_20sdp"
+    android:paddingRight="@dimen/_20sdp"
+    android:paddingTop="@dimen/_20sdp"
+    android:paddingBottom="@dimen/_20sdp"
+    android:layout_marginLeft="@dimen/_8sdp"
+    android:layout_marginRight="@dimen/_8sdp"
+    android:gravity="center_horizontal"
+    android:minWidth="340dp"
+    android:background="@drawable/background_dialog">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_warning"
+        android:layout_marginBottom="@dimen/_15sdp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn đã chặn người dùng này!"
+        android:textColor="#626262"
+        android:textSize="@dimen/_11sdp"
+        android:fontFamily="@font/montserrat_bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_9sdp"
+            android:layout_height="wrap_content"
+            android:text="Gỡ chặn"
+            android:id="@+id/btnRemove"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/black"
+            android:minWidth="130dp"
+            android:backgroundTint="#BBEFFF"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/_8sdp"
+            android:layout_height="wrap_content"
+            android:text="Tiếp tục chặn"
+            android:id="@+id/btnContinue"
+            android:minWidth="130dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/black"
+            android:backgroundTint="#FFD7D7"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.activities.Setting.SettingActivity;
+import com.android.Luvio1.activities.Setting.ThemeChangeActivity;
 import com.android.Luvio1.databinding.ActivityProfilePageBinding;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-public class ProfilePageActivity extends AppCompatActivity {
+public class ProfilePageActivity extends ThemeChangeActivity {
     private ActivityProfilePageBinding binding;
     // this is just a temporary solution
     PreferenceManager preferenceManager;

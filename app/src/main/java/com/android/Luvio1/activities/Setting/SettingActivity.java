@@ -3,12 +3,16 @@ package com.android.Luvio1.activities.Setting;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.TaskStackBuilder;
 
+import com.android.Luvio1.R;
 import com.android.Luvio1.activities.Auth.SignInActivity;
+import com.android.Luvio1.activities.Main.MainActivity;
 import com.android.Luvio1.databinding.ActivitySettingBinding;
 import com.android.Luvio1.firebase.DBUserManager;
 import com.android.Luvio1.utilities.Constants;
@@ -18,7 +22,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends ThemeChangeActivity {
     private ActivitySettingBinding binding;
     PreferenceManager preferenceManager;
     @Override
@@ -28,9 +32,16 @@ public class SettingActivity extends AppCompatActivity {
         preferenceManager=new PreferenceManager(getApplicationContext());
         setContentView(binding.getRoot());
         setListener();
-
     }
     private void setListener(){
+
+        int theme = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext())
+                .getInt("Theme",R.style.Theme_Luvio);
+        if (theme == R.style.DarkTheme)
+        {
+            binding.btnDarkMode.setChecked(true);
+        }
 
         binding.btnBack.setOnClickListener(view -> {
             onBackPressed();
@@ -45,7 +56,6 @@ public class SettingActivity extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(),SignInActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-
 
         });
         binding.btnDeleteAccount.setOnClickListener(view -> {
@@ -75,9 +85,32 @@ public class SettingActivity extends AppCompatActivity {
                         }
                     });
 
+        });
 
+        binding.btnBlockList.setOnClickListener(view -> {
+            Intent intent = new Intent(this, BlockListActivity.class);
+            startActivity(intent);
+        });
 
+        binding.btnDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    android.preference.PreferenceManager
+                            .getDefaultSharedPreferences(getApplicationContext())
+                            .edit().putInt("Theme", R.style.DarkTheme).commit();
+                    ThemeChangeApply();
+                }
+                else
+                {
+                    android.preference.PreferenceManager
+                            .getDefaultSharedPreferences(getApplicationContext())
+                            .edit().putInt("Theme",R.style.Theme_Luvio).commit();
+                    ThemeChangeApply();
 
+                }
+            }
         });
 
     }
@@ -93,6 +126,14 @@ public class SettingActivity extends AppCompatActivity {
             binding.btnDeleteAccount.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
+    }
+
+    void ThemeChangeApply()
+    {
+        TaskStackBuilder.create(this)
+                .addNextIntent(new Intent(this, MainActivity.class))
+                .addNextIntent(this.getIntent())
+                .startActivities();
     }
 
 }

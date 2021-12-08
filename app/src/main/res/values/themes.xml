@@ -11,6 +11,20 @@
         <item name="android:statusBarColor" tools:targetApi='l'>@color/white</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
 
+        <item name="backgroundColor1">#FFFFFF</item>
+        <item name="backgroundColor2">#E5E5E5</item>
+        <item name="textColor">#000000</item>
+        <item name="BottomNavi">#FFFFFF</item>
+        <item name="BottomNaviStroke">#CECECE</item>
+        <item name="Box">#FFFFFF</item>
+        <item name="BoxStroke">#CECECE</item>
+        <item name="hintColor">#99676767</item>
+        <item name="BriefInfoStroke">#CECECE</item>
+        <item name="DateColor">#838383</item>
+        <item name="BtnColor">#000000</item>
+        <item name="DateSeparator">#FFAAAAAA</item>
+        <item name="ChatBackground">#FFFFFF</item>
+
     </style>
 
 </resources>

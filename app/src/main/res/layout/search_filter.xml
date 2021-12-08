@@ -2,17 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_input"
-    android:backgroundTint="@color/white"
+    android:background="@drawable/filter_dialog"
     android:orientation="vertical"
     android:padding="30dp"
-
     android:id="@+id/search_filter_sheet"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    app:behavior_hideable="true"
-    >
+    app:behavior_hideable="true">
 
 
 
@@ -28,7 +25,8 @@
             android:layout_weight="9"
             android:fontFamily="@font/montserrat_medium"
             android:text="Sao"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:textColor="?textColor"/>
 
         <TextView
             android:id="@+id/chosen_star_scope"
@@ -39,7 +37,8 @@
             android:fontFamily="@font/montserrat_medium"
             android:gravity="right"
             android:text="2 - 3.5"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="?textColor"/>
 
 
     </LinearLayout>
@@ -68,7 +67,8 @@
             android:layout_weight="9"
             android:fontFamily="@font/montserrat_medium"
             android:text="Tuổi"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:textColor="?textColor"/>
 
         <TextView
             android:id="@+id/chosen_age_scope"
@@ -79,7 +79,8 @@
             android:fontFamily="@font/montserrat_medium"
             android:gravity="right"
             android:text="20 - 35"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="?textColor"/>
 
 
     </LinearLayout>
@@ -104,7 +105,8 @@
         android:text="Giới tính"
         android:layout_marginTop="10dp"
         android:textSize="24dp"
-        android:fontFamily="@font/montserrat_medium"/>
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="?textColor"/>
 
     <RadioGroup
         android:id="@+id/gender_group"

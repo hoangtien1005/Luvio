@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="@dimen/_20sdp"
-    tools:context="com.android.Luvio1.activities.Main.HomePageActivity">
+    tools:context="com.android.Luvio1.activities.Main.HomePageActivity"
+    android:background="?backgroundColor1">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_weight="6"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/black"
+            android:textColor="?textColor"
             android:gravity="center_vertical"
             android:text="Khám phá"
             android:textSize="@dimen/_25sdp" />
@@ -59,7 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionSearch"
-            android:hint="Tìm kiếm theo tên"
+            android:autofillHints="username"
+            android:background="@drawable/function_box"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -68,7 +70,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?backgroundColor1">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
@@ -84,15 +87,13 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bottom_nav"
             android:elevation="@dimen/_10sdp"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_navigation_menu"
-            android:layout_weight="1"
+            android:background="@drawable/bottom_nav"
             />
-
     </LinearLayout>
 
 </LinearLayout>

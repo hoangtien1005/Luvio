@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.Luvio1">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,36 +12,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Luvio">
-
         <activity
-            android:name="com.android.Luvio1.activities.Main.MainActivity"
-            android:exported="true" >
-
-        </activity>
-        <activity
-            android:name="com.android.Luvio1.activities.Auth.ForgotPasswordActivity3"
+            android:name=".activities.Setting.BlockListActivity"
             android:exported="true" />
         <activity
-            android:name="com.android.Luvio1.activities.Auth.ForgotPasswordActivity2"
+            android:name=".activities.Main.ChannelActivity"
             android:exported="true" />
         <activity
-            android:name="com.android.Luvio1.activities.Auth.ForgotPasswordActivity1"
+            android:name=".activities.Main.ChannelListActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activities.Main.MainActivity"
             android:exported="true" />
         <activity
-            android:name="com.android.Luvio1.activities.Auth.PersonalInformationActivity2"
+            android:name=".activities.Auth.ForgotPasswordActivity3"
             android:exported="true" />
         <activity
-            android:name="com.android.Luvio1.activities.Auth.PersonalInformationActivity1"
-            android:exported="true">
-
-        </activity>
-        <activity android:name="com.android.Luvio1.activities.Auth.VerifyPhoneNumberActivity" />
+            android:name=".activities.Auth.ForgotPasswordActivity2"
+            android:exported="true" />
         <activity
-            android:name="com.android.Luvio1.activities.Auth.PhoneNumberActivity"
+            android:name=".activities.Auth.ForgotPasswordActivity1"
+            android:exported="true" />
+        <activity
+            android:name=".activities.Auth.PersonalInformationActivity2"
+            android:exported="true" />
+        <activity
+            android:name=".activities.Auth.PersonalInformationActivity1"
+            android:exported="true" />
+        <activity android:name=".activities.Auth.VerifyPhoneNumberActivity" />
+        <activity
+            android:name=".activities.Auth.PhoneNumberActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.android.Luvio1.activities.Auth.SignInActivity"
+            android:name=".activities.Auth.SignInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -48,33 +54,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.android.Luvio1.activities.User.ProfilePageActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
-        <activity android:name="com.android.Luvio1.activities.User.PersonalPageActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
         <activity
-            android:name="com.android.Luvio1.activities.Auth.InterestActivity"
+            android:name=".activities.User.ProfilePageActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.android.Luvio1.activities.Setting.SettingActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.User.PersonalPageActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
-        <activity android:name="com.android.Luvio1.activities.Setting.ChangePasswordActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.Auth.InterestActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.android.Luvio1.activities.User.SetInfoActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.Setting.SettingActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.Setting.ChangePasswordActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.User.SetInfoActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_24sdp"
+    android:paddingVertical="@dimen/_20sdp"
+    android:background="?backgroundColor1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/my_profile_btn"
+            style="@style/profileButton"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_21sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Tin nhắn"
+            android:textColor="?textColor"
+            android:textSize="@dimen/_25sdp"/>
+    </LinearLayout>
+
+
+
+    <io.getstream.chat.android.ui.channel.list.ChannelListView
+        android:id="@+id/channelListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:streamUiBackgroundLayoutColor="?backgroundColor1"
+        app:streamUiForegroundLayoutColor="?backgroundColor1"
+        app:streamUiLastMessageDateTextFont="@font/montserrat_medium"
+        app:streamUiLastMessageDateTextSize="@dimen/_9ssp"
+        app:streamUiLastMessageTextColor="?textColor"
+        app:streamUiLastMessageTextFont="@font/montserrat_medium"
+        app:streamUiLastMessageTextSize="@dimen/_10ssp"
+        app:streamUiChannelTitleTextColor="?textColor"
+        app:streamUiLastMessageDateTextColor="?DateColor"
+        app:streamUiChannelListBackgroundColor="?backgroundColor1"/>
+
+
+</LinearLayout>

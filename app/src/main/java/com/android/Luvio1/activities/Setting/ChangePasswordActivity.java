@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ChangePasswordActivity extends AppCompatActivity {
+public class ChangePasswordActivity extends ThemeChangeActivity {
     private ActivityChangePasswordBinding binding;
     String documentID;
     PreferenceManager preferenceManager;

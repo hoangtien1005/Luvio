@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.User.PersonalPageActivity">
+    tools:context=".activities.User.PersonalPageActivity"
+    android:background="?backgroundColor1">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:fontFamily = "#9Slide03 Montserrat Medium"
-        >
+        android:background="?backgroundColor1">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,11 +47,8 @@
                     android:id="@+id/back_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginHorizontal="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_20sdp"
-
-
                     android:background="@null"
                     android:src="@drawable/ic_back_btn" />
             </RelativeLayout>
@@ -58,10 +56,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/personal_info"
+
+
+                android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_24sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:background="@drawable/rounded_edittext"
-                android:orientation="vertical">
+                android:paddingTop="@dimen/_10sdp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -73,25 +74,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:text="Malena Leilani, "
                         android:fontFamily="@font/montserrat_bold"
+                        android:text="Malena Leilani, "
+                        android:textColor="?textColor"
                         android:textSize="@dimen/_21ssp" />
+
                     <EditText
                         android:id="@+id/txt_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_bold"
                         android:background="@null"
+                        android:fontFamily="@font/montserrat_bold"
                         android:text="23"
+                        android:textColor="?textColor"
                         android:textSize="@dimen/_21ssp" />
+
                     <ImageView
                         android:id="@+id/img_active_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="12dp"
-                        android:src="@drawable/ic_active_status"
-                        />
+                        android:src="@drawable/ic_active_status" />
 
                     <View
                         android:layout_width="0dp"
@@ -105,25 +109,27 @@
                     android:id="@+id/txt_about_me"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
                     android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:textSize="@dimen/_14ssp"
-                    android:text="" />
+                    android:background="@null"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="About me"
+                    android:textColor="?textColor"
+                    android:textSize="@dimen/_14ssp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Sở thích"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="@color/black"
+                        android:text="Sở thích"
                         android:textAllCaps="true"
+                        android:textColor="?textColor"
                         android:textSize="@dimen/_16ssp"
                         android:textStyle="bold" />
 
@@ -134,39 +140,41 @@
                         app:chipSpacingHorizontal="@dimen/_8sdp"
 
                         >
+
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_1"
                             style="@style/ChipStyle1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_16sdp"
-                            android:textAlignment="center"
                             android:background="@drawable/background_input"
-
-                            app:chipCornerRadius="@dimen/_10sdp"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Bóng đá"/>
+                            android:text="Bóng đá"
+
+                            android:textAlignment="center"
+                            android:textSize="@dimen/_16sdp"
+                            app:chipCornerRadius="@dimen/_10sdp" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_2"
                             style="@style/ChipStyle1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_16sdp"
-                            android:textAlignment="center"
-                            app:chipCornerRadius="@dimen/_10sdp"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Mua sắm"/>
+                            android:text="Mua sắm"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/_16sdp"
+                            app:chipCornerRadius="@dimen/_10sdp" />
+
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_3"
                             style="@style/ChipStyle1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_16sdp"
-                            android:textAlignment="center"
-                            app:chipCornerRadius="@dimen/_10sdp"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Yoga"/>
+                            android:text="Yoga"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/_16sdp"
+                            app:chipCornerRadius="@dimen/_10sdp" />
                     </com.google.android.material.chip.ChipGroup>
 
 
@@ -177,26 +185,27 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Giới Tính"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="@color/black"
+                        android:text="Giới Tính"
                         android:textAllCaps="true"
-                        android:textSize="@dimen/_16ssp"
-                        />
+                        android:textColor="?textColor"
+                        android:textSize="@dimen/_16ssp" />
 
                     <TextView
                         android:id="@+id/txt_my_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_medium"
-                        android:text="Name"
-                        android:textColor="@color/black"
+                        android:text="gender"
+                        android:textColor="?textColor"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -207,18 +216,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Ngày Sinh"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="@color/black"
+                        android:text="Ngày Sinh"
                         android:textAllCaps="true"
-                        android:textSize="@dimen/_16ssp"/>
+                        android:textColor="?textColor"
+                        android:textSize="@dimen/_16ssp" />
+
                     <TextView
                         android:id="@+id/txt_my_birthday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_medium"
                         android:text="22/10/2012"
-                        android:textColor="@color/black"
+                        android:textColor="?textColor"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
                 <!-- Thành phố -->
@@ -232,19 +242,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Thành Phố"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="@color/black"
+                        android:text="Thành Phố"
                         android:textAllCaps="true"
-                        android:textSize="@dimen/_16ssp"/>
+                        android:textColor="?textColor"
+                        android:textSize="@dimen/_16ssp" />
 
                     <TextView
                         android:id="@+id/txt_my_city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="None"
-                        android:textColor="@color/black"
                         android:fontFamily="@font/montserrat_medium"
+                        android:text="None"
+                        android:textColor="?textColor"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
 
@@ -257,42 +267,42 @@
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
-<!--                    <TextView-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="10dp"-->
-<!--                        android:text="Hình ảnh"-->
-<!--                        android:fontFamily="@font/montserrat_bold"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textAllCaps="true"-->
-<!--                        android:textSize="@dimen/_16ssp" />-->
+                    <!--                    <TextView-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginTop="10dp"-->
+                    <!--                        android:text="Hình ảnh"-->
+                    <!--                        android:fontFamily="@font/montserrat_bold"-->
+                    <!--                        android:textColor="@color/black"-->
+                    <!--                        android:textAllCaps="true"-->
+                    <!--                        android:textSize="@dimen/_16ssp" />-->
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="horizontal">-->
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:orientation="horizontal">-->
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/fragment_my_galary1"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="80dp"-->
-<!--                            android:layout_margin="3dp"-->
-<!--                            android:layout_weight=".33" />-->
+                    <!--                        <ImageView-->
+                    <!--                            android:id="@+id/fragment_my_galary1"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="80dp"-->
+                    <!--                            android:layout_margin="3dp"-->
+                    <!--                            android:layout_weight=".33" />-->
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/fragment_my_galary2"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="80dp"-->
-<!--                            android:layout_margin="3dp"-->
-<!--                            android:layout_weight=".33" />-->
+                    <!--                        <ImageView-->
+                    <!--                            android:id="@+id/fragment_my_galary2"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="80dp"-->
+                    <!--                            android:layout_margin="3dp"-->
+                    <!--                            android:layout_weight=".33" />-->
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/fragment_my_galary3"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="80dp"-->
-<!--                            android:layout_margin="3dp"-->
-<!--                            android:layout_weight=".33" />-->
-<!--                    </LinearLayout>-->
+                    <!--                        <ImageView-->
+                    <!--                            android:id="@+id/fragment_my_galary3"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="80dp"-->
+                    <!--                            android:layout_margin="3dp"-->
+                    <!--                            android:layout_weight=".33" />-->
+                    <!--                    </LinearLayout>-->
 
                 </LinearLayout>
             </LinearLayout>

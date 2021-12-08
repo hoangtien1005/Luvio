@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.Luvio1.R;
+import com.android.Luvio1.activities.Setting.ThemeChangeFragment;
 import com.android.Luvio1.activities.User.ProfilePageActivity;
 import com.android.Luvio1.firebase.DBUserManager;
-import com.android.Luvio1.interfaces.PageCallback;
-import com.android.Luvio1.models.User;
+import com.android.Luvio1.interfaces.PageCallBack;
+import com.android.Luvio1.models.UserModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
@@ -31,30 +31,28 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class HomePageFragment extends Fragment implements PageCallback {
+public class HomePageFragment extends ThemeChangeFragment implements PageCallBack {
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     UserAdapter userAdapter;
-    ImageButton filterBtn, profileBtn;
+    ImageButton filterBtn,profileBtn;
     TextInputEditText searchBar;
     DBUserManager DBUserManager;
-    Context context = null;
-    boolean isLoading = false;
-    String key = null;
+    Context context=null;
+    boolean isLoading=false;
+    String key=null;
     MainActivity main;
-
-    private PageCallback callback;
-
-    //    int lastVisible;
+    PageCallBack callBack;
+//    int lastVisible;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        callBack = this;
         super.onCreate(savedInstanceState);
-        callback = this;
-        try {
+        try{
             main = (MainActivity) getActivity();
-            context = getActivity();
+            context=getActivity();
 
-        } catch (IllegalStateException e) {
+        }catch (IllegalStateException e){
             throw new IllegalStateException("Error");
         }
     }
@@ -62,21 +60,20 @@ public class HomePageFragment extends Fragment implements PageCallback {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_home_page, container, false);
+        View view=inflater.inflate(R.layout.activity_home_page,container,false);
 
-
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+        swipeRefreshLayout= (SwipeRefreshLayout) view.findViewById(R.id.swipe);
+        recyclerView= (RecyclerView) view.findViewById(R.id.rv);
         recyclerView.setHasFixedSize(true);
-        filterBtn = (ImageButton) view.findViewById(R.id.filter_btn);
-        profileBtn = (ImageButton) view.findViewById(R.id.my_profile_btn);
-        searchBar = (TextInputEditText) view.findViewById(R.id.search_bar);
+        filterBtn=(ImageButton) view.findViewById(R.id.filter_btn);
+        profileBtn=(ImageButton) view.findViewById(R.id.my_profile_btn);
+        searchBar=(TextInputEditText)view.findViewById(R.id.search_bar);
 
         userAdapter = new UserAdapter(context);
         recyclerView.setAdapter(userAdapter);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
+        RecyclerView.LayoutManager manager=new LinearLayoutManager(context);
         recyclerView.setLayoutManager(manager);
-        DBUserManager = new DBUserManager();
+        DBUserManager =new DBUserManager();
         loadData();
         setListener();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -84,14 +81,13 @@ public class HomePageFragment extends Fragment implements PageCallback {
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                LinearLayoutManager linearLayoutManager=(LinearLayoutManager) recyclerView.getLayoutManager();
                 int totalItem = linearLayoutManager.getItemCount();
-                int lastVisible = linearLayoutManager.findLastVisibleItemPosition();
+                int lastVisible= linearLayoutManager.findLastVisibleItemPosition();
 
-                if (totalItem < lastVisible + 2) {
-                    if (!isLoading) {
-                        Log.i("last", String.valueOf(lastVisible));
-                        isLoading = true;
+                if(totalItem<lastVisible+3){
+                    if(!isLoading){
+                        isLoading=true;
                         loadData();
                     }
                 }
@@ -101,16 +97,16 @@ public class HomePageFragment extends Fragment implements PageCallback {
 
     }
 
-    protected void setListener() {
+    protected void setListener()
+    {
         filterBtn.setOnClickListener(view ->
         {
 
-            SearchDialog(R.layout.search_filter, callback);
+            SearchDialog(R.layout.search_filter, callBack);
 
         });
-
         profileBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(context, ProfilePageActivity.class);
+            Intent intent=new Intent(context, ProfilePageActivity.class);
             startActivity(intent);
         });
 
@@ -130,29 +126,29 @@ public class HomePageFragment extends Fragment implements PageCallback {
         });
 
     }
-
-    private void SearchDialog(int layoutStyle, PageCallback callback) {
-        BottomSheetDialogFragment bottomSheetDialogFragment = new SearchFilterActivity(layoutStyle, callback);
+    private void SearchDialog (int layoutStyle, PageCallBack callBack){
+        BottomSheetDialogFragment bottomSheetDialogFragment = new SearchFilterActivity(layoutStyle, callBack);
         bottomSheetDialogFragment.setShowsDialog(true);
-        bottomSheetDialogFragment.show(main.getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+        bottomSheetDialogFragment.show(main.getSupportFragmentManager(),bottomSheetDialogFragment.getTag());
     }
 
     private void loadData() {
 
 
+
         DBUserManager.get(key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<User> users = new ArrayList<>();
+                ArrayList<UserModel> userModels = new ArrayList<>();
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    User user = data.getValue(User.class);
-                    users.add(user);
+                    UserModel userModel = data.getValue(UserModel.class);
+                    userModels.add(userModel);
                     key = data.getKey();
 
                 }
-                userAdapter.setItems(users);
+                userAdapter.setItems(userModels);
                 userAdapter.notifyDataSetChanged();
-                isLoading = false;
+                isLoading=false;
                 swipeRefreshLayout.setRefreshing(false);
 
             }

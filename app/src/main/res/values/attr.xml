@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="dark_theme">
+        <attr name="backgroundColor1" format="color"/>
+        <attr name="backgroundColor2" format="color"/>
+        <attr name="textColor" format="color"/>
+        <attr name="BottomNavi" format="color"/>
+        <attr name="BottomNaviStroke" format="color"/>
+        <attr name="Box" format="color"/>
+        <attr name="BoxStroke" format="color"/>
+        <attr name="hintColor" format="color"/>
+        <attr name="BriefInfoStroke" format="color"/>
+        <attr name="DateColor" format="color"/>
+        <attr name="BtnColor" format="color"/>
+        <attr name="DateSeparator" format="color"/>
+        <attr name="ChatBackground" format="color"/>
+
+
+
+
+
+    </declare-styleable>
+</resources>

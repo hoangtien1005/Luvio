@@ -18,10 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.Luvio1.R;
+import com.android.Luvio1.activities.Setting.ThemeChangeFragment;
 import com.android.Luvio1.activities.User.ProfilePageActivity;
 import com.android.Luvio1.interfaces.CompleteQueryListener;
-import com.android.Luvio1.interfaces.PageCallback;
-import com.android.Luvio1.models.User;
+import com.android.Luvio1.interfaces.PageCallBack;
+import com.android.Luvio1.models.UserModel;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,11 +35,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class LikedUserFragment extends Fragment implements PageCallback{
+public class LikedUserFragment extends ThemeChangeFragment implements PageCallBack{
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     UserAdapter userAdapter;
-    ArrayList<User> like_users;
+    ArrayList<UserModel> like_userModels;
     ImageButton filterBtn,profileBtn;
     TextInputEditText searchBar;
     PreferenceManager preferenceManager;
@@ -48,14 +49,13 @@ public class LikedUserFragment extends Fragment implements PageCallback{
     boolean isLoading=false;
 
     MainActivity main;
-
-    private PageCallback callback;
+    PageCallBack callBack;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        callBack = this;
         super.onCreate(savedInstanceState);
-        callback = this;
         try{
             main = (MainActivity) getActivity();
             context=getActivity();
@@ -74,7 +74,7 @@ public class LikedUserFragment extends Fragment implements PageCallback{
         filterBtn=(ImageButton) view.findViewById(R.id.filter_btn);
         profileBtn=(ImageButton) view.findViewById(R.id.my_profile_btn);
         searchBar=(TextInputEditText)view.findViewById(R.id.search_bar);
-        like_users=new ArrayList<>();
+        like_userModels =new ArrayList<>();
         db= FirebaseFirestore.getInstance();
         userAdapter = new UserAdapter(context);
         recyclerView.setAdapter(userAdapter);
@@ -93,7 +93,7 @@ public class LikedUserFragment extends Fragment implements PageCallback{
         filterBtn.setOnClickListener(view ->
         {
 //            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            SearchDialog(R.layout.search_filter, callback);
+            SearchDialog(R.layout.search_filter, callBack);
         });
         profileBtn.setOnClickListener(view -> {
             Intent intent=new Intent(context, ProfilePageActivity.class);
@@ -102,7 +102,8 @@ public class LikedUserFragment extends Fragment implements PageCallback{
 
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -110,12 +111,13 @@ public class LikedUserFragment extends Fragment implements PageCallback{
             }
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {
+            }
         });
     }
 
-    private void SearchDialog (int layoutStyle, PageCallback callback){
-        BottomSheetDialogFragment bottomSheetDialogFragment = new SearchFilterActivity(layoutStyle, callback);
+    private void SearchDialog (int layoutStyle, PageCallBack callBack){
+        BottomSheetDialogFragment bottomSheetDialogFragment = new SearchFilterActivity(layoutStyle, callBack);
         bottomSheetDialogFragment.setShowsDialog(true);
         bottomSheetDialogFragment.show(main.getSupportFragmentManager(),bottomSheetDialogFragment.getTag());
     }
@@ -128,7 +130,7 @@ public class LikedUserFragment extends Fragment implements PageCallback{
             return;
         }
         like_users_id=preferenceManager.getString(Constants.KEY_COLLECTION_LIKE).split(",");
-        ArrayList<User> like_users = new ArrayList<>();
+        ArrayList<UserModel> like_userModels = new ArrayList<>();
         readData(db.collection(Constants.KEY_COLLECTION_USER)
                 .get(), new CompleteQueryListener() {
             @Override
@@ -136,7 +138,7 @@ public class LikedUserFragment extends Fragment implements PageCallback{
                 for (DocumentSnapshot documentSnapshot: task.getResult().getDocuments()){
                     for (int i=0;i<like_users_id.length;i++){
                         if (documentSnapshot.getId().equals(like_users_id[i])){
-                            User user = new User((String) documentSnapshot.get(Constants.KEY_AVATAR),
+                            UserModel userModel = new UserModel((String) documentSnapshot.get(Constants.KEY_AVATAR),
                                     (String)documentSnapshot.get(Constants.KEY_GENDER),
                                     (String)documentSnapshot.get(Constants.KEY_FIRST_NAME),
                                     (String)documentSnapshot.get(Constants.KEY_LAST_NAME),
@@ -144,7 +146,7 @@ public class LikedUserFragment extends Fragment implements PageCallback{
                                     (String)documentSnapshot.getId(),
                                     (String)documentSnapshot.get(Constants.KEY_STAR),
                                     (String)documentSnapshot.get(Constants.KEY_ABOUT_ME));
-                            like_users.add(user);
+                            like_userModels.add(userModel);
                         }
                     }
 
@@ -152,7 +154,7 @@ public class LikedUserFragment extends Fragment implements PageCallback{
 
 
                 }
-                userAdapter.setItems(like_users);
+                userAdapter.setItems(like_userModels);
                 userAdapter.notifyDataSetChanged();
                 isLoading=false;
                 swipeRefreshLayout.setRefreshing(false);
