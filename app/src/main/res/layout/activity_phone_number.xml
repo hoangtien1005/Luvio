@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_14sdp"
-        android:text="Vui lòng nhập số điện thoại của bạn. Chúng tôi sẽ gửi bạn mã xác thực 4 số để xác minh."
+        android:text="Vui lòng nhập số điện thoại của bạn. Chúng tôi sẽ gửi bạn mã xác thực 6 số để xác minh."
         android:fontFamily="@font/montserrat_light"
         android:textColor="@color/black"/>
     <LinearLayout

@@ -73,28 +73,19 @@ public class ChannelActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         Context context = getApplicationContext();
-
         ActivityChannelBinding binding = ActivityChannelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         String cid = getIntent().getStringExtra(CID_KEY);
         if (cid == null) {
             throw new IllegalStateException("Specifying a channel id is required when starting ChannelActivity");
         }
-
         currentUserId = getIntent().getStringExtra("currentUserId");
         otherUserId = getIntent().getStringExtra("otherUserId");
-
-
-
         db = FirebaseFirestore.getInstance();
         client = ChatClient.instance();
         preferenceManager = new PreferenceManager(getApplicationContext());
-
         if(preferenceManager.getString(Constants.KEY_BLOCK)!=null){
             String[] blockIds = preferenceManager.getString(Constants.KEY_BLOCK).split(",");
             for(int i = 0; i < blockIds.length; i++) {
@@ -106,95 +97,53 @@ public class ChannelActivity extends AppCompatActivity {
                 }
             }
         }
-
-
         MessageListViewModelFactory factory = new MessageListViewModelFactory(cid);
         ViewModelProvider provider = new ViewModelProvider(this, factory);
         MessageListHeaderViewModel messageListHeaderViewModel = provider.get(MessageListHeaderViewModel.class);
         MessageListViewModel messageListViewModel = provider.get(MessageListViewModel.class);
         MessageInputViewModel messageInputViewModel = provider.get(MessageInputViewModel.class);
-
-
         MessageListHeaderViewModelBinding.bind(messageListHeaderViewModel, binding.messageListHeaderView, this);
         MessageListViewModelBinding.bind(messageListViewModel, binding.messageListView, this);
         MessageInputViewModelBinding.bind(messageInputViewModel, binding.messageInputView, this);
-
         messageListViewModel.getMode().observe(this, mode -> {
             if (mode instanceof Thread) {
                 Message parentMessage = ((Thread) mode).getParentMessage();
                 messageListHeaderViewModel.setActiveThread(parentMessage);
                 messageInputViewModel.setActiveThread(parentMessage);
             }
-//            else if (mode instanceof MessageInputView.InputMode.Normal) {
-//                messageListHeaderViewModel.resetThread();
-//                messageInputViewModel.resetThread();
-//            }
         });
-
         binding.messageListView.setMessageEditHandler(messageInputViewModel::postMessageToEdit);
-
         messageListViewModel.getState().observe(this, state -> {
-            if (state instanceof NavigateUp) {
-                finish();
-            }
+            if (state instanceof NavigateUp) { finish(); }
         });
-
-        MessageListHeaderView.OnClickListener backHandler = () -> {
-            messageListViewModel.onEvent(MessageListViewModel.Event.BackButtonPressed.INSTANCE);
-        };
-
-
+        MessageListHeaderView.OnClickListener backHandler = () -> { messageListViewModel.onEvent(MessageListViewModel.Event.BackButtonPressed.INSTANCE); };
         binding.messageListHeaderView.setAvatarClickListener(() -> {
             PopupMenu menu = new PopupMenu(context, binding.messageListHeaderView);
-            menu.getMenuInflater().inflate(R.menu.chat_top_menu, menu.getMenu());
-            menu.setGravity(Gravity.END);
-            menu.show();
-
+            menu.getMenuInflater().inflate(R.menu.chat_top_menu, menu.getMenu());menu.setGravity(Gravity.END);menu.show();
             menu.setOnMenuItemClickListener(menuItem -> {
                 if(menuItem.getItemId() == R.id.profile) {
-                    Intent intent = new Intent(this, PersonalPageActivity.class);
-                    intent.putExtra("INFO", otherUserId);
-                    startActivity(intent);
-
+                    Intent intent = new Intent(this, PersonalPageActivity.class);intent.putExtra("INFO", otherUserId);startActivity(intent);
                 }
                 else if(menuItem.getItemId() == R.id.block) {
-
-                    HashMap<String, Object> blockUser = new HashMap<>();
-                    blockUser.put(Constants.KEY_ID_1, currentUserId);
-                    blockUser.put(Constants.KEY_ID_2, otherUserId);
-
-
-                    db.collection(Constants.KEY_COLLECTION_BLOCK)
-                            .add(blockUser)
+                    HashMap<String, Object> blockUser = new HashMap<>();blockUser.put(Constants.KEY_ID_1, currentUserId);blockUser.put(Constants.KEY_ID_2, otherUserId);
+                    db.collection(Constants.KEY_COLLECTION_BLOCK).add(blockUser)
                             .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                     if(task.isSuccessful()) {
-
                                         if(preferenceManager.getString(Constants.KEY_BLOCK) == null) {
-                                            StringBuilder stringBuilder = new StringBuilder();
-                                            stringBuilder.append(otherUserId).append(",");
+                                            StringBuilder stringBuilder = new StringBuilder();stringBuilder.append(otherUserId).append(",");
                                             preferenceManager.putString(Constants.KEY_BLOCK, stringBuilder.toString());
                                         } else {
-                                            StringBuilder stringBuilder = new StringBuilder(preferenceManager.getString(Constants.KEY_BLOCK));
-                                            stringBuilder.append(otherUserId).append(",");
+                                            StringBuilder stringBuilder = new StringBuilder(preferenceManager.getString(Constants.KEY_BLOCK));stringBuilder.append(otherUserId).append(",");
                                             preferenceManager.putString(Constants.KEY_BLOCK, stringBuilder.toString());
                                         }
-
-                                        FragmentManager fm = getSupportFragmentManager();
-                                        CustomDialog dialog =  new CustomDialog(context, "block", currentUserId, otherUserId);
-                                        dialog.setCancelable(false);
-                                        dialog.show(fm, "");
-                                    }
-                                }
-                            });
-                }
+                                        FragmentManager fm = getSupportFragmentManager();CustomDialog dialog =  new CustomDialog(context, "block", currentUserId, otherUserId);
+                                        dialog.setCancelable(false);dialog.show(fm, ""); } }}); }
                 return true;
             });
         });
-
-        binding.messageListHeaderView.setBackButtonClickListener(backHandler);
-        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+        binding.messageListHeaderView.setBackButtonClickListener(backHandler);getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 backHandler.onClick();

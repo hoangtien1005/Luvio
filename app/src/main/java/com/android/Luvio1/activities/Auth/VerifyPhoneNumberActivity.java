@@ -1,14 +1,14 @@
 package com.android.Luvio1.activities.Auth;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.databinding.ActivityVerifyPhoneNumberBinding;
 import com.android.Luvio1.utilities.Constants;
@@ -33,69 +33,43 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
         binding=ActivityVerifyPhoneNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         verificationId=getIntent().getExtras().getString("verificationId");
-
         setListener();
         setupOTPInput();
     }
 
     private void setListener(){
-        binding.btnBack.setOnClickListener(view -> {
-            onBackPressed();
-        });
+        binding.btnBack.setOnClickListener(view -> { onBackPressed(); });
         binding.verifyButton.setOnClickListener(view -> {
             loading(true);
-            if (!isValid()){
-                loading(false);
-                return;
-            }
+            if (!isValid()){ loading(false);return; }
             else{
-
                 Intent intent=getIntent();
                 Bundle bundleData=intent.getExtras();
-                String code=binding.inputCode1.getText().toString()+
-                        binding.inputCode2.getText().toString()+
-                        binding.inputCode3.getText().toString()+
-                        binding.inputCode4.getText().toString()+
-                        binding.inputCode5.getText().toString()+
-                        binding.inputCode6.getText().toString();
+                String code=binding.inputCode1.getText().toString()+ binding.inputCode2.getText().toString()+ binding.inputCode3.getText().toString()+
+                        binding.inputCode4.getText().toString()+ binding.inputCode5.getText().toString()+ binding.inputCode6.getText().toString();
                 if (verificationId!=null){
                     loading(false);
-                    PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(
-                            verificationId,
-                            code
-                    );
+                    PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(verificationId, code);
                     FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-
                                     if(task.isSuccessful()){
                                         Intent intent1=new Intent(getApplicationContext(),PersonalInformationActivity1.class);
-                                        intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        bundleData.remove("verificationId");
-                                        intent1.putExtras(bundleData);
-                                        startActivity(intent1);
+                                        intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);bundleData.remove("verificationId");
+                                        intent1.putExtras(bundleData);startActivity(intent1);
                                     }
-                                    else{
-                                        loading(false);
-                                        showToast("Mã xác thực không hợp lệ");
-                                    }
+                                    else{ loading(false);showToast("Mã xác thực không hợp lệ"); }
                                 }
                             });
-
                 }
             }
         });
-        binding.resendVerficationCode.setOnClickListener(view -> {
-            Bundle bundleData=getIntent().getExtras();
-            PhoneAuthOptions options=
-                    PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
+        binding.resendVerficationCode.setOnClickListener(view -> { Bundle bundleData=getIntent().getExtras();
+            PhoneAuthOptions options= PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
                             .setPhoneNumber(bundleData.getString(Constants.KEY_COUNTRY_CODE)+bundleData.getString(Constants.KEY_PHONE_NUMBER))
-                            .setTimeout(60L, TimeUnit.SECONDS)
-                            .setActivity(this)
-                            .setCallbacks(mCallBack)
-                            .setForceResendingToken(mForceResendingToken)
-                            .build();
+                            .setTimeout(60L, TimeUnit.SECONDS).setActivity(this).setCallbacks(mCallBack)
+                            .setForceResendingToken(mForceResendingToken).build();
             PhoneAuthProvider.verifyPhoneNumber(options);
         });
     }
@@ -107,17 +81,10 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
             mForceResendingToken=forceResendingToken;
             showToast("Đã gửi lại mã xác thực");
         }
-
         @Override
-        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-
-        }
-
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {}
         @Override
-        public void onVerificationFailed(@NonNull FirebaseException e) {
-
-            showToast(e.getMessage());
-        }
+        public void onVerificationFailed(@NonNull FirebaseException e) { showToast(e.getMessage()); }
     };
 
     private void showToast(String message){

@@ -42,9 +42,7 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityPersonalInformation1Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setListener();
-
     }
     private String encodeImage(Bitmap bitmap){
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
@@ -52,13 +50,11 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
         byte[] bytes=byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(bytes,Base64.DEFAULT);
     }
-
     private final ActivityResultLauncher<Intent> pickImage=registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if(result.getResultCode()==RESULT_OK){
                     if(result.getData()!=null){
-
                         Uri imageUri=result.getData().getData();
                         try{
                             InputStream inputStream=getContentResolver().openInputStream(imageUri);
@@ -66,9 +62,7 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
                             Bitmap previewImage=cropImage(imageProfile);
                             encodeImage=encodeImage(imageProfile);
                             binding.imageProfile.setImageBitmap(previewImage);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
+                        } catch (FileNotFoundException e) { e.printStackTrace(); }
                     }
                 }
             }
@@ -84,84 +78,42 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
         binding.edtFirstName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                int wordsLength = countWords(s.toString());// words.length;
-                // count == 0 means a new word is going to start
-                if (count == 0 && wordsLength >= 2) {
-                    setCharLimit(binding.edtFirstName, binding.edtFirstName.getText().length());
-                    showToast("Không được nhập quá 2 từ");
-                } else {
-                    removeFilter(binding.edtFirstName);
-                }
+                int wordsLength = countWords(s.toString());
+                if (count == 0 && wordsLength >= 2) { setCharLimit(binding.edtFirstName, binding.edtFirstName.getText().length());showToast("Không được nhập quá 2 từ"); }
+                else { removeFilter(binding.edtFirstName); }
             }
-
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
+            public void afterTextChanged(Editable s) { }
         });
         binding.edtLastName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                int wordsLength = countWords(s.toString());// words.length;
-                // count == 0 means a new word is going to start
-                if (count == 0 && wordsLength >= 1) {
-                    setCharLimit(binding.edtLastName, binding.edtLastName.getText().length());
-                    showToast("Không được nhập quá 1 từ");
-                } else {
-                    removeFilter(binding.edtLastName);
-                }
+                int wordsLength = countWords(s.toString());
+                if (count == 0 && wordsLength >= 1) { setCharLimit(binding.edtLastName, binding.edtLastName.getText().length());showToast("Không được nhập quá 1 từ"); }
+                else { removeFilter(binding.edtLastName); }
             }
-
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
             @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        MaterialDatePicker datePicker = MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Chọn ngày sinh")
-                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                .setTheme(R.style.DatePickerStyle)
-                .build();
-        Calendar calendar=Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        calendar.setTimeInMillis(MaterialDatePicker.todayInUtcMilliseconds());
-        SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
-        String today=format1.format(calendar.getTime());
-        binding.edtBirthday.setText(today);
+            public void afterTextChanged(Editable s) {}});
+        MaterialDatePicker datePicker = MaterialDatePicker.Builder.datePicker().setTitleText("Chọn ngày sinh")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds()).setTheme(R.style.DatePickerStyle).build();
+        Calendar calendar=Calendar.getInstance(TimeZone.getTimeZone("UTC"));calendar.setTimeInMillis(MaterialDatePicker.todayInUtcMilliseconds());
+        SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");String today=format1.format(calendar.getTime());binding.edtBirthday.setText(today);
         binding.layoutBirthday.setEndIconOnClickListener(view -> {
             datePicker.show(getSupportFragmentManager(),"Material_Date_Picker");
             datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
                 @Override
-                public void onPositiveButtonClick(Long selection) {
-                    calendar.setTimeInMillis(selection);
-                    String birthday=format1.format(calendar.getTime());
-                    binding.edtBirthday.setText(birthday);
-                }
-            });
+                public void onPositiveButtonClick(Long selection) { calendar.setTimeInMillis(selection);String birthday=format1.format(calendar.getTime());binding.edtBirthday.setText(birthday); }});
         });
-
         binding.nextButton.setOnClickListener(view->{
             if(isValidData()){
-                Intent intentPrev=getIntent();
-                Bundle bundleData=intentPrev.getExtras();
-                Intent intent=new Intent(getApplicationContext(),PersonalInformationActivity2.class);
-                bundleData.putString(Constants.KEY_AVATAR,encodeImage);
-                bundleData.putString(Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString().trim());
-                bundleData.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());
-                bundleData.putString(Constants.KEY_BIRTHDAY,binding.edtBirthday.getText().toString().trim());
-                intent.putExtras(bundleData);
-                startActivity(intent);
-            }
-
+                Intent intentPrev=getIntent();Bundle bundleData=intentPrev.getExtras();Intent intent=new Intent(getApplicationContext(),PersonalInformationActivity2.class);
+                bundleData.putString(Constants.KEY_AVATAR,encodeImage);bundleData.putString(Constants.KEY_FIRST_NAME,binding.edtFirstName.getText().toString().trim());
+                bundleData.putString(Constants.KEY_LAST_NAME, binding.edtLastName.getText().toString().trim());bundleData.putString(Constants.KEY_BIRTHDAY,binding.edtBirthday.getText().toString().trim());
+                intent.putExtras(bundleData);startActivity(intent); }
         });
     }
 
@@ -171,14 +123,10 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
             return 0;
         return trim.split("\\s+").length; // separate string around spaces
     }
-
-
-
     private void setCharLimit(EditText et, int max) {
         filter = new InputFilter.LengthFilter(max);
         et.setFilters(new InputFilter[] { filter });
     }
-
     private void removeFilter(EditText et) {
         if (filter != null) {
             et.setFilters(new InputFilter[0]);

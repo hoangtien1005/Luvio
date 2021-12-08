@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.Luvio1.databinding.ActivityForgotPassword3Binding;
 import com.android.Luvio1.utilities.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,11 +31,9 @@ public class ForgotPasswordActivity3 extends AppCompatActivity {
             Intent intent=new Intent(getApplicationContext(),ForgotPasswordActivity2.class);
             startActivity(intent);
         });
-
         binding.confirmButton.setOnClickListener(view -> {
             if(isValid()){
                 loading(true);
-
                 FirebaseFirestore db= FirebaseFirestore.getInstance();
                 db.collection(Constants.KEY_COLLECTION_USER)
                         .document(documentID)
@@ -44,18 +41,15 @@ public class ForgotPasswordActivity3 extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                showToast("Mật khẩu đã thay đổi thành công");
-                                Intent intent1 = new Intent(getApplicationContext(), SignInActivity.class);
-                                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent1);
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                loading(false);
-                                showToast(e.getMessage());
+                                if(task.isSuccessful()){
+                                    showToast("Mật khẩu đã thay đổi thành công");
+                                    Intent intent1 = new Intent(getApplicationContext(), SignInActivity.class);
+                                    intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent1);
+                                }
+                                else{
+                                    showToast("Không thể thay đổi mật khâu");
+                                }
                             }
                         });
             }

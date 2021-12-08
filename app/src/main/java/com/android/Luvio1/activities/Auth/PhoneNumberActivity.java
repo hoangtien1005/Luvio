@@ -57,12 +57,8 @@ public class PhoneNumberActivity extends AppCompatActivity  {
                             loading(false);
                             showToast("Số điện thoại đã tồn tại");
                         }
-
                         @Override
-                        public void onStart() {
-
-                        }
-
+                        public void onStart() {}
                         @Override
                         public void onFailure() {
                             if(isValidPhoneNumber()){

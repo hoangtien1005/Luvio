@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,7 +65,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         UserViewHolder vh=(UserViewHolder) holder;
         preferenceManager=new PreferenceManager(context);
 
-        UserModel userModel = e==null?list.get(holder.getAbsoluteAdapterPosition()):e;
+        UserModel userModel = e==null?list.get(position):e;
         db=FirebaseFirestore.getInstance();
         vh.txt_name.setText(userModel.getLastName());
         vh.txt_bio.setText(userModel.getGender());
@@ -78,7 +78,6 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             intent.putExtra("INFO", userModel.getFsId());
             context.startActivity(intent);
         });
-        Log.i("LIKE_IDS",preferenceManager.getString(Constants.KEY_COLLECTION_LIKE));
         if(isAlreadyLike(userModel.getFsId())){
             vh.like_check.setVisibility(View.VISIBLE);
         }
@@ -111,6 +110,8 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 sb.append(userModel.getFsId()).append(",");
                 preferenceManager.putString(Constants.KEY_CHAT_IDS,sb.toString());
             }
+            BottomNavigationView navBar= (BottomNavigationView)((MainActivity) context).findViewById(R.id.bottom_navigation);
+            navBar.setSelectedItemId(R.id.message);
             ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ChatFragment()).commit();
         });
 

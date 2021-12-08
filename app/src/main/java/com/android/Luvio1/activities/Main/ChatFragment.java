@@ -73,15 +73,11 @@ public class ChatFragment extends Fragment {
         View view = binding.getRoot();
         preferenceManager= new PreferenceManager(context);
         ChatClient client = ChatClient.instance();
-
-
         String channelType = "messaging";
-
         binding.myProfileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(context, ProfilePageActivity.class);
             startActivity(intent);
         });
-
         if (preferenceManager.getString(Constants.KEY_CHAT_IDS)==null){
             return view;
         }
@@ -90,8 +86,6 @@ public class ChatFragment extends Fragment {
             List<String> member = Arrays.asList(preferenceManager.getString(Constants.KEY_USER_ID),chat_ids[i]);
             client.createChannel(channelType, member).enqueue();
         }
-
-//        filter channels where members include this user
         FilterObject filter = Filters.and(
                 Filters.eq("type", "messaging"),
                 Filters.in("members", singletonList(preferenceManager.getString(Constants.KEY_USER_ID)))
@@ -105,32 +99,22 @@ public class ChatFragment extends Fragment {
         ChannelListViewModel channelsViewModel =
                 new ViewModelProvider(this, factory).get(ChannelListViewModel.class);
 
-
         ChannelListViewModelBinding.bind(channelsViewModel, binding.channelListView, this);
         binding.channelListView.setChannelItemClickListener(
                 channel -> {
-//                    Get currentUserId and otherUserId
                     List<Member> members =  channel.getMembers();
                     List<String> membersId = new ArrayList<String>();
-
-                    for(int i = 0 ; i < 2; i ++)
-                    {
+                    for(int i = 0 ; i < 2; i ++) {
                         membersId.add(members.get(i).getUser().getId());
                     }
                     currentUserId = client.getCurrentUser().getId();
-
-                    for(int i = 0 ; i < 2; i ++)
-                    {
+                    for(int i = 0 ; i < 2; i ++) {
                         if(!membersId.get(i).equals(currentUserId)) {
                             otherUserId = membersId.get(i);
                         }
                     }
-
-                    db.collection(Constants.KEY_COLLECTION_BLOCK)
-                            .whereEqualTo(Constants.KEY_ID_1, otherUserId)
-                            .whereEqualTo(Constants.KEY_ID_2, currentUserId)
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    db.collection(Constants.KEY_COLLECTION_BLOCK).whereEqualTo(Constants.KEY_ID_1, otherUserId)
+                            .whereEqualTo(Constants.KEY_ID_2, currentUserId).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0) {

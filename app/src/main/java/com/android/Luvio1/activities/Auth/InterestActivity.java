@@ -49,7 +49,7 @@ public class InterestActivity extends AppCompatActivity {
     FirebaseFirestore db;
     private PreferenceManager preferenceManager;
     ChatClient client;
-    private DBUserManager DBUserManager = new DBUserManager();
+    private DBUserManager DBUserManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +57,7 @@ public class InterestActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         userInterests=new ArrayList<String>();
         db=FirebaseFirestore.getInstance();
+        DBUserManager = new DBUserManager();
         preferenceManager=new PreferenceManager(getApplicationContext());
         client= new ChatClient.Builder("an38qgjtsfsj", getApplicationContext())
                 .logLevel(ChatLogLevel.ALL)
@@ -68,8 +69,6 @@ public class InterestActivity extends AppCompatActivity {
 
     private void signUp(){
         loading(true);
-
-
         Intent intent=getIntent();
         Bundle bundleData=intent.getExtras();
         String star="5";

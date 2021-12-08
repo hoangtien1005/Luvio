@@ -1,11 +1,11 @@
 package com.android.Luvio1.activities.Auth;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.Luvio1.R;
 import com.android.Luvio1.databinding.ActivityPersonalInformation2Binding;
@@ -22,9 +22,7 @@ public class PersonalInformationActivity2 extends AppCompatActivity {
     }
 
     private void setListener(){
-        binding.btnBack.setOnClickListener(view -> {
-            onBackPressed();
-        });
+        binding.btnBack.setOnClickListener(view -> { onBackPressed(); });
         ArrayAdapter<String> genderAdapter=new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.gender));
@@ -33,8 +31,6 @@ public class PersonalInformationActivity2 extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.interested_gender));
         binding.edtInterestedGender.setAdapter(interestedGenderAdapter);
-
-
         binding.nextButton.setOnClickListener(view -> {
             if(isValidData()){
                 Intent intent1=getIntent();
@@ -42,7 +38,6 @@ public class PersonalInformationActivity2 extends AppCompatActivity {
                 bundleData.putString(Constants.KEY_PASSWORD,binding.edtPassword.getText().toString().trim());
                 bundleData.putString(Constants.KEY_GENDER, binding.edtGender.getText().toString().trim());
                 bundleData.putString(Constants.KEY_INTERESTED_GENDER, binding.edtInterestedGender.getText().toString().trim());
-
                 Intent intent2=new Intent(getApplicationContext(),InterestActivity.class);
                 intent2.putExtras(bundleData);
                 startActivity(intent2);

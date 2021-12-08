@@ -53,14 +53,11 @@ public class HomePageFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.activity_home_page,container,false);
-
-
         swipeRefreshLayout= (SwipeRefreshLayout) view.findViewById(R.id.swipe);
         recyclerView= (RecyclerView) view.findViewById(R.id.rv);
         recyclerView.setHasFixedSize(true);
         filterBtn=(ImageButton) view.findViewById(R.id.filter_btn);
         profileBtn=(ImageButton) view.findViewById(R.id.my_profile_btn);
-
         userAdapter = new UserAdapter(context);
         recyclerView.setAdapter(userAdapter);
         RecyclerView.LayoutManager manager=new LinearLayoutManager(context);
@@ -69,39 +66,24 @@ public class HomePageFragment extends Fragment {
         loadData();
         setListener();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
-
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 LinearLayoutManager linearLayoutManager=(LinearLayoutManager) recyclerView.getLayoutManager();
                 int totalItem = linearLayoutManager.getItemCount();
                 int lastVisible= linearLayoutManager.findLastVisibleItemPosition();
-
                 if(totalItem<lastVisible+3){
                     if(!isLoading){
                         isLoading=true;
-                        loadData();
-                    }
-                }
+                        loadData(); } }
             }
         });
         return view;
-
     }
 
-    protected void setListener()
-    {
-        filterBtn.setOnClickListener(view ->
-        {
-
-            SearchDialog(R.layout.search_filter);
-
-        });
+    protected void setListener() {
+        filterBtn.setOnClickListener(view -> { SearchDialog(R.layout.search_filter); });
         profileBtn.setOnClickListener(view -> {
-            Intent intent=new Intent(context, ProfilePageActivity.class);
-            startActivity(intent);
-        });
-
+            Intent intent=new Intent(context, ProfilePageActivity.class);startActivity(intent); });
     }
     private void SearchDialog (int layoutStyle){
         BottomSheetDialogFragment bottomSheetDialogFragment = new SearchFilterActivity(layoutStyle);
@@ -110,9 +92,6 @@ public class HomePageFragment extends Fragment {
     }
 
     private void loadData() {
-
-
-
         DBUserManager.get(key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -121,15 +100,12 @@ public class HomePageFragment extends Fragment {
                     UserModel userModel = data.getValue(UserModel.class);
                     userModels.add(userModel);
                     key = data.getKey();
-
                 }
                 userAdapter.setItems(userModels);
                 userAdapter.notifyDataSetChanged();
                 isLoading=false;
                 swipeRefreshLayout.setRefreshing(false);
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 swipeRefreshLayout.setRefreshing(false);
