@@ -72,4 +72,6 @@ dependencies {
     //CircleIndicator
     implementation 'me.relex:circleindicator:2.1.6'
 
+    //bcrypts
+    implementation group: 'at.favre.lib',name:'bcrypt',version:'0.9.0'
 }

@@ -24,6 +24,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.getstream.chat.android.client.ChatClient;
 import io.getstream.chat.android.client.logger.ChatLogLevel;
 import io.getstream.chat.android.client.models.User;
@@ -77,45 +78,46 @@ public class SignInActivity extends AppCompatActivity {
         db.collection(Constants.KEY_COLLECTION_USER)
                 .whereEqualTo(Constants.KEY_IS_DELETE,false)
                 .whereEqualTo(Constants.KEY_PHONE_NUMBER,binding.edtPhoneNumber.getText().toString().trim())
-                .whereEqualTo(Constants.KEY_PASSWORD,binding.edtPassword.getText().toString().trim())
                 .get()
                 .addOnCompleteListener(task->{
                     if(task.isSuccessful()&& task.getResult() !=null && task.getResult().getDocuments().size()>0){
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
-                        preferenceManager.clear();
-//                        updatePreference(documentSnapshot.getId());
+                        BCrypt.Result result=BCrypt.verifyer().verify(binding.edtPassword.getText().toString().toCharArray(), documentSnapshot.getString(Constants.KEY_PASSWORD));
+                        if(result.verified){
+                            preferenceManager.clear();
+                            preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
+                            preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
+                            preferenceManager.putString(Constants.KEY_STAR, documentSnapshot.getString(Constants.KEY_STAR));
+                            preferenceManager.putString(Constants.KEY_ABOUT_ME, documentSnapshot.getString(Constants.KEY_ABOUT_ME));
+                            preferenceManager.putString(Constants.KEY_PHONE_NUMBER,documentSnapshot.getString(Constants.KEY_PHONE_NUMBER));
+                            preferenceManager.putString(Constants.KEY_COUNTRY_CODE,documentSnapshot.getString(Constants.KEY_COUNTRY_CODE));
+                            preferenceManager.putString(Constants.KEY_LAST_NAME,documentSnapshot.getString(Constants.KEY_LAST_NAME));
+                            preferenceManager.putString(Constants.KEY_FIRST_NAME,documentSnapshot.getString(Constants.KEY_FIRST_NAME));
+                            preferenceManager.putString(Constants.KEY_AVATAR,documentSnapshot.getString(Constants.KEY_AVATAR));
+                            preferenceManager.putString(Constants.KEY_BIRTHDAY,documentSnapshot.getString(Constants.KEY_BIRTHDAY));
+                            preferenceManager.putString(Constants.KEY_GENDER,documentSnapshot.getString(Constants.KEY_GENDER));
+                            preferenceManager.putString(Constants.KEY_INTERESTED_GENDER, documentSnapshot.getString(Constants.KEY_INTERESTED_GENDER));
 
-                        preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
-                        preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
-                        preferenceManager.putString(Constants.KEY_STAR, documentSnapshot.getString(Constants.KEY_STAR));
-                        preferenceManager.putString(Constants.KEY_ABOUT_ME, documentSnapshot.getString(Constants.KEY_ABOUT_ME));
-                        preferenceManager.putString(Constants.KEY_PHONE_NUMBER,documentSnapshot.getString(Constants.KEY_PHONE_NUMBER));
-                        preferenceManager.putString(Constants.KEY_COUNTRY_CODE,documentSnapshot.getString(Constants.KEY_COUNTRY_CODE));
-                        preferenceManager.putString(Constants.KEY_LAST_NAME,documentSnapshot.getString(Constants.KEY_LAST_NAME));
-                        preferenceManager.putString(Constants.KEY_FIRST_NAME,documentSnapshot.getString(Constants.KEY_FIRST_NAME));
-                        preferenceManager.putString(Constants.KEY_AVATAR,documentSnapshot.getString(Constants.KEY_AVATAR));
-                        preferenceManager.putString(Constants.KEY_BIRTHDAY,documentSnapshot.getString(Constants.KEY_BIRTHDAY));
-                        preferenceManager.putString(Constants.KEY_GENDER,documentSnapshot.getString(Constants.KEY_GENDER));
-                        preferenceManager.putString(Constants.KEY_INTERESTED_GENDER, documentSnapshot.getString(Constants.KEY_INTERESTED_GENDER));
+                            User user1 = new User();
+                            user1.setId(documentSnapshot.getId());
+                            user1.getExtraData().put("name", documentSnapshot.getString(Constants.KEY_FIRST_NAME)+" "+documentSnapshot.getString(Constants.KEY_LAST_NAME));
+                            user1.getExtraData().put("image", bitmapToUri(documentSnapshot.getString(Constants.KEY_AVATAR)));
+                            String token = client.devToken(documentSnapshot.getId());
+                            client.connectUser(user1, token).enqueue();
+                            ArrayList<String> al= (ArrayList<String>) documentSnapshot.get(Constants.KEY_INTERESTS);
+                            String[] interests = new String[al.size()];
 
-                        User user1 = new User();
-                        user1.setId(documentSnapshot.getId());
-                        user1.getExtraData().put("name", documentSnapshot.getString(Constants.KEY_FIRST_NAME)+" "+documentSnapshot.getString(Constants.KEY_LAST_NAME));
-                        user1.getExtraData().put("image", bitmapToUri(documentSnapshot.getString(Constants.KEY_AVATAR)));
-                        String token = client.devToken(documentSnapshot.getId());
-                        client.connectUser(user1, token).enqueue();
-                        ArrayList<String> al= (ArrayList<String>) documentSnapshot.get(Constants.KEY_INTERESTS);
-                        String[] interests = new String[al.size()];
-
-                        for (int i = 0; i < al.size(); i++) {
-                            interests[i] = al.get(i);
+                            for (int i = 0; i < al.size(); i++) {
+                                interests[i] = al.get(i);
+                            }
+                            StringBuilder sb = new StringBuilder();
+                            for (int i = 0; i < interests.length; i++) {
+                                sb.append(interests[i]).append(",");
+                            }
+                            preferenceManager.putString(Constants.KEY_INTERESTS, sb.toString());
+                            updateLikeUser(documentSnapshot.getId());
                         }
-                        StringBuilder sb = new StringBuilder();
-                        for (int i = 0; i < interests.length; i++) {
-                            sb.append(interests[i]).append(",");
-                        }
-                        preferenceManager.putString(Constants.KEY_INTERESTS, sb.toString());
-                        updateLikeUser(documentSnapshot.getId());
+
 
 
                     }

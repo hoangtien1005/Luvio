@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.getstream.chat.android.client.ChatClient;
 import io.getstream.chat.android.client.logger.ChatLogLevel;
 import io.getstream.chat.android.client.models.User;
@@ -106,7 +107,7 @@ public class InterestActivity extends AppCompatActivity {
         }
         preferenceManager.putString(Constants.KEY_INTERESTS, sb.toString());
 
-
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
         HashMap<String,Object>user=new HashMap<>();
         user.put(Constants.KEY_COUNTRY_CODE,countryCode);
         user.put(Constants.KEY_PHONE_NUMBER,phoneNumber);
@@ -118,10 +119,9 @@ public class InterestActivity extends AppCompatActivity {
         user.put(Constants.KEY_LAST_NAME,lastName);
         user.put(Constants.KEY_GENDER,gender);
         user.put(Constants.KEY_INTERESTED_GENDER,interestGender);
-        user.put(Constants.KEY_PASSWORD,password);
+        user.put(Constants.KEY_PASSWORD,bcryptHashString);
         user.put(Constants.KEY_BIRTHDAY,birthday);
         user.put(Constants.KEY_INTERESTS, userInterests);
-
 
         db.collection(Constants.KEY_COLLECTION_USER)
                 .add(user)
@@ -135,6 +135,7 @@ public class InterestActivity extends AppCompatActivity {
                     String token = client.devToken(documentReference.getId());
                     client.connectUser(user1, token).enqueue();
                     preferenceManager.putString(Constants.KEY_CHAT_TOKEN,token);
+
 
                     UserModel userModel1 =new UserModel(avatar,gender,firstName,lastName,birthday,documentReference.getId(),star,aboutMe);
                     DBUserManager.add(userModel1)
