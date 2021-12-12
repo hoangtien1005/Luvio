@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.Luvio1.R;
+import com.android.Luvio1.activities.Setting.ThemeChangeActivity;
 import com.android.Luvio1.activities.User.PersonalPageActivity;
 import com.android.Luvio1.models.UserModel;
 import com.android.Luvio1.utilities.Constants;

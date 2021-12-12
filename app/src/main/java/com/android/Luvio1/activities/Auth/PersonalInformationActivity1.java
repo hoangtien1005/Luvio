@@ -216,13 +216,10 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
 //        calendar.setTimeInMillis(MaterialDatePicker.todayInUtcMilliseconds());
 //        SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
 //        String today=format1.format(calendar.getTime());
-//
-//
 //        binding.edtBirthday.setText(today);
 //        binding.edtFirstName.getText().clear();
 //        binding.edtLastName.getText().clear();
 //    }
-
     public Bitmap cropImage(Bitmap imageProfile){
         int height=imageProfile.getHeight();
         int width=imageProfile.getWidth();
@@ -238,9 +235,6 @@ public class PersonalInformationActivity1 extends AppCompatActivity {
             previewHeight=previewWidth;
             previewImage=Bitmap.createBitmap(imageProfile,0,(height/2)-(previewHeight/2),previewWidth,previewHeight);
         }
-
         return previewImage;
     }
-
-
 }

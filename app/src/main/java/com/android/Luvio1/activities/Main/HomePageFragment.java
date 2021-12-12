@@ -99,9 +99,7 @@ public class HomePageFragment extends ThemeChangeFragment implements PageCallBac
 
     protected void setListener()
     {
-        filterBtn.setOnClickListener(view ->
-        {
-
+        filterBtn.setOnClickListener(view -> {
             SearchDialog(R.layout.search_filter, callBack);
 
         });

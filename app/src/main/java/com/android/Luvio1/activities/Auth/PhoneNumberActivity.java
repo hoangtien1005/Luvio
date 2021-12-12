@@ -115,7 +115,6 @@ public class PhoneNumberActivity extends AppCompatActivity  {
 
     }
     private boolean isValidPhoneNumber(){
-
         if(binding.edtPhoneNumber.getText().toString().isEmpty()){
             showToast("Nhập số điện thoại");
             return false;

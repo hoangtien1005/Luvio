@@ -117,7 +117,9 @@ public class SignInActivity extends AppCompatActivity {
                             preferenceManager.putString(Constants.KEY_INTERESTS, sb.toString());
                             updateLikeUser(documentSnapshot.getId());
                         }
-
+                        else{
+                            showToast("Sai mật khẩu");
+                        }
 
 
                     }

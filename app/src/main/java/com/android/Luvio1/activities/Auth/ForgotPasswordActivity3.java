@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 public class ForgotPasswordActivity3 extends AppCompatActivity {
     private ActivityForgotPassword3Binding binding;
     String documentID;
@@ -40,7 +42,7 @@ public class ForgotPasswordActivity3 extends AppCompatActivity {
                 FirebaseFirestore db= FirebaseFirestore.getInstance();
                 db.collection(Constants.KEY_COLLECTION_USER)
                         .document(documentID)
-                        .update(Constants.KEY_PASSWORD,binding.edtNewPassword.getText().toString())
+                        .update(Constants.KEY_PASSWORD,BCrypt.withDefaults().hashToString(12, binding.edtNewPassword.getText().toString().toCharArray()))
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
