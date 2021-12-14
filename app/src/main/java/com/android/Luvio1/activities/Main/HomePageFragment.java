@@ -35,24 +35,28 @@ public class HomePageFragment extends ThemeChangeFragment implements PageCallBac
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     UserAdapter userAdapter;
-    ImageButton filterBtn,profileBtn;
+    ImageButton filterBtn, profileBtn;
     TextInputEditText searchBar;
     DBUserManager DBUserManager;
-    Context context=null;
-    boolean isLoading=false;
-    String key=null;
+    Context context = null;
+    boolean isLoading = false;
+    String key = null;
     MainActivity main;
     PageCallBack callBack;
-//    int lastVisible;
+
+    CharSequence searchInput;
+    CharSequence filterInput;
+
+    //    int lastVisible;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         callBack = this;
         super.onCreate(savedInstanceState);
-        try{
+        try {
             main = (MainActivity) getActivity();
-            context=getActivity();
+            context = getActivity();
 
-        }catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
             throw new IllegalStateException("Error");
         }
     }
@@ -60,20 +64,20 @@ public class HomePageFragment extends ThemeChangeFragment implements PageCallBac
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.activity_home_page,container,false);
+        View view = inflater.inflate(R.layout.activity_home_page, container, false);
 
-        swipeRefreshLayout= (SwipeRefreshLayout) view.findViewById(R.id.swipe);
-        recyclerView= (RecyclerView) view.findViewById(R.id.rv);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv);
         recyclerView.setHasFixedSize(true);
-        filterBtn=(ImageButton) view.findViewById(R.id.filter_btn);
-        profileBtn=(ImageButton) view.findViewById(R.id.my_profile_btn);
-        searchBar=(TextInputEditText)view.findViewById(R.id.search_bar);
+        filterBtn = (ImageButton) view.findViewById(R.id.filter_btn);
+        profileBtn = (ImageButton) view.findViewById(R.id.my_profile_btn);
+        searchBar = (TextInputEditText) view.findViewById(R.id.search_bar);
 
         userAdapter = new UserAdapter(context);
         recyclerView.setAdapter(userAdapter);
-        RecyclerView.LayoutManager manager=new LinearLayoutManager(context);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(manager);
-        DBUserManager =new DBUserManager();
+        DBUserManager = new DBUserManager();
         loadData();
         setListener();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -81,13 +85,13 @@ public class HomePageFragment extends ThemeChangeFragment implements PageCallBac
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                LinearLayoutManager linearLayoutManager=(LinearLayoutManager) recyclerView.getLayoutManager();
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int totalItem = linearLayoutManager.getItemCount();
-                int lastVisible= linearLayoutManager.findLastVisibleItemPosition();
+                int lastVisible = linearLayoutManager.findLastVisibleItemPosition();
 
-                if(totalItem<lastVisible+3){
-                    if(!isLoading){
-                        isLoading=true;
+                if (totalItem < lastVisible + 3) {
+                    if (!isLoading) {
+                        isLoading = true;
                         loadData();
                     }
                 }
@@ -97,14 +101,13 @@ public class HomePageFragment extends ThemeChangeFragment implements PageCallBac
 
     }
 
-    protected void setListener()
-    {
+    protected void setListener() {
         filterBtn.setOnClickListener(view -> {
             SearchDialog(R.layout.search_filter, callBack);
 
         });
         profileBtn.setOnClickListener(view -> {
-            Intent intent=new Intent(context, ProfilePageActivity.class);
+            Intent intent = new Intent(context, ProfilePageActivity.class);
             startActivity(intent);
         });
 
@@ -115,7 +118,12 @@ public class HomePageFragment extends ThemeChangeFragment implements PageCallBac
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                userAdapter.getFilter().filter(s);
+                searchInput = s;
+                if (filterInput != null) {
+                    userAdapter.getFilter().filter(searchInput + "@" + filterInput);
+                } else {
+                    userAdapter.getFilter().filter(searchInput);
+                }
             }
 
             @Override
@@ -124,14 +132,14 @@ public class HomePageFragment extends ThemeChangeFragment implements PageCallBac
         });
 
     }
-    private void SearchDialog (int layoutStyle, PageCallBack callBack){
+
+    private void SearchDialog(int layoutStyle, PageCallBack callBack) {
         BottomSheetDialogFragment bottomSheetDialogFragment = new SearchFilterActivity(layoutStyle, callBack);
         bottomSheetDialogFragment.setShowsDialog(true);
-        bottomSheetDialogFragment.show(main.getSupportFragmentManager(),bottomSheetDialogFragment.getTag());
+        bottomSheetDialogFragment.show(main.getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
     }
 
     private void loadData() {
-
 
 
         DBUserManager.get(key).addValueEventListener(new ValueEventListener() {
@@ -146,7 +154,15 @@ public class HomePageFragment extends ThemeChangeFragment implements PageCallBac
                 }
                 userAdapter.setItems(userModels);
                 userAdapter.notifyDataSetChanged();
-                isLoading=false;
+                if (searchInput != null &&
+                        filterInput != null) {
+                    userAdapter.getFilter().filter(searchInput + "@" + filterInput);
+                } else if (filterInput != null) {
+                    userAdapter.getFilter().filter(filterInput);
+                } else {
+                    userAdapter.getFilter().filter(searchInput);
+                }
+                isLoading = false;
                 swipeRefreshLayout.setRefreshing(false);
 
             }
@@ -160,6 +176,11 @@ public class HomePageFragment extends ThemeChangeFragment implements PageCallBac
 
     @Override
     public void callbackMethod(String data) {
-        userAdapter.getFilter().filter(data);
+        filterInput = data;
+        if (searchInput != null) {
+            userAdapter.getFilter().filter(searchInput + "@" + filterInput);
+        } else {
+            userAdapter.getFilter().filter(filterInput);
+        }
     }
 }

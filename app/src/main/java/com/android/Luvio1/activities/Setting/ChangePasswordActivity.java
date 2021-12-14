@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 public class ChangePasswordActivity extends ThemeChangeActivity {
     private ActivityChangePasswordBinding binding;
     String documentID;
@@ -41,11 +43,12 @@ public class ChangePasswordActivity extends ThemeChangeActivity {
                 FirebaseFirestore db= FirebaseFirestore.getInstance();
                 db.collection(Constants.KEY_COLLECTION_USER)
                         .document(preferenceManager.getString(Constants.KEY_USER_ID))
-                        .update(Constants.KEY_PASSWORD,binding.edtNewPassword.getText().toString())
+                        .update(Constants.KEY_PASSWORD, BCrypt.withDefaults().hashToString(12, binding.edtNewPassword.getText().toString().toCharArray()))
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 showToast("Mật khẩu đã thay đổi thành công");
+                                preferenceManager.clear();
                                 Intent intent1 = new Intent(getApplicationContext(), SignInActivity.class);
                                 intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent1);
