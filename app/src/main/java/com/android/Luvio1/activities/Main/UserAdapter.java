@@ -24,12 +24,15 @@ import com.android.Luvio1.models.UserModel;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.auth.User;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +48,6 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     private FirebaseFirestore db;
     ArrayList<UserModel> list = new ArrayList<>();
     ArrayList<UserModel> allUserList = new ArrayList<>();
-
 
     public UserAdapter(Context context) {
         this.context = context;
@@ -86,7 +88,6 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             intent.putExtra("INFO", userModel.getFsId());
             context.startActivity(intent);
         });
-        Log.i("LIKE_IDS", preferenceManager.getString(Constants.KEY_COLLECTION_LIKE));
         if (isAlreadyLike(userModel.getFsId())) {
             vh.like_check.setVisibility(View.VISIBLE);
         } else {
@@ -109,6 +110,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             } else {
                 String[] ids = preferenceManager.getString(Constants.KEY_CHAT_IDS).split(",");
                 StringBuilder sb = new StringBuilder();
+
                 for (int i = 0; i < ids.length; i++) {
                     if (!ids[i].equals(userModel.getFsId())) {
                         sb.append(ids[i]).append(",");
@@ -116,6 +118,8 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 }
                 sb.append(userModel.getFsId()).append(",");
                 preferenceManager.putString(Constants.KEY_CHAT_IDS, sb.toString());
+
+
             }
             BottomNavigationView navBar = (BottomNavigationView) ((MainActivity) context).findViewById(R.id.bottom_navigation);
             navBar.setSelectedItemId(R.id.message);
@@ -158,21 +162,33 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                if (task.isSuccessful()) {
                                                    String id = task.getResult().getDocuments().get(0).getId();
-                                                   deleteDocument(id);
+                                                   deleteLikeDocument(id, preferenceManager.getString(Constants.KEY_USER_ID), userModel.getFsId());
                                                    vh.like_check.setVisibility(View.INVISIBLE);
                                                }
                                            }
                                        }
                 );
 
-
     }
 
-    private void deleteDocument(String id) {
+    private void deleteLikeDocument(String id, String currentUserId, String otherUserId) {
         db.collection(Constants.KEY_COLLECTION_LIKE)
+                .document(id)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        findAndDeleteMatch(currentUserId, otherUserId);
+                    }
+                });
+    }
+
+    private void deleteMatchDocument(String id) {
+        db.collection(Constants.KEY_COLLECTION_MATCH)
                 .document(id)
                 .delete();
     }
+
 
     private void likeUser(UserViewHolder vh, UserModel userModel) {
         HashMap<String, Object> like_user = new HashMap<>();
@@ -181,13 +197,12 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             preferenceManager.putString(Constants.KEY_COLLECTION_LIKE, userModel.getFsId() + ",");
 
         } else {
-
-
             StringBuilder sb = new StringBuilder(preferenceManager.getString(Constants.KEY_COLLECTION_LIKE));
             sb.append(userModel.getFsId()).append(",");
             preferenceManager.putString(Constants.KEY_COLLECTION_LIKE, sb.toString());
             like_user.put(Constants.KEY_ID_1, preferenceManager.getString(Constants.KEY_USER_ID));
             like_user.put(Constants.KEY_ID_2, userModel.getFsId());
+//            update collection "likes"
             db.collection(Constants.KEY_COLLECTION_LIKE)
                     .add(like_user)
                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
@@ -196,25 +211,12 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                             if (task.isSuccessful() && task.getResult() != null) {
                                 showToast("Cập nhật thành công");
                                 vh.like_check.setVisibility(View.VISIBLE);
+                                checkAndUpdateMatch(userModel);
                             } else {
                                 showToast("Cập nhật thất bại");
                             }
                         }
                     });
-//                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                            @Override
-//                            public void onSuccess(DocumentReference documentReference) {
-//                                showToast("Cập nhật thành công");
-//                                vh.like_check.setVisibility(View.VISIBLE);
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                showToast("Cập nhật thất bại");
-//                            }
-//                        });
-
 
         }
 
@@ -233,6 +235,88 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         }
         return false;
     }
+
+    private boolean isAlreadyMatch(String id) {
+        if (preferenceManager.getString(Constants.KEY_COLLECTION_MATCH) == null) {
+            return false;
+        }
+        String[] match_user = preferenceManager.getString(Constants.KEY_COLLECTION_MATCH).split(",");
+        for (int i = 0; i < match_user.length; i++) {
+            if (id.equals(match_user[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private void checkAndUpdateMatch(UserModel userModel) {
+        db.collection(Constants.KEY_COLLECTION_LIKE)
+                .whereEqualTo(Constants.KEY_ID_2, preferenceManager.getString(Constants.KEY_USER_ID))
+                .whereEqualTo(Constants.KEY_ID_1, userModel.getFsId())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                           @Override
+                                           public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                               if (task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0) {
+                                                    if(!isAlreadyMatch(userModel.getFsId())) {
+                                                       addMatch(userModel);
+                                                    }
+                                               }
+                                           }
+                                       }
+                );
+    }
+
+    private void addMatch(UserModel userModel) {
+        HashMap<String, Object> match_user = new HashMap<>();
+        match_user.put(Constants.KEY_ID_1, preferenceManager.getString(Constants.KEY_USER_ID));
+        match_user.put(Constants.KEY_ID_2, userModel.getFsId());
+
+        db.collection((Constants.KEY_COLLECTION_MATCH))
+                .add(match_user)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if(task.isSuccessful()) {
+                            if (preferenceManager.getString(Constants.KEY_COLLECTION_MATCH) == null) {
+                                preferenceManager.putString(Constants.KEY_COLLECTION_MATCH, userModel.getFsId() + ",");
+
+                            } else {
+                                StringBuilder sb = new StringBuilder(preferenceManager.getString(Constants.KEY_COLLECTION_MATCH));
+                                sb.append(userModel.getFsId()).append(",");
+                                preferenceManager.putString(Constants.KEY_COLLECTION_MATCH, sb.toString());
+                            }
+                            showToast("Bạn đã match với người này");
+                        } else {
+                            showToast("update match thất bại");
+                        }
+                    }
+                });
+    }
+
+
+
+    private void findAndDeleteMatch(String id1, String id2) {
+        db.collection(Constants.KEY_COLLECTION_MATCH)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful() && task.getResult() != null) {
+                            for(DocumentSnapshot doc: task.getResult().getDocuments()) {
+                                String _id1 = doc.getString(Constants.KEY_ID_1);
+                                String _id2 = doc.getString(Constants.KEY_ID_2);
+                                if((id1.equals(_id1) && id2.equals(_id2)) || (id1.equals(_id2) && id2.equals(_id1))) {
+                                    deleteMatchDocument(doc.getId());
+                                }
+                            }
+
+                        }
+                    }
+                });
+    }
+
 
     public String findAge(String birthday) {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));

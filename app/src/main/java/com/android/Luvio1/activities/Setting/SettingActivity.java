@@ -54,6 +54,7 @@ public class SettingActivity extends ThemeChangeActivity {
         binding.btnSignOut.setOnClickListener(view -> {
             preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, false);
 
+            preferenceManager.clear();
             Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

@@ -1,7 +1,6 @@
 package com.android.Luvio1.utilities;
 
 public class Constants {
-    public static final String KEY_COLLECTION_USER="users";
     public static final String KEY_FIRST_NAME="firstName";
     public static final String KEY_LAST_NAME="lastName";
     public static final String KEY_BIRTHDAY="birthday";
@@ -17,11 +16,13 @@ public class Constants {
     public static final String KEY_CHAT_TOKEN="msToken";
     public static final String KEY_CHAT_IDS="chatIds";
 
+    public static final String KEY_COLLECTION_USER="users";
     public static final String KEY_COLLECTION_BLOCK="blocks";
     public static final String KEY_COLLECTION_CHAT="chats";
+    public static final String KEY_COLLECTION_MATCH="matchs";
+    public static final String KEY_COLLECTION_LIKE="likes";
 
     public static final String KEY_BLOCK="blockId";
-
 
     public static final String KEY_IS_SIGNED_IN="isSignedIn";
     public static final String KEY_USER_ID="userId";
@@ -33,7 +34,6 @@ public class Constants {
     public static final String KEY_GENDER="gender";
     public static final String KEY_INTERESTS="interests";
     public static final String KEY_INTERESTED_GENDER="interestedGender";
-    public static final String KEY_COLLECTION_LIKE="likes";
     public static final String KEY_ID_1="userID1";
     public static final String KEY_ID_2="userID2";
 }

@@ -16,14 +16,7 @@ public class ThemeChangeActivity extends AppCompatActivity {
                 .getDefaultSharedPreferences(getApplicationContext())
                 .getInt("Theme", R.style.Theme_Luvio);
         this.setTheme(theme);
-        if (theme==R.style.DarkTheme) {
-            Log.e("test", "yes");
-        }
-        else
-        {
-            Log.e("test", "no");
 
-        }
         super.onCreate(savedInstanceState);
     }
 }
