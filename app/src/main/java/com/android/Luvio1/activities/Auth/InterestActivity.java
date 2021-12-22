@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.Luvio1.R;
 import com.android.Luvio1.activities.Main.MainActivity;
 import com.android.Luvio1.databinding.ActivityInterestBinding;
 import com.android.Luvio1.firebase.DBUserManager;
@@ -41,7 +42,11 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.getstream.chat.android.client.ChatClient;
 import io.getstream.chat.android.client.logger.ChatLogLevel;
 import io.getstream.chat.android.client.models.User;
+import io.getstream.chat.android.client.notifications.handler.ChatNotificationHandler;
+import io.getstream.chat.android.client.notifications.handler.NotificationConfig;
+import io.getstream.chat.android.client.notifications.handler.PushDeviceGenerator;
 import io.getstream.chat.android.livedata.ChatDomain;
+import io.getstream.chat.android.pushprovider.firebase.FirebasePushDeviceGenerator;
 
 public class InterestActivity extends AppCompatActivity {
     private ActivityInterestBinding binding;
@@ -59,7 +64,34 @@ public class InterestActivity extends AppCompatActivity {
         userInterests=new ArrayList<String>();
         db=FirebaseFirestore.getInstance();
         preferenceManager=new PreferenceManager(getApplicationContext());
+
+        List<PushDeviceGenerator> pushDeviceGenerators = new ArrayList<PushDeviceGenerator>() {{
+            add(new FirebasePushDeviceGenerator());
+        }};
+
+        NotificationConfig notificationConfig = new NotificationConfig(
+                R.string.logo,
+                R.string.logo,
+                R.drawable.ic_launcher_foreground,
+                R.string.logo,
+                R.string.logo,
+                R.string.logo,
+                R.drawable.ic_launcher_foreground,
+                R.string.logo,
+                R.string.logo,
+                R.string.logo,
+                R.string.logo,
+                true,
+                true,
+                pushDeviceGenerators
+        );
+        
+
+
+        ChatNotificationHandler notificationHandler = new ChatNotificationHandler(getApplicationContext(), notificationConfig);
+
         client= new ChatClient.Builder("an38qgjtsfsj", getApplicationContext())
+                .notifications(notificationHandler)
                 .logLevel(ChatLogLevel.ALL)
                 .build();
         new ChatDomain.Builder(client, getApplicationContext()).build();

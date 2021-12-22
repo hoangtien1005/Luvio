@@ -63,9 +63,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
 
+
     //Getstream io
     implementation "io.getstream:stream-chat-android-ui-components:4.18.0"
+    implementation "io.getstream:stream-chat-android-pushprovider-firebase:4.18.0"
     implementation 'io.coil-kt:coil:1.4.0'
+
 
     //CircleIndicator
     implementation 'me.relex:circleindicator:2.1.6'
