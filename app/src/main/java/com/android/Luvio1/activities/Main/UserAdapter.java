@@ -40,6 +40,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.TimeZone;
 
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
@@ -108,16 +109,32 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             if (preferenceManager.getString(Constants.KEY_CHAT_IDS) == null) {
                 preferenceManager.putString(Constants.KEY_CHAT_IDS, userModel.getFsId() + ",");
             } else {
-                String[] ids = preferenceManager.getString(Constants.KEY_CHAT_IDS).split(",");
-                StringBuilder sb = new StringBuilder();
 
-                for (int i = 0; i < ids.length; i++) {
-                    if (!ids[i].equals(userModel.getFsId())) {
-                        sb.append(ids[i]).append(",");
-                    }
-                }
-                sb.append(userModel.getFsId()).append(",");
-                preferenceManager.putString(Constants.KEY_CHAT_IDS, sb.toString());
+                HashMap<String, Object>chats=new HashMap<>();
+                chats.put(Constants.KEY_ID_1,preferenceManager.getString(Constants.KEY_USER_ID));
+                chats.put(Constants.KEY_ID_2,userModel.getFsId());
+                db.collection(Constants.KEY_COLLECTION_CHAT)
+                        .add(chats)
+                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            @java.lang.Override
+                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                if(task.isSuccessful()){
+                                    String[] ids = preferenceManager.getString(Constants.KEY_CHAT_IDS).split(",");
+                                    StringBuilder sb = new StringBuilder();
+                                    for (int i = 0; i < ids.length; i++) {
+                                        if (!ids[i].equals(userModel.getFsId())) {
+                                            sb.append(ids[i]).append(",");
+                                        }
+                                    }
+                                    sb.append(userModel.getFsId()).append(",");
+                                    preferenceManager.putString(Constants.KEY_CHAT_IDS, sb.toString());
+                                }
+                                else{
+                                    showToast("Không thể cập nhật chat ids");
+                                }
+                            }
+                        });
+
 
 
             }
