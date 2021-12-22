@@ -28,6 +28,8 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.getstream.chat.android.client.ChatClient;
 import io.getstream.chat.android.client.logger.ChatLogLevel;
 import io.getstream.chat.android.client.models.User;
+import io.getstream.chat.android.client.notifications.handler.NotificationConfig;
+import io.getstream.chat.android.client.notifications.handler.PushDeviceGenerator;
 import io.getstream.chat.android.livedata.ChatDomain;
 
 import java.io.File;
@@ -36,6 +38,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import io.getstream.chat.android.client.models.User;
@@ -120,6 +123,7 @@ public class SignInActivity extends AppCompatActivity {
                         }
                         else{
                             showToast("Sai mật khẩu");
+                            loading(false);
                         }
 
 
