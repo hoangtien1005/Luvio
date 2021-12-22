@@ -98,7 +98,6 @@ public class ChatFragment extends ThemeChangeFragment {
                     currentPos = tab.getPosition();
                     Bundle bundle = new Bundle();
                     bundle.putInt("pos", currentPos);
-                    FragmentManager fm = getFragmentManager();
 
                     ChatFragment fragment = new ChatFragment();
 
@@ -223,7 +222,13 @@ public class ChatFragment extends ThemeChangeFragment {
     };
 
     private void updateSharedPreferences() {
-        if(preferenceManager.getString(Constants.KEY_COLLECTION_LIKE) != null) {
+            updateChat();
+            updateMatch();
+            updateRating();
+    }
+
+    private void updateChat() {
+        if (preferenceManager.getString(Constants.KEY_COLLECTION_LIKE) != null) {
             String user_like = preferenceManager.getString(Constants.KEY_COLLECTION_LIKE);
 //            nếu chưa có chat và có like
             if (preferenceManager.getString(Constants.KEY_CHAT_IDS) == null) {
@@ -246,10 +251,8 @@ public class ChatFragment extends ThemeChangeFragment {
                 }
                 preferenceManager.putString(Constants.KEY_CHAT_IDS, sb.toString());
             }
-            updateMatch();
         }
     }
-
     private void updateMatch() {
         db.collection(Constants.KEY_COLLECTION_MATCH)
                 .get()
@@ -274,6 +277,27 @@ public class ChatFragment extends ThemeChangeFragment {
                                 }
                             }
                             preferenceManager.putString(Constants.KEY_COLLECTION_MATCH, sb.toString());
+                        }
+                    }
+                });
+    }
+
+    private void updateRating() {
+        db.collection(Constants.KEY_COLLECTION_RATING)
+                .whereEqualTo(Constants.KEY_ID_1, preferenceManager.getString(Constants.KEY_USER_ID))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful() && task.getResult() != null) {
+
+                            StringBuilder sb = new StringBuilder();
+
+                            for(DocumentSnapshot doc: task.getResult().getDocuments()) {
+                                String otherUserId = doc.getString(Constants.KEY_ID_2);
+                                sb.append(otherUserId).append(",");
+                            }
+                            preferenceManager.putString(Constants.KEY_COLLECTION_RATING, sb.toString());
                         }
                     }
                 });

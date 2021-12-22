@@ -41,7 +41,6 @@ public class PersonalPageActivity extends ThemeChangeActivity {
         mViewPager2 = findViewById(R.id.view_pager2);
         mCircleIndicator3 = findViewById(R.id.circle_indicator3);
 
-
         db=FirebaseFirestore.getInstance();
         user_id = getIntent().getStringExtra("INFO");
         setListener();

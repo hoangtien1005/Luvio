@@ -17,33 +17,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.android.Luvio1.R;
+import com.android.Luvio1.firebase.DBUserManager;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class CustomDialog extends DialogFragment {
+import java.util.HashMap;
 
+public class CustomDialog extends DialogFragment {
     String type = "isBlocked";
     int layout = R.layout.dialog_is_blocked;
 
     FirebaseFirestore db;
-
+    Context context;
     String currentUserId;
     String otherUserId;
 
+    DBUserManager DBUserManager;
     PreferenceManager preferenceManager;
-
 
     public CustomDialog() {
 
     }
 
     public CustomDialog(Context context, String type, String currentUserId, String otherUserId) {
+        this.context = context;
         this.currentUserId = currentUserId;
         this.otherUserId = otherUserId;
 
@@ -62,6 +70,7 @@ public class CustomDialog extends DialogFragment {
 
         db = FirebaseFirestore.getInstance();
         preferenceManager = new PreferenceManager(context);
+        DBUserManager = new DBUserManager();
     }
 
     @Nullable
@@ -74,10 +83,35 @@ public class CustomDialog extends DialogFragment {
 
         if(type.equals("rating")) {
             Button btnDone = (Button)view.findViewById(R.id.btnDone);
+            RatingBar rating = (RatingBar)view.findViewById(R.id.rating);
+
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    dismiss();
+                    String star = Float.toString(rating.getRating());
+                    HashMap<String, Object> rating = new HashMap<>();
+                    rating.put(Constants.KEY_ID_1, currentUserId);
+                    rating.put(Constants.KEY_ID_2, otherUserId);
+                    rating.put(Constants.KEY_STAR, star);
+
+                    db.collection(Constants.KEY_COLLECTION_RATING)
+                            .add(rating)
+                            .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                    if(task.isSuccessful() && task.getResult() != null) {
+
+                                        findAndUpdateUserStar(otherUserId, star);
+                                        StringBuilder sb = new StringBuilder();
+                                        if(preferenceManager.getString(Constants.KEY_COLLECTION_RATING) != null) {
+                                            sb.append(preferenceManager.getString(Constants.KEY_COLLECTION_RATING));
+                                        }
+                                        sb.append(otherUserId).append(",");
+                                        preferenceManager.putString(Constants.KEY_COLLECTION_RATING, sb.toString());
+                                    }
+                                    dismiss();
+                                }
+                            });
                 }
             });
         }
@@ -88,9 +122,6 @@ public class CustomDialog extends DialogFragment {
             btnRemove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
-
                     db.collection(Constants.KEY_COLLECTION_BLOCK)
                             .whereEqualTo(Constants.KEY_ID_1, currentUserId)
                             .whereEqualTo(Constants.KEY_ID_2, otherUserId)
@@ -99,6 +130,7 @@ public class CustomDialog extends DialogFragment {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if(task.isSuccessful() && task.getResult() != null) {
+
                                         db.collection(Constants.KEY_COLLECTION_BLOCK)
                                                 .document(task.getResult().getDocuments().get(0).getId())
                                                 .delete();
@@ -110,7 +142,6 @@ public class CustomDialog extends DialogFragment {
                                                 stringBuilder.append(blockIds[i]).append(",");
                                             }
                                         }
-
                                         preferenceManager.putString(Constants.KEY_BLOCK, stringBuilder.toString());
                                     }
                                 }
@@ -130,5 +161,61 @@ public class CustomDialog extends DialogFragment {
 
         }
         return view;
+    }
+
+    private void findAndUpdateUserStar(String otherUserId, String newStar) {
+        db.collection(Constants.KEY_COLLECTION_USER)
+                .document(otherUserId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful() && task.getResult() != null) {
+                            String currentStar = task.getResult().getString(Constants.KEY_STAR);
+                            String numberOfRating = task.getResult().getString(Constants.KEY_NUMBER_OF_RATING);
+
+                            float newStarFloat = Float.parseFloat(newStar);
+                            float currentStarFloat = Float.parseFloat(currentStar);
+                            int numberOfRatingInt = Integer.parseInt(numberOfRating);
+
+                            float totalStarFloat = currentStarFloat * numberOfRatingInt + newStarFloat;
+                            numberOfRatingInt++;
+                            String finalStar = Float.toString(totalStarFloat / numberOfRatingInt);
+                            String finalNumberOfRating = Integer.toString(numberOfRatingInt);
+                            updateFirestore(otherUserId, finalStar, finalNumberOfRating);
+                            updateRealtimeDB(otherUserId, finalStar);
+                        } else {
+                            Toast.makeText(context, "Chấm điểm thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void updateFirestore(String otherUserId, String star, String numberOfRating) {
+        db.collection(Constants.KEY_COLLECTION_USER)
+                .document(otherUserId)
+                .update(Constants.KEY_STAR, star,
+                        Constants.KEY_NUMBER_OF_RATING, numberOfRating)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, "Chấm điểm thành công", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void updateRealtimeDB(String otherUserId, String star) {
+        HashMap<String,Object>hashMap=new HashMap();
+        hashMap.put(Constants.KEY_STAR, star);
+
+        DBUserManager.update(otherUserId, hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, "Cập nhật Real time DB thành công", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(e->{
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        });
     }
 }

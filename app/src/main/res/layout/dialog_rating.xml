@@ -2,143 +2,113 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/_20sdp"
-    android:paddingRight="@dimen/_20sdp"
-    android:paddingTop="@dimen/_20sdp"
-    android:paddingBottom="@dimen/_20sdp"
     android:layout_marginLeft="@dimen/_8sdp"
     android:layout_marginRight="@dimen/_8sdp"
-    android:minWidth="360dp"
+    android:background="@drawable/background_dialog"
     android:gravity="center_horizontal"
-    android:background="@drawable/background_dialog">
+    android:minWidth="360dp"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/_20sdp"
+    android:paddingTop="@dimen/_20sdp"
+    android:paddingRight="@dimen/_20sdp"
+    android:paddingBottom="@dimen/_20sdp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Đánh giá đối phương"
-        android:textSize="@dimen/_16sdp"
-        android:textColor="@color/black"
+        android:layout_marginBottom="@dimen/_15sdp"
         android:fontFamily="@font/montserrat_bold"
-        android:layout_marginBottom="@dimen/_15sdp"/>
-    <!--    star layout-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/_15sdp">
+        android:text="Đánh giá đối phương"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16sdp"/>
 
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/star_active"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/star_active"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/star_active"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/star_disabled"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/star_disabled"/>
-    </LinearLayout>
+
+    <RatingBar
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/star_color"
+        android:numStars="5"
+        android:progressBackgroundTint="@color/disable_btn_color"
+        android:progressTint="@color/star_color"
+        android:rating="3"
+        android:secondaryProgressTint="@color/star_color"
+        android:stepSize="1"/>
+
     <!--text layout-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/_10sdp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="42dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/black"
-            android:textAlignment="center"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_12sdp"
-            android:text="Tệ"/>
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Tệ"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
             android:layout_width="42dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Tốt"
             android:textAlignment="center"
-            android:textSize="@dimen/_12sdp"
-            android:text="Tốt"/>
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
             android:layout_width="42dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Hợp"
             android:textAlignment="center"
-            android:textSize="@dimen/_12sdp"
-            android:text="Hợp"/>
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
             android:layout_width="42dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Cực hợp"
             android:textAlignment="center"
-            android:textSize="@dimen/_12sdp"
-            android:text="Cực hợp"/>
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
             android:layout_width="42dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Tri kỉ"
             android:textAlignment="center"
-            android:textSize="@dimen/_12sdp"
-            android:text="Tri kỉ"/>
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"/>
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnDone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Đồng ý"
-        android:id="@+id/btnDone"
-        android:textSize="@dimen/_11sdp"
+        android:backgroundTint="#FFEBA5"
         android:fontFamily="@font/montserrat_bold"
+        android:text="Đồng ý"
         android:textColor="@color/black"
-        android:backgroundTint="#FFEBA5"/>
+        android:textSize="@dimen/_11sdp"/>
 
 </LinearLayout>

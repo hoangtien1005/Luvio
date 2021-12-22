@@ -35,7 +35,6 @@ public class ForgotPasswordActivity1 extends AppCompatActivity {
         binding=ActivityForgotPassword1Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListener();
-
     }
     private void setListener(){
         binding.btnBack.setOnClickListener(view -> {
@@ -84,9 +83,6 @@ public class ForgotPasswordActivity1 extends AppCompatActivity {
 
                             }
                         });
-
-
-
             }
 
         });

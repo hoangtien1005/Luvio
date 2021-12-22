@@ -3,4 +3,6 @@
         android:title="Trang cá nhân" />
     <item android:id="@+id/block"
         android:title="Chặn người này" />
+    <item android:id="@+id/rating"
+        android:title="Chấm điểm" />
 </menu>

@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.widget.PopupMenu;
 import com.android.Luvio1.R;
 
@@ -20,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.android.Luvio1.firebase.DBUserManager;
 import com.android.Luvio1.utilities.Constants;
 import com.android.Luvio1.utilities.PreferenceManager;
 import com.getstream.sdk.chat.viewmodel.MessageInputViewModel;
@@ -33,6 +35,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -96,6 +99,7 @@ public class ChannelActivity extends ThemeChangeActivity {
         client = ChatClient.instance();
         preferenceManager = new PreferenceManager(getApplicationContext());
 
+
         if(preferenceManager.getString(Constants.KEY_BLOCK)!=null){
             String[] blockIds = preferenceManager.getString(Constants.KEY_BLOCK).split(",");
             for(int i = 0; i < blockIds.length; i++) {
@@ -151,7 +155,13 @@ public class ChannelActivity extends ThemeChangeActivity {
             menu.setGravity(Gravity.END);
             menu.show();
 
+            if(isAlreadyRating(otherUserId)) {
+                MenuItem rating = menu.getMenu().findItem(R.id.rating);
+                rating.setEnabled(false);
+            }
             menu.setOnMenuItemClickListener(menuItem -> {
+
+
                 if(menuItem.getItemId() == R.id.profile) {
                     Intent intent = new Intent(this, PersonalPageActivity.class);
                     intent.putExtra("INFO", otherUserId);
@@ -163,7 +173,6 @@ public class ChannelActivity extends ThemeChangeActivity {
                     HashMap<String, Object> blockUser = new HashMap<>();
                     blockUser.put(Constants.KEY_ID_1, currentUserId);
                     blockUser.put(Constants.KEY_ID_2, otherUserId);
-
 
                     db.collection(Constants.KEY_COLLECTION_BLOCK)
                             .add(blockUser)
@@ -190,6 +199,14 @@ public class ChannelActivity extends ThemeChangeActivity {
                                 }
                             });
                 }
+
+                else {
+                    FragmentManager fm = getSupportFragmentManager();
+                    CustomDialog dialog =  new CustomDialog(context, "rating", currentUserId, otherUserId);
+                    dialog.show(fm, "");
+
+                }
+
                 return true;
             });
         });
@@ -201,5 +218,10 @@ public class ChannelActivity extends ThemeChangeActivity {
                 backHandler.onClick();
             }
         });
+    }
+
+    private boolean isAlreadyRating(String otherUserId) {
+        String[] ratingIds = preferenceManager.getString(Constants.KEY_COLLECTION_RATING).split(",");
+        return Arrays.asList(ratingIds).contains(otherUserId);
     }
 }

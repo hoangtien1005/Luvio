@@ -97,6 +97,7 @@ public class SignInActivity extends AppCompatActivity {
                             preferenceManager.putString(Constants.KEY_BIRTHDAY,documentSnapshot.getString(Constants.KEY_BIRTHDAY));
                             preferenceManager.putString(Constants.KEY_GENDER,documentSnapshot.getString(Constants.KEY_GENDER));
                             preferenceManager.putString(Constants.KEY_INTERESTED_GENDER, documentSnapshot.getString(Constants.KEY_INTERESTED_GENDER));
+                            preferenceManager.putString(Constants.KEY_NUMBER_OF_RATING, documentSnapshot.getString(Constants.KEY_NUMBER_OF_RATING));
 
                             User user1 = new User();
                             user1.setId(documentSnapshot.getId());

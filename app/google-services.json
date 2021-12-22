@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "7679392930",
+    "firebase_url": "https://cham-5e6ab-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "cham-5e6ab",
     "storage_bucket": "cham-5e6ab.appspot.com"
   },
@@ -14,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "7679392930-f4s3dj592d5ne5umglsf21hiugrnpukv.apps.googleusercontent.com",
+          "client_id": "7679392930-pfu6ebil9m6a8rr1jkbmch37k14jols6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.android.Luvio1",

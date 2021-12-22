@@ -74,6 +74,7 @@ public class InterestActivity extends AppCompatActivity {
         Intent intent=getIntent();
         Bundle bundleData=intent.getExtras();
         String star="5";
+        String numberOfRating="1";
         String aboutMe="";
         String countryCode=bundleData.getString(Constants.KEY_COUNTRY_CODE);
         String phoneNumber=bundleData.getString(Constants.KEY_PHONE_NUMBER);
@@ -96,6 +97,8 @@ public class InterestActivity extends AppCompatActivity {
         preferenceManager.putString(Constants.KEY_INTERESTED_GENDER,interestGender);
         preferenceManager.putString(Constants.KEY_PASSWORD,password);
         preferenceManager.putString(Constants.KEY_BIRTHDAY, birthday);
+        preferenceManager.putString(Constants.KEY_NUMBER_OF_RATING, numberOfRating);
+
         String[] interests = new String[userInterests.size()];
 
         for (int i = 0; i < userInterests.size(); i++) {
@@ -122,6 +125,7 @@ public class InterestActivity extends AppCompatActivity {
         user.put(Constants.KEY_PASSWORD,bcryptHashString);
         user.put(Constants.KEY_BIRTHDAY,birthday);
         user.put(Constants.KEY_INTERESTS, userInterests);
+        user.put(Constants.KEY_NUMBER_OF_RATING, numberOfRating);
 
         db.collection(Constants.KEY_COLLECTION_USER)
                 .add(user)

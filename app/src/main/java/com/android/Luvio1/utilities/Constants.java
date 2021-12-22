@@ -5,6 +5,7 @@ public class Constants {
     public static final String KEY_LAST_NAME="lastName";
     public static final String KEY_BIRTHDAY="birthday";
     public static final String KEY_STAR="star";
+    public static final String KEY_NUMBER_OF_RATING="numberOfRating";
     public static final String KEY_COUNTRY_CODE="countryCode";
     public static final String KEY_PHONE_NUMBER="phoneNumber";
     public static final String KEY_PASSWORD="password";
@@ -21,6 +22,7 @@ public class Constants {
     public static final String KEY_COLLECTION_CHAT="chats";
     public static final String KEY_COLLECTION_MATCH="matchs";
     public static final String KEY_COLLECTION_LIKE="likes";
+    public static final String KEY_COLLECTION_RATING="ratings";
 
     public static final String KEY_BLOCK="blockId";
 

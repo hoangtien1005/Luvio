@@ -79,7 +79,11 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         db = FirebaseFirestore.getInstance();
         vh.txt_name.setText(userModel.getLastName());
         vh.txt_bio.setText(userModel.getGender());
-        vh.txt_star.setText(userModel.getStar());
+
+        float starFloat = Float.parseFloat(userModel.getStar());
+        starFloat = (float) (Math.round(starFloat * 2) / 2.0);
+        String star = Float.toString(starFloat);
+        vh.txt_star.setText(star);
 
         vh.txt_age.setText(findAge(userModel.getBirthday()));
         vh.avatar.setImageBitmap(decodeImage(userModel.getAvatar()));
