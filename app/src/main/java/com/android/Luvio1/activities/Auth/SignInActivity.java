@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.Luvio1.R;
+import com.android.Luvio1.activities.Main.CustomChatNotificationHandler;
 import com.android.Luvio1.activities.Main.MainActivity;
 import com.android.Luvio1.databinding.ActivitySignInBinding;
 import com.android.Luvio1.utilities.Constants;
@@ -23,11 +25,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.getstream.chat.android.client.ChatClient;
 import io.getstream.chat.android.client.logger.ChatLogLevel;
 import io.getstream.chat.android.client.models.User;
+
+import io.getstream.chat.android.client.notifications.handler.ChatNotificationHandler;
+
 import io.getstream.chat.android.client.notifications.handler.NotificationConfig;
 import io.getstream.chat.android.client.notifications.handler.PushDeviceGenerator;
 import io.getstream.chat.android.livedata.ChatDomain;
@@ -42,6 +48,7 @@ import java.util.List;
 import java.util.Locale;
 
 import io.getstream.chat.android.client.models.User;
+import io.getstream.chat.android.pushprovider.firebase.FirebasePushDeviceGenerator;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
@@ -53,8 +60,45 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         preferenceManager = new PreferenceManager(getApplicationContext());
         db=FirebaseFirestore.getInstance();
-        client= new ChatClient.Builder("an38qgjtsfsj", getApplicationContext())
-                .logLevel(ChatLogLevel.ALL)
+
+
+        List<PushDeviceGenerator> pushDeviceGenerators = new ArrayList<PushDeviceGenerator>() {{
+            add(new FirebasePushDeviceGenerator());
+        }};
+
+        int notificationChannelId = R.string.stream_chat_notification_channel_id;
+        int notificationChannelName = R.string.stream_chat_notification_channel_name;
+        int errorCaseNotificationTitle = R.string.stream_chat_notification_title;
+        int errorCaseNotificationContent = R.string.stream_chat_notification_content;
+        int loadNotificationDataChannelName = R.string.stream_chat_load_notification_data_title;
+        int loadNotificationDataTitle = R.string.stream_chat_load_notification_data_title;
+        int notificationGroupSummaryContentText = R.string.stream_chat_notification_group_summary_content_text;
+        int errorNotificationGroupSummaryTitle = R.string.stream_chat_error_notification_group_summary_content_text;
+        int errorNotificationGroupSummaryContentText = R.string.stream_chat_error_notification_group_summary_content_text;
+        Context context=getApplicationContext();
+        NotificationConfig notificationConfig = new NotificationConfig(
+                notificationChannelId,
+                notificationChannelName,
+                R.drawable.ic_camera,
+                errorCaseNotificationTitle,
+                errorCaseNotificationContent,
+                loadNotificationDataChannelName,
+                R.drawable.ic_camera,
+                loadNotificationDataTitle,
+                notificationGroupSummaryContentText,
+                errorNotificationGroupSummaryTitle,
+                errorNotificationGroupSummaryContentText,
+                true,
+                true,
+                pushDeviceGenerators
+                );
+
+        CustomChatNotificationHandler notificationHandler = new CustomChatNotificationHandler(getApplicationContext(),notificationConfig);
+
+
+
+        client= new ChatClient.Builder("an38qgjtsfsj", context)
+                .notifications(notificationHandler)
                 .build();
         new ChatDomain.Builder(client, getApplicationContext()).build();
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
@@ -87,7 +131,6 @@ public class SignInActivity extends AppCompatActivity {
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                         BCrypt.Result result=BCrypt.verifyer().verify(binding.edtPassword.getText().toString().toCharArray(), documentSnapshot.getString(Constants.KEY_PASSWORD));
                         if(result.verified){
-                            preferenceManager.clear();
                             preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
                             preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
                             preferenceManager.putString(Constants.KEY_STAR, documentSnapshot.getString(Constants.KEY_STAR));

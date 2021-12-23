@@ -21,16 +21,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import io.getstream.chat.android.client.ChatClient;
 
 public class SettingActivity extends ThemeChangeActivity {
     private ActivitySettingBinding binding;
     PreferenceManager preferenceManager;
-
+    ChatClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         preferenceManager = new PreferenceManager(getApplicationContext());
+        client = ChatClient.instance();
         setContentView(binding.getRoot());
         setListener();
     }
@@ -53,7 +55,7 @@ public class SettingActivity extends ThemeChangeActivity {
         });
         binding.btnSignOut.setOnClickListener(view -> {
             preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, false);
-
+            client.disconnect();
             preferenceManager.clear();
             Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -72,6 +74,7 @@ public class SettingActivity extends ThemeChangeActivity {
                             if (task.isSuccessful()) {
                                 loading(false);
                                 DBUserManager dbUserManager = new DBUserManager();
+                                client.disconnect();
                                 dbUserManager.remove(preferenceManager.getString(Constants.KEY_USER_ID));
                                 showToast("Tài khoản đã xóa thành công");
                                 Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
