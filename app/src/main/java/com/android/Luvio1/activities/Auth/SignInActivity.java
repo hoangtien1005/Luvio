@@ -31,9 +31,13 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import io.getstream.chat.android.client.ChatClient;
 import io.getstream.chat.android.client.logger.ChatLogLevel;
 import io.getstream.chat.android.client.models.User;
+<<<<<<< HEAD
 
 import io.getstream.chat.android.client.notifications.handler.ChatNotificationHandler;
 
+=======
+import io.getstream.chat.android.client.notifications.handler.ChatNotificationHandler;
+>>>>>>> d28b5149ce1cf5f209c15ea364a28491d29a0bde
 import io.getstream.chat.android.client.notifications.handler.NotificationConfig;
 import io.getstream.chat.android.client.notifications.handler.PushDeviceGenerator;
 import io.getstream.chat.android.livedata.ChatDomain;
@@ -93,12 +97,23 @@ public class SignInActivity extends AppCompatActivity {
                 pushDeviceGenerators
                 );
 
+<<<<<<< HEAD
         CustomChatNotificationHandler notificationHandler = new CustomChatNotificationHandler(getApplicationContext(),notificationConfig);
 
 
 
         client= new ChatClient.Builder("an38qgjtsfsj", context)
                 .notifications(notificationHandler)
+=======
+
+        CustomChatNotificationHandler notificationHandler = new CustomChatNotificationHandler(getApplicationContext(), notificationConfig);
+
+
+
+        client= new ChatClient.Builder("an38qgjtsfsj", getApplicationContext())
+                .notifications(notificationHandler)
+                .logLevel(ChatLogLevel.ALL)
+>>>>>>> d28b5149ce1cf5f209c15ea364a28491d29a0bde
                 .build();
         new ChatDomain.Builder(client, getApplicationContext()).build();
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
