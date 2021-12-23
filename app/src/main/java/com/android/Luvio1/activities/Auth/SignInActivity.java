@@ -93,23 +93,12 @@ public class SignInActivity extends AppCompatActivity {
                 pushDeviceGenerators
                 );
 
-<<<<<<< HEAD
         CustomChatNotificationHandler notificationHandler = new CustomChatNotificationHandler(getApplicationContext(),notificationConfig);
 
 
 
         client= new ChatClient.Builder("an38qgjtsfsj", context)
                 .notifications(notificationHandler)
-=======
-
-        CustomChatNotificationHandler notificationHandler = new CustomChatNotificationHandler(getApplicationContext(), notificationConfig);
-
-
-
-        client= new ChatClient.Builder("an38qgjtsfsj", getApplicationContext())
-                .notifications(notificationHandler)
-                .logLevel(ChatLogLevel.ALL)
->>>>>>> d28b5149ce1cf5f209c15ea364a28491d29a0bde
                 .build();
         new ChatDomain.Builder(client, getApplicationContext()).build();
         if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
