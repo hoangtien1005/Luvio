@@ -90,7 +90,7 @@ public class InterestActivity extends AppCompatActivity {
 
         ChatNotificationHandler notificationHandler = new ChatNotificationHandler(getApplicationContext(), notificationConfig);
 
-        client= new ChatClient.Builder("an38qgjtsfsj", getApplicationContext())
+        client= new ChatClient.Builder("wxwzexeh85db", getApplicationContext())
                 .notifications(notificationHandler)
                 .logLevel(ChatLogLevel.ALL)
                 .build();

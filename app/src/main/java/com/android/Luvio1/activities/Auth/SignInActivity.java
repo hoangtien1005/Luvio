@@ -97,7 +97,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
 
-        client= new ChatClient.Builder("an38qgjtsfsj", context)
+        client= new ChatClient.Builder("wxwzexeh85db", context)
                 .notifications(notificationHandler)
                 .build();
         new ChatDomain.Builder(client, getApplicationContext()).build();
